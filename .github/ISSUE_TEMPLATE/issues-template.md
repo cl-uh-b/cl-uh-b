@@ -1,5 +1,5 @@
 ---
-name: Task Description
+name: Issue Description 
 about: Describe a task to be accomplished
 title: "[DATE]: [FEATURE NAME]"
 labels: ''
