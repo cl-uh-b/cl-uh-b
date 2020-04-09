@@ -12,6 +12,7 @@ class Club extends React.Component {
             <Card.Meta>{this.props.club.type}</Card.Meta>
             <Card.Description></Card.Description>
             <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
+            <Card.Meta>Email: {this.props.club.email}</Card.Meta>
           </Card.Content>
           <Card.Content extra>
             <Button>Delete</Button>
