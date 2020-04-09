@@ -1,7 +1,7 @@
 ---
 name: Issue Description 
 about: Describe a task to be accomplished
-title: "[DATE]: [FEATURE NAME]"
+title: "[FEATURE NAME]"
 labels: ''
 assignees: ''
 ---
