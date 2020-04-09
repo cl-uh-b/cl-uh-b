@@ -14,18 +14,24 @@ class ListClubs extends React.Component {
     type: 'Academic/Professional',
     contact: 'Chad Morita',
     email: 'chadmmm@hawaii.edu',
+    description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
+    image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
     },
     {
       name: 'Hanwoori Hawaii',
       type: 'Ethic/Cultural',
       contact: 'Ingrid Adams',
       email: 'adamsi@hawaii.edu',
+      description: 'Lorem ipsum and all that jazz',
+      image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
     },
     {
-      name: 'Graduate Women in Science HAwaii',
+      name: 'Graduate Women in Science Hawaii',
       type: 'Academic/Professional',
       contact: 'Madeline McKenna',
       email: 'mmck@hawaii.edu',
+      description: 'Lorem ipsum and all that jazz',
+      image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
     },
   ];
 
