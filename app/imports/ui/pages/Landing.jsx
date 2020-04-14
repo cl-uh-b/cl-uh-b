@@ -1,10 +1,12 @@
 import React from 'react';
-import { Container, Grid, Icon, Image, Header, Divider } from 'semantic-ui-react';
+import { Container, Grid, Icon, Image, Header, Divider, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
     const spacing = { paddingTop: '78px' };
+
     return (
       <div>
         <Container fluid>
@@ -26,15 +28,15 @@ class Landing extends React.Component {
           <hr/>
           <Header textAlign='center' inverted as='h1'>Discover Clubs</Header>
           <Grid textAlign='center' stackable container columns={2}>
-            <Grid.Column>
-              <Icon inverted size='huge' name='search'/>
+            <Grid.Column centered>
+              <Link to='/browse'><Icon inverted size='huge' name='search' link=' '/></Link>
               <Header inverted as='h3'>
                 Search through the <br/>
                 hundreds of clubs at UH Manoa!
               </Header>
-              </Grid.Column>
+            </Grid.Column>
             <Grid.Column>
-              <Icon inverted size='huge' name='mail'/>
+              <Link to='/browse'><Icon inverted size='huge' name='mail' link=' ' /></Link>
               <Header inverted as='h3'>
                 Found a club you like? <br/>
                 Their contact information is right there!
@@ -47,20 +49,20 @@ class Landing extends React.Component {
             <Header textAlign='center' inverted as='h1'>Club Contacts</Header>
             <Grid textAlign='center' stackable container columns={3}>
               <Grid.Column>
-                <Icon inverted size='huge' name='users' />
+                <Link to='/add'><Icon inverted size='huge' name='users' link=' ' /></Link>
                 <Header inverted as='h3'>
                   Don&apos;t see your club? <br/>
                   Add it to our lists for students to find!
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Icon inverted size='huge' name='edit outline'/>
+                <Link to='/edit'><Icon inverted size='huge' name='edit outline' link=' ' /></Link>
                 <Header inverted as='h3'>
                   It&apos; quick and easy to update your information
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Icon inverted size='huge' name='star outline'/>
+                <Link to='/'><Icon inverted size='huge' name='star outline' link=' ' /></Link>
                 <Header inverted as='h3'>
                   Curious to hear what club memebers think? Find out from the ratings
                 </Header>
