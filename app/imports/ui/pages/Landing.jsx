@@ -17,7 +17,7 @@ class Landing extends React.Component {
             </Grid.Column>
             <Grid.Column verticalAlign='middle' textAlign='center'>
               <Header inverted as='h1'>Welcome to CL-UH-B</Header>
-              <Divider horizontal inverted> + </Divider>
+              <Divider inverted/>
               <Header inverted as='h2'>Club Listings at University of Hawaii Browsery</Header>
             </Grid.Column>
           </Grid>
