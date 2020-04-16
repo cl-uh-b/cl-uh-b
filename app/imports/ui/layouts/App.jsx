@@ -17,6 +17,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import Favorites from '../pages/Favorites';
 import ListClubsAdmin from '../pages/ListClubsAdmin';
+import MyClub from '../pages/MyClub';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -30,6 +31,7 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/browse" component={ListClub}/>
+              <ProtectedRoute path="/my-clubs" component={MyClub}/>
               <ProtectedRoute path="/add" component={AddClub}/>
               <ProtectedRoute path="/im-feeling-lucky" component={Lucky}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
