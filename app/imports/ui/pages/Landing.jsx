@@ -62,7 +62,7 @@ class Landing extends React.Component {
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Link to='/'><Icon inverted size='huge' name='star outline' link=' ' /></Link>
+                <Link to='/my-club'><Icon inverted size='huge' name='star outline' link=' ' /></Link>
                 <Header inverted as='h3'>
                   Curious to hear what club memebers think? Find out from the ratings
                 </Header>

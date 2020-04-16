@@ -14,6 +14,9 @@ function createUser(email, password, role) {
   if (role === 'admin') {
     Roles.addUsersToRoles(userID, 'admin');
   }
+  if (role === 'clubOwner') {
+    Roles.addUsersToRoles(userID, 'clubOwner');
+  }
 }
 
 /** When running app for first time, pass a settings file to set up a default user account. */
