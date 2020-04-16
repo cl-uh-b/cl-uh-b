@@ -2,3 +2,12 @@
   background: url("images/landing-header-background.png") no-repeat center center;
   background-size: cover;
 }
+
+#contact-card {
+  max-width: 90%;
+}
+
+#card-image {
+  width: 20%;
+  margin: 0px 10px 10px 0px;
+}

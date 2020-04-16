@@ -8,17 +8,21 @@ class Club extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image
+            <Image id="card-image"
               floated={'right'}
-              size={'mini'}
+              // size={'mini'}
               src={this.props.club.image}
             />
             <Card.Header>{this.props.club.name}</Card.Header>
             <Card.Meta>{this.props.club.type}</Card.Meta>
             <Card.Description>{this.props.club.description}</Card.Description>
-            <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
-            <Card.Meta>Email: {this.props.club.email}</Card.Meta>
           </Card.Content>
+          <Card id="contact-card" centered>
+            <Card.Content>
+             <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
+              <Card.Meta>Email: {this.props.club.email}</Card.Meta>
+            </Card.Content>
+          </Card>
           <Card.Content extra>
             <Button className="ui button">Favorite</Button>
           </Card.Content>

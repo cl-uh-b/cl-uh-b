@@ -10,8 +10,12 @@ import Club from '../components/Club';
 class Lucky extends React.Component {
 
   clubs = [{
+    name: 'Grey Hats at UHM',
+    type: 'Academic/Professional',
     contact: 'Chad Morita',
     email: 'chadmmm@hawaii.edu',
+    description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
+    image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
   },
   ];
 
@@ -24,25 +28,10 @@ class Lucky extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>A Cool Club to Join</Header>
-          <Card centered>
-            <Card.Content>
-              <Image floated='right' size='mini' src='https://acmanoa.github.io/assets/img/logos/greyhats.png' />
-              <Card.Header>Grey Hats</Card.Header>
-              <Card.Meta>
-                <span className='date'>Academic/Professional</span>
-              </Card.Meta>
-              <Card.Description>
-                The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.<br/>
-              </Card.Description>
-            </Card.Content>
-            <Card.Content>
-              {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
-            </Card.Content>
-            <Card.Content extra>
-              <Button className="ui button">Favorite</Button>
-            </Card.Content>
-          </Card>
+          <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
+          <Card.Group>
+            {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
+          </Card.Group>
         </Container>
     );
   }
