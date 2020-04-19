@@ -1,7 +1,41 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "club@foo.com", "password": "changeme", "role": "clubOwner" },
-    { "email": "john@foo.com", "password": "changeme" }
+    {
+      "email": "admin@foo.com",
+      "password": "changeme",
+      "role": "admin",
+      "profile": {
+        "firstName": "Admin",
+        "lastName": "Man",
+        "interests": [
+          "Ethic",
+          "Academic"
+        ]
+      }
+    },
+    {
+      "email": "club@foo.com",
+      "password": "changeme",
+      "role": "clubOwner",
+      "profile": {
+        "firstName": "Club",
+        "lastName": "Owner",
+        "interests": [
+          "Religious"
+        ]
+      }
+    },
+    {
+      "email": "john@foo.com",
+      "password": "changeme",
+      "profile":{
+        "firstName": "Johnny",
+        "lastName": "Boi",
+        "interests": [
+          "Professional",
+          "Academic"
+        ]
+      }
+    }
   ]
 }

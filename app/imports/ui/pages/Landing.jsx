@@ -1,12 +1,11 @@
 import React from 'react';
-import { Container, Grid, Icon, Image, Header, Divider, Button } from 'semantic-ui-react';
+import { Container, Grid, Icon, Image, Header, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
     const spacing = { paddingTop: '78px' };
-
     return (
       <div>
         <Container fluid>
@@ -56,13 +55,13 @@ class Landing extends React.Component {
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Link to='/edit'><Icon inverted size='huge' name='edit outline' link=' ' /></Link>
+                <Link to='/my-clubs'><Icon inverted size='huge' name='edit outline' link=' ' /></Link>
                 <Header inverted as='h3'>
                   It&apos; quick and easy to update your information
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Link to='/my-club'><Icon inverted size='huge' name='star outline' link=' ' /></Link>
+                <Link to='/my-clubs'><Icon inverted size='huge' name='star outline' link=' ' /></Link>
                 <Header inverted as='h3'>
                   Curious to hear what club memebers think? Find out from the ratings
                 </Header>
