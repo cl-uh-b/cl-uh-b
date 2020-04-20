@@ -11,8 +11,8 @@ const ClubSchema = new SimpleSchema({
   interest: String,
   contact: String,
   email: String,
-  description: { String, defaultValue: 'None Available' },
-  image: { String, defaultValue: 'https://manoa.hawaii.edu/admissions/images/stacked.png' },
+  description: { type: String, defaultValue: 'None Available' },
+  image: { type: String, defaultValue: 'https://manoa.hawaii.edu/admissions/images/stacked.png' },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
