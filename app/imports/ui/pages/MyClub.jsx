@@ -28,7 +28,7 @@ class MyClub extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
+          <Header as="h2" textAlign="center" inverted>My Clubs</Header>
           <Card.Group>
             {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
           </Card.Group>

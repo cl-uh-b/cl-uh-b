@@ -31,6 +31,7 @@
       "email": "john@foo.com",
       "password": "changeme",
       "profile":{
+
         "firstName": "Johnny",
         "lastName": "Boi",
         "interests": [
@@ -39,5 +40,6 @@
         ]
       }
     }
-  ]
+  ],
+ "loadAssetsFile": true
 }
