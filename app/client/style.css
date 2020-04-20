@@ -11,3 +11,14 @@
   width: 20%;
   margin: 0px 10px 10px 0px;
 }
+
+/** Profile Card Style */
+.profile-card {
+  margin-top: 44px !important;
+  padding: 0 !important;
+}
+
+.profile-header {
+  font-size: 250% !important;
+  font-style: italic !important;
+}
