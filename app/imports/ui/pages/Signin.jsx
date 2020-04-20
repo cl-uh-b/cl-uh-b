@@ -53,7 +53,6 @@ export default class Signin extends React.Component {
               <Header inverted as='h1'>Sign in to CL-UH-B</Header>
               <Form onSubmit={this.submit}>
                   <Form.Input
-                    label=""
                     icon="user"
                     iconPosition="left"
                     name="email"
@@ -62,7 +61,6 @@ export default class Signin extends React.Component {
                     onChange={this.handleChange}
                   />
                   <Form.Input
-                    label=""
                     icon="lock"
                     iconPosition="left"
                     name="password"
