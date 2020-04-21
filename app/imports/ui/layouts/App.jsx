@@ -10,7 +10,7 @@ import Landing from '../pages/Landing';
 import ListClub from '../pages/ListClub';
 import AddClub from '../pages/AddClub';
 import Lucky from '../pages/Lucky';
-import EditStuff from '../pages/EditStuff';
+import EditClub from '../pages/EditClub';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -35,7 +35,7 @@ class App extends React.Component {
               <ClubProtectedRoute path="/my-clubs" component={MyClub}/>
               <ProtectedRoute path="/add" component={AddClub}/>
               <ProtectedRoute path="/im-feeling-lucky" component={Lucky}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
+              <ProtectedRoute path="/edit/:_id" component={EditClub}/>
               <ProtectedRoute path="/favorites" component={Favorites}/>
               <AdminProtectedRoute path="/admin" component={ListClubsAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>

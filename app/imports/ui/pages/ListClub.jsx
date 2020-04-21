@@ -10,7 +10,7 @@ import Club from '../components/Club';
 class ListClubs extends React.Component {
 
   clubs = [{
-    name: 'Grey Hats at UHM',
+    clubName: 'Grey Hats at UHM',
     type: 'Academic/Professional',
     contact: 'Chad Morita',
     email: 'chadmmm@hawaii.edu',
@@ -18,7 +18,7 @@ class ListClubs extends React.Component {
     image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
     },
     {
-      name: 'Hanwoori Hawaii',
+      clubName: 'Hanwoori Hawaii',
       type: 'Ethic/Cultural',
       contact: 'Ingrid Adams',
       email: 'adamsi@hawaii.edu',
@@ -26,7 +26,7 @@ class ListClubs extends React.Component {
       image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
     },
     {
-      name: 'Graduate Women in Science Hawaii',
+      clubName: 'Graduate Women in Science Hawaii',
       type: 'Academic/Professional',
       contact: 'Madeline McKenna',
       email: 'mmck@hawaii.edu',

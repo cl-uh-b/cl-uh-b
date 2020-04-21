@@ -8,11 +8,21 @@ const Clubs = new Mongo.Collection('Clubs');
 /** Define a schema to specify the structure of each document in the collection. */
 const ClubSchema = new SimpleSchema({
   clubName: String,
-  interest: String,
+  type: {
+    type: String,
+    allowedValues: ['Academic'],
+    defaultValue: 'Academic',
+  },
+  description: {
+    type: String,
+    optional: true,
+    defaultValue: 'None Available' },
   contact: String,
   email: String,
-  description: { type: String, defaultValue: 'None Available' },
-  image: { type: String, defaultValue: 'https://manoa.hawaii.edu/admissions/images/stacked.png' },
+  image: { type: String,
+    optional: true,
+    defaultValue: 'https://manoa.hawaii.edu/admissions/images/stacked.png' },
+  owner: { type: String, optional: true },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

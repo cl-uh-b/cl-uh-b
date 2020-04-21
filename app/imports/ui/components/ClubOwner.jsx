@@ -1,17 +1,17 @@
 import React from 'react';
-import { Card, Image, Button } from 'semantic-ui-react';
+import { Button, Card, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-class Club extends React.Component {
+class ClubOwner extends React.Component {
   render() {
     return (
         <Card centered>
           <Card.Content>
             <Image id="card-image"
-              floated={'right'}
-              // size={'mini'}
-              src={this.props.club.image}
+                   floated={'right'}
+                // size={'mini'}
+                   src={this.props.club.image}
             />
             <Card.Header>{this.props.club.clubName}</Card.Header>
             <Card.Meta>{this.props.club.type}</Card.Meta>
@@ -19,21 +19,21 @@ class Club extends React.Component {
           </Card.Content>
           <Card id="contact-card" centered>
             <Card.Content>
-             <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
+              <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
               <Card.Meta>Email: {this.props.club.email}</Card.Meta>
             </Card.Content>
           </Card>
           <Card.Content extra>
-            <Button className="ui button">Favorite</Button>
+            <Button as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
           </Card.Content>
         </Card>
     );
   }
 }
 
-Club.propTypes = {
+ClubOwner.propTypes = {
   club: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(Club);
+export default withRouter(ClubOwner);

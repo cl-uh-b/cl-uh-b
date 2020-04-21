@@ -10,7 +10,7 @@ import Club from '../components/Club';
 class Lucky extends React.Component {
 
   clubs = [{
-    name: 'Grey Hats at UHM',
+    clubName: 'Grey Hats at UHM',
     type: 'Academic/Professional',
     contact: 'Chad Morita',
     email: 'chadmmm@hawaii.edu',
