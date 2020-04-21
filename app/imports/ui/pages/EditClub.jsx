@@ -37,7 +37,7 @@ class EditClub extends React.Component {
                 <LongTextField name='description'/>
                 <Segment.Group horizontal>
                   <Segment><TextField name='contact'/></Segment>
-                  <Segment><TextField name='contact'/></Segment>
+                  <Segment><TextField name='email'/></Segment>
                 </Segment.Group>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
