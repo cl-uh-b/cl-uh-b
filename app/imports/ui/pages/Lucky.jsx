@@ -50,7 +50,7 @@ Lucky.propTypes = {
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('ClubsPublic');
+  const subscription = Meteor.subscribe('Clubs');
   return {
     clubs: Clubs.find({}).fetch(),
     ready: subscription.ready(),
