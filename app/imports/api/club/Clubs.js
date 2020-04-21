@@ -16,13 +16,12 @@ const ClubSchema = new SimpleSchema({
   description: {
     type: String,
     optional: true,
-    defaultValue: 'None Available' },
+    defaultValue: '' },
   contact: String,
   email: String,
   image: { type: String,
     optional: true,
     defaultValue: 'https://manoa.hawaii.edu/admissions/images/stacked.png' },
-  owner: { type: String, optional: true },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
