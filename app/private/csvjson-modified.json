@@ -2238,5 +2238,14 @@
     "email": "mmoldero@hawaii.edu",
     "description": "",
     "image": ""
+  },
+  {
+    "clubName": "Test Club",
+    "interest": "Test",
+    "contact": "Club",
+    "email": "club@foo.com",
+    "description": "Testing role",
+    "image": "https://manoa.hawaii.edu/admissions/images/stacked.png",
+    "owner": "club@foo.com"
   }
 ]

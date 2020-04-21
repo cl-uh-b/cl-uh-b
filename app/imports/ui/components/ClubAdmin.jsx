@@ -3,7 +3,7 @@ import { Card, Button, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-class Club extends React.Component {
+class ClubAdmin extends React.Component {
   render() {
     return (
         <Card centered>
@@ -13,7 +13,7 @@ class Club extends React.Component {
                 // size={'mini'}
                    src={this.props.club.image}
             />
-            <Card.Header>{this.props.club.name}</Card.Header>
+            <Card.Header>{this.props.club.clubName}</Card.Header>
             <Card.Meta>{this.props.club.type}</Card.Meta>
             <Card.Description>{this.props.club.description}</Card.Description>
           </Card.Content>
@@ -31,9 +31,9 @@ class Club extends React.Component {
   }
 }
 
-Club.propTypes = {
+ClubAdmin.propTypes = {
   club: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(Club);
+export default withRouter(ClubAdmin);

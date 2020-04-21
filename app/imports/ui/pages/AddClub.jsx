@@ -9,7 +9,7 @@ import { Stuffs } from '../../api/stuff/Stuff';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
- club: String,
+ clubName: String,
   type: {
     type: String,
     allowedValues: ['Academic'],
@@ -24,9 +24,9 @@ class AddClub extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { club, type, description, contact } = data;
+    const { clubName, type, description, contact } = data;
     const owner = Meteor.user().username;
-    Stuffs.insert({ club, type, description, contact, owner },
+    Stuffs.insert({ clubName, type, description, contact, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -46,7 +46,7 @@ class AddClub extends React.Component {
             <Header as="h2" textAlign="center" inverted>Add Club</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
-                <TextField name='club'/>
+                <TextField name='clubName'/>
                 <SelectField name='type'/>
                 <LongTextField name='description'/>
                 <Segment.Group horizontal>
