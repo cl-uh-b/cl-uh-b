@@ -13,8 +13,8 @@ class Club extends React.Component {
               // size={'mini'}
               src={this.props.club.image}
             />
-            <Card.Header>{this.props.club.name}</Card.Header>
-            <Card.Meta>{this.props.club.type}</Card.Meta>
+            <Card.Header>{this.props.club.clubName}</Card.Header>
+            <Card.Meta>{this.props.club.interest}</Card.Meta>
             <Card.Description>{this.props.club.description}</Card.Description>
           </Card.Content>
           <Card id="contact-card" centered>

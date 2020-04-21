@@ -24,7 +24,7 @@ if (Stuffs.find().count() === 0) {
   }
 }
 
-if (Meteor.settings.loadAssetsFile) {
+if (Meteor.settings.loadAssetsFile && Clubs.find().count() === 0) {
   const assetFile = 'csvjson-modified.json';
   console.log(`Loading clubs from ${assetFile}`);
   const jsonData = JSON.parse(Assets.getText(assetFile));
