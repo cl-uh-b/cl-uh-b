@@ -2240,12 +2240,11 @@
     "image": ""
   },
   {
-    "clubName": "Test Club",
-    "interest": "Test",
-    "contact": "Club",
+    "clubName": "This is My Club",
+    "interest": "Service",
+    "contact": "Club Owner",
     "email": "club@foo.com",
-    "description": "Testing role",
-    "image": "https://manoa.hawaii.edu/admissions/images/stacked.png",
-    "owner": "club@foo.com"
+    "description": "We own this club",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS98HEkgm61IQO32rMPsCzh4vzghCVsUE_j-ilKPvqAXoWR7p-K&usqp=CAU"
   }
 ]

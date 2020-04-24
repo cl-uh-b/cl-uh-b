@@ -19,6 +19,7 @@ import Favorites from '../pages/Favorites';
 import ListClubsAdmin from '../pages/ListClubsAdmin';
 import MyClub from '../pages/MyClub';
 import Profile from '../pages/Profile';
+import EditProfile from '../pages/EditProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -39,7 +40,8 @@ class App extends React.Component {
               <ProtectedRoute path="/favorites" component={Favorites}/>
               <AdminProtectedRoute path="/admin" component={ListClubsAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
-              <ProtectedRoute path="/profile/" component={Profile}/>
+              <ProtectedRoute path="/profile" component={Profile}/>
+              <ProtectedRoute path="/editprofile" component={EditProfile}/>
               <Route component={NotFound}/>
             </Switch>
             <Footer/>

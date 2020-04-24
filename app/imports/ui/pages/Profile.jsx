@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, Button, Container, Header, Grid, Image } from 'semantic-ui-react';
-import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import { Roles } from 'meteor/alanning:roles';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
