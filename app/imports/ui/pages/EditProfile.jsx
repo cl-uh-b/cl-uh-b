@@ -7,24 +7,17 @@ import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
 import { _ } from 'meteor/underscore';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
 import { updateProfileMethod } from '../../startup/both/Methods';
+import { Interests } from '../../api/interests/Interests';
 
-const interestNames = [
-    'Academic/Professional',
-    'Religious/Spiritual',
-    'Political',
-    'Sports/Leisure',
-    'Service',
-    'Fraternity/Sorority',
-    'Ethnic/Cultural',
-];
-
-const ProfileSchema = new SimpleSchema({
+const makeSchema = (clubInterests) => new SimpleSchema({
   firstName: String,
   lastName: String,
-  interests: { type: Array, optional: true },
-  'interests.$': { type: String, allowedValues: interestNames },
+  interest: { type: Array, optional: true },
+  'interest.$': { type: String, allowedValues: clubInterests },
   picture: { type: String, optional: true },
 });
 
@@ -43,6 +36,8 @@ class EditProfile extends React.Component {
   }
 
   render() {
+    const clubInterests = _.pluck(Interests.find().fetch(), 'interest');
+    const ProfileSchema = makeSchema(clubInterests);
     const user = Meteor.user().profile;
     const model = _.extend({}, user);
     return (
@@ -53,7 +48,7 @@ class EditProfile extends React.Component {
               <Segment stacked>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
-                <MultiSelectField name='interests' showInlineError={true} placeholder={'Interests (Select)'}/>
+                <MultiSelectField name='interest' showInlineError={true} placeholder={'Interests (Select)'}/>
                 <TextField name='picture' placeholder={'Picture (Link)'}/>
                 <SubmitField value='Submit'/>
                 <Link to="/profile"><Button>Back</Button></Link>
@@ -65,5 +60,15 @@ class EditProfile extends React.Component {
     );
   }
 }
+EditProfile.propTypes = {
+  ready: PropTypes.bool.isRequired,
+};
 
-export default EditProfile;
+export default withTracker(() => {
+
+  const subscription = Meteor.subscribe('Interests');
+
+  return {
+    ready: subscription.ready(),
+  };
+})(EditProfile);

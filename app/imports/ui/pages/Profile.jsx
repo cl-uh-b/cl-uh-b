@@ -11,7 +11,7 @@ class Profile extends React.Component {
     let profileRole = '';
     let profilePicture = '';
 
-    // Goes through the each user's profile interest
+    // Goes through each of the user's profile interest
     for (let i = 0; i < Meteor.user().profile.interests.length; i++) {
       if (i === Meteor.user().profile.interests.length - 1) {
         profileInterest += Meteor.user().profile.interests[i];

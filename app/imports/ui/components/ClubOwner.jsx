@@ -1,30 +1,33 @@
 import React from 'react';
-import { Button, Card, Image } from 'semantic-ui-react';
+import { Button, Card, Image, Rating, Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
 class ClubOwner extends React.Component {
   render() {
+    let clubInterest = '';
+    // Just in case the club has multiple interests.
+    for (let i = 0; i < this.props.club.interest.length; i++) {
+      if (i === this.props.club.interest.length - 1) {
+        clubInterest += this.props.club.interest[i];
+      } else {
+        clubInterest += `${this.props.club.interest[i]}, `;
+      }
+    }
+
     return (
-        <Card centered>
+        <Card centered fluid>
           <Card.Content>
-            <Image id="card-image"
-                   floated={'right'}
-                // size={'mini'}
-                   src={this.props.club.image}
-            />
+            <Image floated='left' src={this.props.club.image} />
             <Card.Header>{this.props.club.clubName}</Card.Header>
-            <Card.Meta>{this.props.club.type}</Card.Meta>
-            <Card.Description>{this.props.club.description}</Card.Description>
+            <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
+            <Card.Meta>Email: {this.props.club.email}</Card.Meta>
+            <Card.Meta>Interests: {clubInterest}</Card.Meta>
+            <Container fluid>{this.props.club.description}</Container>
           </Card.Content>
-          <Card id="contact-card" centered>
-            <Card.Content>
-              <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
-              <Card.Meta>Email: {this.props.club.email}</Card.Meta>
-            </Card.Content>
-          </Card>
           <Card.Content extra>
-            <Button as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
+            <Rating icon='star' defaultRating={3} maxRating={5} />
+            <Button floated='right' as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
           </Card.Content>
         </Card>
     );

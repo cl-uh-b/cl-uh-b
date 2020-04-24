@@ -8,7 +8,8 @@
         "firstName": "Admin",
         "lastName": "Man",
         "interests": [
-          "Academic/Professional",
+          "Academic",
+          "Professional",
           "Political"
         ],
         "picture": "https://telegram.org/file/811140642/1/nM2DU-Ywr3A/e5809db818346b4be5"
@@ -22,7 +23,8 @@
         "firstName": "Club",
         "lastName": "Owner",
         "interests": [
-          "Religious/Spiritual",
+          "Religious",
+          "Spiritual",
           "Service"
         ],
         "picture": "https://previews.123rf.com/images/jemastock/jemastock1808/jemastock180805062/111842325-businessman-profile-with-sunglasses-and-thumbs-up-pop-art-cartoon-vector-illustration-graphic-design.jpg"
@@ -35,7 +37,8 @@
         "firstName": "Johnny",
         "lastName": "Boi",
         "interests": [
-          "Ethnic/Cultural"
+          "Ethnic",
+          "Cultural"
         ]
       }
     }
