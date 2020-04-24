@@ -42,22 +42,21 @@ class EditProfile extends React.Component {
     });
   }
 
-  /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     const user = Meteor.user().profile;
     const model = _.extend({}, user);
     return (
-        <Grid container centered>
-          <Grid.Column>
+        <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
+          <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" textAlign="center" inverted>Edit Club</Header>
             <AutoForm schema={ProfileSchema} onSubmit={data => this.submit(data)} model={model} >
-              <Segment>
+              <Segment stacked>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
-                <MultiSelectField name='interests' showInlineError={true} placeholder={'Interests'}/>
-                <TextField name='picture'/>
+                <MultiSelectField name='interests' showInlineError={true} placeholder={'Interests (Select)'}/>
+                <TextField name='picture' placeholder={'Picture (Link)'}/>
                 <SubmitField value='Submit'/>
-                <Link to="/profile"><Button>Cancel</Button></Link>
+                <Link to="/profile"><Button>Back</Button></Link>
                 <ErrorsField/>
               </Segment>
             </AutoForm>
