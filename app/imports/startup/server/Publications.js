@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Clubs } from '../../api/club/Clubs';
+import { Interests } from '../../api/interests/Interests'
 
 
 /** This subscription publishes only the clubs owned by the logged in user */
@@ -26,4 +27,8 @@ Meteor.publish('Clubs', function publish() {
     return Clubs.find();
   }
   return this.ready();
+});
+
+Meteor.publish('Interests', function publish() {
+  return Interests.find();
 });
