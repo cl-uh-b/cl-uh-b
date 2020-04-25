@@ -1,10 +1,32 @@
 import React from 'react';
-import { Card, Image, Button } from 'semantic-ui-react';
+import { Card, Image, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
+import { Favorites } from '../../api/favorites/Favorites';
+import { Clubs, ClubSchema } from '../../api/club/Clubs';
 
 class Club extends React.Component {
+  handleRate = () => {
+    const owner = Meteor.user().username;
+    if (_.contains(_.pluck(this.props.favorites, 'FavoriteId'), this.props.club._id)) {
+      Clubs.update(this.props.club._id, { $inc: { favoritesCount: -1 } });
+      const removeList = _.findWhere(this.props.favorites, { FavoriteId: this.props.club._id });
+      Favorites.remove(removeList._id);
+    } else {
+      Clubs.update(this.props.club._id, { $inc: { favoritesCount: 1 } });
+      Favorites.insert({ FavoriteId: this.props.club._id, owner });
+    }
+  };
+
   render() {
+    let defRating = 0;
+    if (_.contains(_.pluck(this.props.favorites, 'FavoriteId'), this.props.club._id)) {
+      defRating = 1;
+    } else {
+      defRating = 0;
+    }
     return (
         <Card centered>
           <Card.Content>
@@ -24,7 +46,12 @@ class Club extends React.Component {
             </Card.Content>
           </Card>
           <Card.Content extra>
-            <Button className="ui button">Favorite</Button>
+            <Rating
+                icon='heart'
+                defaultRating={defRating}
+                schema={ClubSchema}
+                onRate={this.handleRate}
+                maxRating={1}/>
           </Card.Content>
         </Card>
     );
@@ -33,6 +60,7 @@ class Club extends React.Component {
 
 Club.propTypes = {
   club: PropTypes.object.isRequired,
+  favorites: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

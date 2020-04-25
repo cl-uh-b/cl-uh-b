@@ -3,46 +3,13 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
+import { _ } from 'meteor/underscore';
 import Club from '../components/Club';
+import { Clubs } from '../../api/club/Clubs';
+import { Favorites } from '../../api/favorites/Favorites';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class Favorites extends React.Component {
-
-  clubs = [{
-    clubName: 'Grey Hats at UHM',
-    type: 'Academic/Professional',
-    contact: 'Chad Morita',
-    email: 'chadmmm@hawaii.edu',
-    description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
-    image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
-    },
-    {
-      name: 'Grey Hats at UHM',
-      type: 'Academic/Professional',
-      contact: 'Chad Morita',
-      email: 'chadmmm@hawaii.edu',
-      description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
-      image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
-    },
-    {
-      name: 'Hanwoori Hawaii',
-      type: 'Ethic/Cultural',
-      contact: 'Ingrid Adams',
-      email: 'adamsi@hawaii.edu',
-      description: 'Lorem ipsum and all that jazz',
-      image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
-    },
-    {
-      name: 'Graduate Women in Science Hawaii',
-      type: 'Academic/Professional',
-      contact: 'Madeline McKenna',
-      email: 'mmck@hawaii.edu',
-      description: 'Lorem ipsum and all that jazz',
-      image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
-    },
-  ];
-
+class FavoriteClubs extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -50,26 +17,35 @@ class Favorites extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const favorite = _.pluck(this.props.favorites, 'FavoriteId');
+    const userFavorites = _.filter(this.props.clubs, (club) => _.contains(favorite, club._id));
     return (
         <Container>
           <Header as="h2" textAlign="center" inverted>Favorites</Header>
           <Card.Group>
-            {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
+            {userFavorites.map((club, index) => <Club
+                key={index}
+                club={club}
+                favorites={this.props.favorites}
+            />)}
           </Card.Group>
         </Container>
     );
   }
 }
 
-Favorites.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+FavoriteClubs.propTypes = {
+  clubs: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('Stuff');
+  const subscription1 = Meteor.subscribe('Clubs');
+  const subscription2 = Meteor.subscribe('Favorites');
   return {
-    stuffs: Stuffs.find({}).fetch(),
-    ready: subscription.ready(),
+    clubs: Clubs.find({}).fetch(),
+    favorites: Favorites.find({}).fetch(),
+    ready: subscription1.ready() && subscription2.ready(),
   };
-})(Favorites);
+})(FavoriteClubs);

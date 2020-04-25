@@ -15,6 +15,7 @@ const ClubSchema = new SimpleSchema({
     optional: true,
     defaultValue: 'None Available',
   },
+  favoritesCount: Number,
   contact: String,
   email: String,
   image: { type: String,

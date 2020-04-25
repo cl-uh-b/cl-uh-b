@@ -29,6 +29,7 @@ function addClubs(data) {
     }
   });
 }
+
 if (Clubs.find().count() === 0) {
   if (Meteor.settings.loadAssetsFile) {
     const assetFile = 'csvjson-modified.json';

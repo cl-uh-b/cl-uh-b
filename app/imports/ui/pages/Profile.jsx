@@ -33,7 +33,7 @@ class Profile extends React.Component {
     }
 
     // Set a default profile picture if none is declared
-    if (Meteor.user().profile.picture === '') {
+    if (Meteor.user().profile.picture === '' || Meteor.user().profile.picture) {
       profilePicture = 'https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg';
     } else {
       profilePicture = Meteor.user().profile.picture;
