@@ -3,37 +3,11 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
 import Club from '../components/Club';
+import { Clubs } from '../../api/club/Clubs';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubs extends React.Component {
-
-  clubs = [{
-    clubName: 'Grey Hats at UHM',
-    type: 'Academic/Professional',
-    contact: 'Chad Morita',
-    email: 'chadmmm@hawaii.edu',
-    description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
-    image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
-    },
-    {
-      clubName: 'Hanwoori Hawaii',
-      type: 'Ethic/Cultural',
-      contact: 'Ingrid Adams',
-      email: 'adamsi@hawaii.edu',
-      description: 'Lorem ipsum and all that jazz',
-      image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
-    },
-    {
-      clubName: 'Graduate Women in Science Hawaii',
-      type: 'Academic/Professional',
-      contact: 'Madeline McKenna',
-      email: 'mmck@hawaii.edu',
-      description: 'Lorem ipsum and all that jazz',
-      image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
-    },
-  ];
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -46,7 +20,7 @@ class ListClubs extends React.Component {
         <Container>
           <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
           <Card.Group>
-            {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
+            {this.props.clubs.map((club, index) => <Club key={index} club={club} />)}
           </Card.Group>
         </Container>
     );
@@ -54,14 +28,14 @@ class ListClubs extends React.Component {
 }
 
 ListClubs.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+  clubs: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('Stuff');
+  const subscription1 = Meteor.subscribe('Clubs');
   return {
-    stuffs: Stuffs.find({}).fetch(),
-    ready: subscription.ready(),
+    clubs: Clubs.find({}).fetch(),
+    ready: subscription1.ready(),
   };
 })(ListClubs);
