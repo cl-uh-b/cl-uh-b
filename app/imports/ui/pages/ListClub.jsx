@@ -32,7 +32,7 @@ class ListClubs extends React.Component {
         <Container>
           <AutoForm schema={formSchema} onSubmit={data => this.submit(data)} >
             <Segment>
-              <MultiSelectField name='interests' showInlineError={true} placeholder={'Interests'}/>
+              <MultiSelectField name='interest' showInlineError={true} placeholder={'Interests'}/>
               <SubmitField value='Submit'/>
             </Segment>
           </AutoForm>
