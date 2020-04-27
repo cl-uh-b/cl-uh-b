@@ -11,7 +11,7 @@ class Landing extends React.Component {
         <Container fluid>
           <div className='landing-header-background'>
           <Grid stackable centered container columns={2}>
-            <Grid.Column width={4} verticalAlin='middle' >
+            <Grid.Column width={4} verticalAlign='middle' >
              <Image floated='left' size='medium' src='../images/cl-uh-b-logo.png'/>
             </Grid.Column>
             <Grid.Column verticalAlign='middle' textAlign='center'>
