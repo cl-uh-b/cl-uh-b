@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Button, Label } from 'semantic-ui-react';
+import { Card, Image, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
