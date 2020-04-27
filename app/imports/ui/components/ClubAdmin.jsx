@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Button, Image } from 'semantic-ui-react';
+import { Card, Button, Image, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { _ } from 'meteor/underscore';
 
 class ClubAdmin extends React.Component {
   render() {
@@ -16,6 +17,10 @@ class ClubAdmin extends React.Component {
             <Card.Header>{this.props.club.clubName}</Card.Header>
             <Card.Meta>{this.props.club.type}</Card.Meta>
             <Card.Description>{this.props.club.description}</Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            {_.map(this.props.club.interest,
+                (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
           </Card.Content>
           <Card id="contact-card" centered>
             <Card.Content>

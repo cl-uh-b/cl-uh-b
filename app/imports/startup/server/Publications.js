@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
@@ -13,13 +12,6 @@ Meteor.publish('MyClubs', function publish() {
   return this.ready();
 });
 
-/** This subscription publishes all clubs regardless of user, but only if the logged in user is the Admin. */
-Meteor.publish('ClubsAdmin', function publish() {
-  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Clubs.find();
-  }
-  return this.ready();
-});
 
 /** This subscription publishes all the clubs for all users to browse. */
 Meteor.publish('Clubs', function publish() {
