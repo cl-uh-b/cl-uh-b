@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Image, Rating, Container } from 'semantic-ui-react';
+import { Button, Card, Image, Statistic, Container, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -26,7 +26,13 @@ class ClubOwner extends React.Component {
             <Container fluid>{this.props.club.description}</Container>
           </Card.Content>
           <Card.Content extra>
-            <Rating icon='star' defaultRating={3} maxRating={5} />
+            <Statistic size='tiny'>
+              <Statistic.Value>
+                <Icon name='heart' color='red' />
+                {this.props.club.favoritesCount}
+              </Statistic.Value>
+              <Statistic.Label>Favorites</Statistic.Label>
+            </Statistic>
             <Button floated='right' as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
           </Card.Content>
         </Card>

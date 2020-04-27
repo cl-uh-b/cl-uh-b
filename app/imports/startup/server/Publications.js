@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Clubs } from '../../api/club/Clubs';
-import { Interests } from '../../api/interests/Interests'
+import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
 
 /** This subscription publishes only the clubs owned by the logged in user */

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Loader, Card, Statistic } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
@@ -19,9 +19,10 @@ class FavoriteClubs extends React.Component {
   renderPage() {
     const favorite = _.pluck(this.props.favorites, 'FavoriteId');
     const userFavorites = _.filter(this.props.clubs, (club) => _.contains(favorite, club._id));
+    const totalFavorites = _.size(userFavorites);
     return (
-        <Container>
-          <Header as="h2" textAlign="center" inverted>Favorites</Header>
+        <Container fluid>
+          <Statistic inverted horizontal label='Favorites' value={totalFavorites} />
           <Card.Group>
             {userFavorites.map((club, index) => <Club
                 key={index}

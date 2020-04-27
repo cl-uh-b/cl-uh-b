@@ -14,11 +14,11 @@ import { updateProfileMethod } from '../../startup/both/Methods';
 import { Interests } from '../../api/interests/Interests';
 
 const makeSchema = (clubInterests) => new SimpleSchema({
-  firstName: String,
-  lastName: String,
-  interest: { type: Array, optional: true },
+  firstName: { type: String, label: 'First Name' },
+  lastName: { type: String, label: 'Last Name' },
+  interest: { type: Array, label: 'Interests', optional: true },
   'interest.$': { type: String, allowedValues: clubInterests },
-  picture: { type: String, optional: true },
+  picture: { type: String, label: 'Profile Picture', optional: true },
 });
 
 /** Renders the Page for editing a single document. */
@@ -46,10 +46,10 @@ class EditProfile extends React.Component {
             <Header as="h2" textAlign="center" inverted>Edit Club</Header>
             <AutoForm schema={ProfileSchema} onSubmit={data => this.submit(data)} model={model} >
               <Segment stacked>
-                <TextField name='firstName'/>
-                <TextField name='lastName'/>
-                <MultiSelectField name='interest' showInlineError={true} placeholder={'Interests (Select)'}/>
-                <TextField name='picture' placeholder={'Picture (Link)'}/>
+                <TextField name='firstName' showInlineError={true} />
+                <TextField name='lastName' showInlineError={true} />
+                <MultiSelectField name='interest' showInlineError={true} />
+                <TextField name='picture' showInLineError={true} />
                 <SubmitField value='Submit'/>
                 <Link to="/profile"><Button>Back</Button></Link>
                 <ErrorsField/>
@@ -65,9 +65,7 @@ EditProfile.propTypes = {
 };
 
 export default withTracker(() => {
-
   const subscription = Meteor.subscribe('Interests');
-
   return {
     ready: subscription.ready(),
   };

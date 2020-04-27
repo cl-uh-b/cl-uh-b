@@ -21,11 +21,11 @@ class Club extends React.Component {
   };
 
   render() {
-    let defRating = 0;
+    let defaultRating = 0;
     if (_.contains(_.pluck(this.props.favorites, 'FavoriteId'), this.props.club._id)) {
-      defRating = 1;
+      defaultRating = 1;
     } else {
-      defRating = 0;
+      defaultRating = 0;
     }
     return (
         <Card centered>
@@ -48,7 +48,7 @@ class Club extends React.Component {
           <Card.Content extra>
             <Rating
                 icon='heart'
-                defaultRating={defRating}
+                defaultRating={defaultRating}
                 schema={ClubSchema}
                 onRate={this.handleRate}
                 maxRating={1}/>

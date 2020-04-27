@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, Button, Container, Header, Grid, Image } from 'semantic-ui-react';
+import { Card, Button, Container, Header, Grid, Image, Tab, Menu, Label, Icon } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
-import Favorites from './Favorites';
+import FavoriteClubs from './FavoriteClubs';
 
 class Profile extends React.Component {
   render() {
@@ -33,19 +33,38 @@ class Profile extends React.Component {
     }
 
     // Set a default profile picture if none is declared
-    if (Meteor.user().profile.picture === '' || Meteor.user().profile.picture) {
-      profilePicture = 'https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg';
-    } else {
+    if (Meteor.user().profile.picture) {
       profilePicture = Meteor.user().profile.picture;
+    } else {
+      profilePicture += 'https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg';
     }
 
+    const panes = [
+      {
+        menuItem: (
+            <Menu.Item key='favorites' className='tab-menu'>
+              Favorites&nbsp;&nbsp;<Icon name='heart' color='red'/>
+            </Menu.Item>
+        ),
+        render: () => <Tab.Pane attached={false} className='tab-pane'><FavoriteClubs /></Tab.Pane>,
+      },
+      {
+        menuItem: (
+            <Menu.Item key='recommended' className='tab-menu'>
+              Reccomended For You<Label>15</Label>
+            </Menu.Item>
+        ),
+        render: () => <Tab.Pane attached={false} className='tab-pane'>In progress...</Tab.Pane>,
+      },
+    ];
+
     return (
-        <Container>
+        <Container fluid className='profile-page'>
           <Header inverted as='h1'>Account Profile</Header>
           <hr/>
           <Grid>
             <Grid.Row columns={2}>
-              <Grid.Column width={4}>
+              <Grid.Column width={3}>
                 <Card className='profile-card'>
                   <Image src={profilePicture} wrapped ui={false} />
                   <Card.Content>
@@ -63,7 +82,12 @@ class Profile extends React.Component {
                   </Card.Content>
                 </Card>
               </Grid.Column>
-              <Grid.Column width={12}><Favorites/></Grid.Column>
+              <Grid.Column width={13}>
+                <Tab
+                    menu={{ secondary: true, pointing: true }}
+                    panes={panes}
+                />
+              </Grid.Column>
             </Grid.Row>
           </Grid>
         </Container>

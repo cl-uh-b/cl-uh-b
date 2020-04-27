@@ -15,7 +15,7 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
-import FavoriteClubs from '../pages/Favorites';
+import FavoriteClubs from '../pages/FavoriteClubs';
 import ListClubsAdmin from '../pages/ListClubsAdmin';
 import MyClub from '../pages/MyClub';
 import Profile from '../pages/Profile';
