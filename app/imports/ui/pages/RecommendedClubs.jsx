@@ -7,6 +7,7 @@ import { _ } from 'meteor/underscore';
 import Club from '../components/Club';
 import { Clubs } from '../../api/club/Clubs';
 import { Favorites } from '../../api/favorites/Favorites';
+
 class RecommendedClubs extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
