@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Rating } from 'semantic-ui-react';
+import { Card, Image, Button, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
@@ -38,6 +38,10 @@ class Club extends React.Component {
             <Card.Header>{this.props.club.clubName}</Card.Header>
             <Card.Meta>{this.props.club.type}</Card.Meta>
             <Card.Description>{this.props.club.description}</Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            {_.map(this.props.club.interest,
+                (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
           </Card.Content>
           <Card id="contact-card" centered>
             <Card.Content>
