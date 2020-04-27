@@ -18,15 +18,11 @@ class RecommendedClubs extends React.Component {
   renderPage() {
     /** Find clubs based on user's interest */
     const userInterest = Meteor.user().profile.interests;
-    let recommendations = [];
+    let recommendations;
     for (let i = 0; i < userInterest.length; i++) {
-      for (let j = 0; j < this.props.clubs.length; j++) {
-        if (this.props.clubs[j].interest.includes(userInterest[i])) {
-          recommendations.push(this.props.clubs[j]);
-        }
-      }
+        recommendations = _.filter(this.props.clubs, (club) => club.interest.includes(userInterest[i]));
     }
-    recommendations = _.uniq(recommendations);
+
 
     return (
         <Container fluid>
