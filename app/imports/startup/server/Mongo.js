@@ -32,7 +32,7 @@ function addClubs(data) {
 
 if (Clubs.find().count() === 0) {
   if (Meteor.settings.loadAssetsFile) {
-    const assetFile = 'csvjson-modified.json';
+    const assetFile = 'uhclubs.json';
     console.log(`Loading clubs from ${assetFile}`);
     const jsonData = JSON.parse(Assets.getText(assetFile));
     jsonData.map(data => addClubs(data));
