@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Raleway|Fjalla+One|Noto+Sans|Roboto|Roboto+Condensed|Proza+Libre|Open+Sans);
 
 .landing-header-background {
   background: url("images/landing-header-background.png") no-repeat center center;
@@ -19,12 +19,12 @@
 }
 
 .visual-header {
-  font-family: "Raleway", sans-serif !important;
+  font-family: "Fjalla One", sans-serif !important;
   font-size: 75px !important;
 }
 
 .visual-subheader {
-  font-family: "Raleway", sans-serif !important;
+  font-family: "Noto Sans", sans-serif !important;
   font-size: 30px !important;
 }
 
@@ -35,6 +35,15 @@
 
 .landing-information {
   padding: 0 25px 78px 25px !important;
+}
+
+.info-header {
+  font-family: "Proza Libre", sans-serif !important;
+}
+
+.info-desc {
+  font-family: "Open Sans", sans-serif !important;
+  text-align: justify;
 }
 
 #footer {

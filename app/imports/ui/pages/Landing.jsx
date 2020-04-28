@@ -59,8 +59,8 @@ class Landing extends React.Component {
               </Grid.Column>
               <Grid.Column textAlign='center'>
                 <Statistic size='huge'>
-                  <Statistic.Value>{clubCount}</Statistic.Value>
-                  <Statistic.Label>Clubs at Manoa</Statistic.Label>
+                  <Statistic.Value className='visual-header'>{clubCount}</Statistic.Value>
+                  <Statistic.Label className='visual-subheader'>Clubs at Manoa</Statistic.Label>
                 </Statistic>
               </Grid.Column>
             </Grid.Row>
@@ -69,29 +69,20 @@ class Landing extends React.Component {
         </Container>
         <div style={spacing}/>
         <Container fluid className='landing-information'>
-          <Grid textAlign='center' verticalAlign='middle' columns='equal'>
+          <Grid textAlign='center' columns='equal' divided>
             <Grid.Row>
               <Grid.Column>
-                <Header as='h1'>What are RIOs/Clubs?</Header>
-              </Grid.Column>
-              <Grid.Column width={8}>
-                <Header as='h1'>Student Life & Development Values</Header>
-              </Grid.Column>
-              <Grid.Column>
-                <Header as='h1'>Mission Statement</Header>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column>
-                <Header as='h4'>
+                <Header as='h1' className='info-header'>What are RIOs/Clubs?</Header>
+                <Header as='h4' className='info-desc'>
                   More than 200 current Registered Independent Organizations (RIOs) at the University of Hawaiʻi
                   at Mānoa serve the campus and greater community by providing leadership development for students
                   and by promoting community spirit, activism, public service, and social, recreational, and cultural
                   interaction among UHM students, faculty, and staff.
                 </Header>
               </Grid.Column>
-              <Grid.Column width={8}>
-                <Header as='h4'>
+              <Grid.Column>
+                <Header as='h1' className='info-header'>Student Life & Development Values</Header>
+                <Header as='h4' className='info-desc'>
                   Student Life & Development values programs and services that complement all students&apos; educational
                   development and support the development and growth of Registered Independent Organizations. RIOs
                   provide a laboratory of citizenship for training students in leadership and social responsibility.
@@ -101,7 +92,8 @@ class Landing extends React.Component {
                 </Header>
               </Grid.Column>
               <Grid.Column>
-                <Header as='h4'>
+                <Header as='h1' className='info-header'>Mission Statement</Header>
+                <Header as='h4' className='info-desc'>
                   The Office of Student Life and Development (SLD) is committed to providing a spectrum of involvement
                   and learning opportunities for students through innovative programs and quality services which promote
                   leadership, life skills, and personal development while enhancing campus life.
