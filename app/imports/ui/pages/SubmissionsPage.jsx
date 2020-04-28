@@ -45,7 +45,7 @@ class SubmissionsPage extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>Submissions</Header>
+          <Header as="h2" textAlign="center">Submissions</Header>
           <Card.Group>
             {this.temp.map((club, index) => <SubmittedClubs key={index} club={club}/>)}
           </Card.Group>

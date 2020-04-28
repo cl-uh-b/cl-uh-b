@@ -26,7 +26,7 @@ class RecommendedClubs extends React.Component {
 
     return (
         <Container fluid>
-          <Statistic inverted horizontal label='Clubs Recommended For You' value={recommendations.length} />
+          <Statistic horizontal label='Clubs Recommended For You' value={recommendations.length} />
           <Card.Group>
             {recommendations.map((club, index) => <Club
                 key={index}

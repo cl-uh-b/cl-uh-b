@@ -1,6 +1,44 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
 .landing-header-background {
   background: url("images/landing-header-background.png") no-repeat center center;
   background-size: cover;
+}
+/** NavBar */
+.ui.tiny.image {
+  width: 60px !important;
+  height: auto;
+}
+
+/** Landing Page */
+.landing-visuals {
+  position: relative;
+  height: 750px;
+  background-color: rgba(14,29,42,0.05);
+  font-size: 36px;
+}
+
+.visual-header {
+  font-family: "Raleway", sans-serif !important;
+  font-size: 75px !important;
+}
+
+.visual-subheader {
+  font-family: "Raleway", sans-serif !important;
+  font-size: 30px !important;
+}
+
+.visual-button {
+  background-color: #024731 !important;
+  border-radius: 50px !important;
+}
+
+.landing-information {
+  padding: 0 25px 78px 25px !important;
+}
+
+#footer {
+  margin-top: 15px;
 }
 
 #contact-card {
@@ -27,17 +65,8 @@
   padding: 0 25px !important;
 }
 
-.tab-menu {
-  color: white !important;
-}
-
-.ui.secondary.pointing.menu .active.item {
-  border-color: white !important;
-}
-
 .tab-pane {
   background-color: transparent !important;
-  color: white !important;
   border: none !important;
   display: contents !important;
 }

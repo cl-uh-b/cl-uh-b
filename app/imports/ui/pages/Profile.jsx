@@ -44,15 +44,15 @@ class Profile extends React.Component {
     const panes = [
       {
         menuItem: (
-            <Menu.Item key='favorites' className='tab-menu'>
-              Favorites&nbsp;&nbsp;<Icon name='heart' inverted/>
+            <Menu.Item key='favorites'>
+              Favorites&nbsp;&nbsp;<Icon name='heart'/>
             </Menu.Item>
         ),
         render: () => <Tab.Pane attached={false} className='tab-pane'><FavoriteClubs /></Tab.Pane>,
       },
       {
         menuItem: (
-            <Menu.Item key='recommended' className='tab-menu'>
+            <Menu.Item key='recommended'>
               Reccomended For You
             </Menu.Item>
         ),
@@ -62,7 +62,7 @@ class Profile extends React.Component {
 
     return (
         <Container fluid className='profile-page'>
-          <Header inverted as='h1'>Account Profile</Header>
+          <Header as='h1'>Account Profile</Header>
           <hr/>
           <Grid>
             <Grid.Row columns={2}>

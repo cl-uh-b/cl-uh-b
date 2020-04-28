@@ -28,7 +28,7 @@ class Lucky extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>I&apos;m Feeling Lucky!</Header>
+          <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
           <Card.Group>
             {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
           </Card.Group>
