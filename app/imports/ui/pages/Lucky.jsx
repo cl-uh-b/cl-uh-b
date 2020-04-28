@@ -1,23 +1,21 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button, Grid } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
+import { Clubs } from '../../api/club/Clubs';
 import Club from '../components/Club';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Lucky extends React.Component {
 
-  clubs = [{
-    clubName: 'Grey Hats at UHM',
-    type: 'Academic/Professional',
-    contact: 'Chad Morita',
-    email: 'chadmmm@hawaii.edu',
-    description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
-    image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
-  },
-  ];
+    state = { random: Math.floor(Math.random() * 300) };
+
+    lucky() {
+        const num = Math.floor(Math.random() * this.props.clubs.length);
+        this.setState({ random: num });
+        return 0;
+    }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -28,24 +26,33 @@ class Lucky extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
-          <Card.Group>
-            {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
-          </Card.Group>
+            <Grid centered>
+                <Grid.Row>
+                    <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
+                </Grid.Row>
+                <Grid.Row>
+                    <Card.Group>
+                    <Club club={this.props.clubs[this.state.random]}/>
+                    </Card.Group>
+                </Grid.Row>
+                <Grid.Row>
+                    <Button onClick={this.lucky.bind(this)}>I&apos;m Feeling Lucky!</Button>
+                </Grid.Row>
+            </Grid>
         </Container>
     );
   }
 }
 
 Lucky.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+  clubs: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('Stuff');
+  const subscription = Meteor.subscribe('Clubs');
   return {
-    stuffs: Stuffs.find({}).fetch(),
+    clubs: Clubs.find({}).fetch(),
     ready: subscription.ready(),
   };
 })(Lucky);

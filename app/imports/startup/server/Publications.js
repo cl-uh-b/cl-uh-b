@@ -12,7 +12,6 @@ Meteor.publish('MyClubs', function publish() {
   return this.ready();
 });
 
-
 /** This subscription publishes all the clubs for all users to browse. */
 Meteor.publish('Clubs', function publish() {
   if (this.userId) {
