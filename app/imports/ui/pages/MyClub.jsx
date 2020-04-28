@@ -19,7 +19,7 @@ class MyClub extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>My Clubs</Header>
+          <Header as="h2" textAlign="center">My Clubs</Header>
           <Card.Group>
             {this.props.clubs.map((club, index) => <ClubOwner key={index} club={club}/>)}
           </Card.Group>

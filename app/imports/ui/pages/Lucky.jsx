@@ -28,7 +28,7 @@ class Lucky extends React.Component {
         <Container>
             <Grid centered>
                 <Grid.Row>
-                    <Header as="h2" textAlign="center" inverted>I&apos;m Feeling Lucky!</Header>
+                    <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
                 </Grid.Row>
                 <Grid.Row>
                     <Card.Group>

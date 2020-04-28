@@ -19,7 +19,7 @@ class ListClubs extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
+          <Header as="h2" textAlign="center">Clubs at UHM</Header>
           <Card.Group>
             {this.props.clubs.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
           </Card.Group>
