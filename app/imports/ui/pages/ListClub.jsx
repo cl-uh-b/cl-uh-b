@@ -19,6 +19,15 @@ const makeSchema = (clubInterests) => new SimpleSchema({
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubs extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = { interests: [] };
+  }
+
+  submit(data) {
+    this.setState({ interests: data.interests || [] });
+  }
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
