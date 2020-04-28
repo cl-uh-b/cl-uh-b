@@ -3,8 +3,13 @@ import { Card, Button, Image, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
+import { Clubs } from '../../api/club/Clubs';
 
 class ClubAdmin extends React.Component {
+  removeItem(docID) {
+    return Clubs.remove(docID);
+  }
+
   render() {
     return (
         <Card centered>
@@ -29,7 +34,7 @@ class ClubAdmin extends React.Component {
             </Card.Content>
           </Card>
           <Card.Content extra>
-            <Button className="ui button">Delete</Button>
+            <Button floated='right' onClick={() => { this.removeItem(this.props.club._id); } }>Delete</Button>
           </Card.Content>
         </Card>
     );

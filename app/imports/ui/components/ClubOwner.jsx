@@ -2,8 +2,14 @@ import React from 'react';
 import { Button, Card, Image, Statistic, Container, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
+import { Clubs } from '../../api/club/Clubs';
 
 class ClubOwner extends React.Component {
+
+  removeItem(docID) {
+    return Clubs.remove(docID);
+  }
+
   render() {
     let clubInterest = '';
     // Just in case the club has multiple interests.
@@ -33,7 +39,8 @@ class ClubOwner extends React.Component {
               </Statistic.Value>
               <Statistic.Label>Favorites</Statistic.Label>
             </Statistic>
-            <Button floated='right' as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
+            <Button as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
+            <Button floated='right' onClick={() => { this.removeItem(this.props.club._id); } }>Delete</Button>
           </Card.Content>
         </Card>
     );
