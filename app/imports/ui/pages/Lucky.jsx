@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Image, Button } from 'semantic-ui-react';
+import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Stuffs } from '../../api/stuff/Stuff';
@@ -28,7 +28,7 @@ class Lucky extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>I'm Feeling Lucky!</Header>
+          <Header as="h2" textAlign="center" inverted>I&apos;m Feeling Lucky!</Header>
           <Card.Group>
             {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
           </Card.Group>

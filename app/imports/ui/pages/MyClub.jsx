@@ -6,18 +6,9 @@ import PropTypes from 'prop-types';
 import ClubOwner from '../components/ClubOwner';
 import { Clubs } from '../../api/club/Clubs';
 
+
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyClub extends React.Component {
-
-  // clubs = [{
-  //     name: 'Club Owner',
-  //     type: 'Test',
-  //     contact: 'Club',
-  //     email: 'club@foo.com',
-  //     description: 'Testing role',
-  //     image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
-  //   },
-  // ];
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {

@@ -15,9 +15,11 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
-import Favorites from '../pages/Favorites';
 import ListClubsAdmin from '../pages/ListClubsAdmin';
 import MyClub from '../pages/MyClub';
+import Profile from '../pages/Profile';
+import EditProfile from '../pages/EditProfile';
+import SubmissionsPage from '../pages/SubmissionsPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -31,13 +33,15 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/browse" component={ListClub}/>
-              <ProtectedRoute path="/my-clubs" component={MyClub}/>
+              <ClubProtectedRoute path="/my-clubs" component={MyClub}/>
               <ProtectedRoute path="/add" component={AddClub}/>
               <ProtectedRoute path="/im-feeling-lucky" component={Lucky}/>
               <ProtectedRoute path="/edit/:_id" component={EditClub}/>
-              <ProtectedRoute path="/favorites" component={Favorites}/>
               <AdminProtectedRoute path="/admin" component={ListClubsAdmin}/>
+              <AdminProtectedRoute path="/submissions" component={SubmissionsPage}/>
               <ProtectedRoute path="/signout" component={Signout}/>
+              <ProtectedRoute path="/profile" component={Profile}/>
+              <ProtectedRoute path="/editprofile" component={EditProfile}/>
               <Route component={NotFound}/>
             </Switch>
             <Footer/>
@@ -84,6 +88,25 @@ const AdminProtectedRoute = ({ component: Component, ...rest }) => (
     />
 );
 
+/**
+ * ClubProtectedRoute (see React Router v4 sample)
+ * Checks for Meteor login and clubOwner role before routing to the requested page, otherwise goes to signin page.
+ * @param {any} { component: Component, ...rest }
+ */
+const ClubProtectedRoute = ({ component: Component, ...rest }) => (
+    <Route
+        {...rest}
+        render={(props) => {
+          const isLogged = Meteor.userId() !== null;
+          const isClubOwner = Roles.userIsInRole(Meteor.userId(), 'clubOwner');
+          return (isLogged && isClubOwner) ?
+              (<Component {...props} />) :
+              (<Redirect to={{ pathname: '/signin', state: { from: props.location } }}/>
+              );
+        }}
+    />
+);
+
 /** Require a component and location to be passed to each ProtectedRoute. */
 ProtectedRoute.propTypes = {
   component: PropTypes.func.isRequired,
@@ -92,6 +115,12 @@ ProtectedRoute.propTypes = {
 
 /** Require a component and location to be passed to each AdminProtectedRoute. */
 AdminProtectedRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  location: PropTypes.object,
+};
+
+/** Require a component and location to be passed to each ClubProtectedRoute. */
+ClubProtectedRoute.propTypes = {
   component: PropTypes.func.isRequired,
   location: PropTypes.object,
 };

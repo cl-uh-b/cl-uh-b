@@ -1,11 +1,12 @@
 import React from 'react';
-import { Card, Button, Image, Label } from 'semantic-ui-react';
+import { Button, Card, Image, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
 
-class ClubAdmin extends React.Component {
+class SubmittedClubs extends React.Component {
   render() {
+
     return (
         <Card centered>
           <Card.Content>
@@ -29,16 +30,17 @@ class ClubAdmin extends React.Component {
             </Card.Content>
           </Card>
           <Card.Content extra>
-            <Button className="ui button">Delete</Button>
+            <Button className="ui button">Accept</Button>
+            <Button className="ui button" floated="right">Deny</Button>
           </Card.Content>
         </Card>
     );
   }
 }
 
-ClubAdmin.propTypes = {
+SubmittedClubs.propTypes = {
   club: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(ClubAdmin);
+export default withRouter(SubmittedClubs);

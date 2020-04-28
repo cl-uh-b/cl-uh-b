@@ -11,3 +11,33 @@
   width: 20%;
   margin: 0px 10px 10px 0px;
 }
+
+/** Profile Page */
+.profile-card {
+  margin-top: 10px !important;
+  padding: 0 !important;
+}
+
+.profile-header {
+  font-size: 250% !important;
+  font-style: italic !important;
+}
+
+.profile-page {
+  padding: 0 25px !important;
+}
+
+.tab-menu {
+  color: white !important;
+}
+
+.ui.secondary.pointing.menu .active.item {
+  border-color: white !important;
+}
+
+.tab-pane {
+  background-color: transparent !important;
+  color: white !important;
+  border: none !important;
+  display: contents !important;
+}
