@@ -1,16 +1,12 @@
 import React from 'react';
-import { Card, Button, Image, Label } from 'semantic-ui-react';
+import { Button, Card, Image, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
-import { Clubs } from '../../api/club/Clubs';
 
-class ClubAdmin extends React.Component {
-  removeItem(docID) {
-    return Clubs.remove(docID);
-  }
-
+class SubmittedClubs extends React.Component {
   render() {
+
     return (
         <Card centered>
           <Card.Content>
@@ -34,16 +30,17 @@ class ClubAdmin extends React.Component {
             </Card.Content>
           </Card>
           <Card.Content extra>
-            <Button floated='right' onClick={() => { this.removeItem(this.props.club._id); } }>Delete</Button>
+            <Button className="ui button">Accept</Button>
+            <Button className="ui button" floated="right">Deny</Button>
           </Card.Content>
         </Card>
     );
   }
 }
 
-ClubAdmin.propTypes = {
+SubmittedClubs.propTypes = {
   club: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(ClubAdmin);
+export default withRouter(SubmittedClubs);

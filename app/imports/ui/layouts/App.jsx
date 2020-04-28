@@ -10,15 +10,16 @@ import Landing from '../pages/Landing';
 import ListClub from '../pages/ListClub';
 import AddClub from '../pages/AddClub';
 import Lucky from '../pages/Lucky';
-import EditStuff from '../pages/EditStuff';
+import EditClub from '../pages/EditClub';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
-import Favorites from '../pages/Favorites';
 import ListClubsAdmin from '../pages/ListClubsAdmin';
 import MyClub from '../pages/MyClub';
 import Profile from '../pages/Profile';
+import EditProfile from '../pages/EditProfile';
+import SubmissionsPage from '../pages/SubmissionsPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -35,11 +36,12 @@ class App extends React.Component {
               <ClubProtectedRoute path="/my-clubs" component={MyClub}/>
               <ProtectedRoute path="/add" component={AddClub}/>
               <ProtectedRoute path="/im-feeling-lucky" component={Lucky}/>
-              <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
-              <ProtectedRoute path="/favorites" component={Favorites}/>
+              <ProtectedRoute path="/edit/:_id" component={EditClub}/>
               <AdminProtectedRoute path="/admin" component={ListClubsAdmin}/>
+              <AdminProtectedRoute path="/submissions" component={SubmissionsPage}/>
               <ProtectedRoute path="/signout" component={Signout}/>
-              <ProtectedRoute path="/profile/" component={Profile}/>
+              <ProtectedRoute path="/profile" component={Profile}/>
+              <ProtectedRoute path="/editprofile" component={EditProfile}/>
               <Route component={NotFound}/>
             </Switch>
             <Footer/>

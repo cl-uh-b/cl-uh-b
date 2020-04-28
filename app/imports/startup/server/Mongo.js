@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
 import { Stuffs } from '../../api/stuff/Stuff.js';
-import { Clubs } from '../../api/club/Club';
+import { Clubs } from '../../api/club/Clubs';
+import { Interests } from '../../api/interests/Interests';
 
 /* eslint-disable no-console */
 
@@ -10,12 +12,6 @@ function addData(data) {
   Stuffs.insert(data);
 }
 
-function addClubs(data) {
-  console.log(`  Adding: ${data.clubName}`);
-  Clubs.insert(data);
-
-  }
-
 /** Initialize the collection if empty. */
 if (Stuffs.find().count() === 0) {
   if (Meteor.settings.defaultData) {
@@ -24,9 +20,21 @@ if (Stuffs.find().count() === 0) {
   }
 }
 
-if (Meteor.settings.loadAssetsFile && Clubs.find().count() === 0) {
-  const assetFile = 'csvjson-modified.json';
-  console.log(`Loading clubs from ${assetFile}`);
-  const jsonData = JSON.parse(Assets.getText(assetFile));
-  jsonData.map(data => addClubs(data));
+function addClubs(data) {
+  console.log(`  Adding: ${data.clubName}`);
+  Clubs.insert(data);
+  data.interest.forEach(function (interest) {
+    if (!(_.contains(_.pluck(Interests.find().fetch(), 'interest'), interest))) {
+      Interests.insert({ interest: interest });
+    }
+  });
+}
+
+if (Clubs.find().count() === 0) {
+  if (Meteor.settings.loadAssetsFile) {
+    const assetFile = 'uhclubs.json';
+    console.log(`Loading clubs from ${assetFile}`);
+    const jsonData = JSON.parse(Assets.getText(assetFile));
+    jsonData.map(data => addClubs(data));
+  }
 }

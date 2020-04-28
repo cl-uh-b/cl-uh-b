@@ -3,41 +3,34 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { Stuffs } from '../../api/stuff/Stuff';
-import Club from '../components/Club';
+import { Clubs } from '../../api/club/Clubs';
+import SubmittedClubs from '../components/SubmittedClubs';
+
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class Favorites extends React.Component {
+class SubmissionsPage extends React.Component {
 
-  clubs = [{
-    name: 'Grey Hats at UHM',
+  temp = [{
+    clubName: 'Testing 1',
     type: 'Academic/Professional',
-    contact: 'Chad Morita',
-    email: 'chadmmm@hawaii.edu',
+    contact: 'Harriet Tubs',
+    email: 'ht@foo.com',
     description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
     image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
-    },
+  },
     {
-      name: 'Grey Hats at UHM',
-      type: 'Academic/Professional',
-      contact: 'Chad Morita',
-      email: 'chadmmm@hawaii.edu',
-      description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
-      image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
-    },
-    {
-      name: 'Hanwoori Hawaii',
+      clubName: 'Testing 2',
       type: 'Ethic/Cultural',
-      contact: 'Ingrid Adams',
-      email: 'adamsi@hawaii.edu',
+      contact: 'Johnny Adds',
+      email: 'ja@foo.com',
       description: 'Lorem ipsum and all that jazz',
       image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
     },
     {
-      name: 'Graduate Women in Science Hawaii',
+      clubName: 'Testing 3',
       type: 'Academic/Professional',
-      contact: 'Madeline McKenna',
-      email: 'mmck@hawaii.edu',
+      contact: 'Winsty Chur',
+      email: 'wc@foo.com',
       description: 'Lorem ipsum and all that jazz',
       image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
     },
@@ -52,24 +45,24 @@ class Favorites extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center" inverted>Favorites</Header>
+          <Header as="h2" textAlign="center" inverted>Submissions</Header>
           <Card.Group>
-            {this.clubs.map((club, index) => <Club key={index} club={club}/>)}
+            {this.temp.map((club, index) => <SubmittedClubs key={index} club={club}/>)}
           </Card.Group>
         </Container>
     );
   }
 }
 
-Favorites.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+SubmissionsPage.propTypes = {
+  clubs: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('Stuff');
+  const subscription = Meteor.subscribe('Submitted');
   return {
-    stuffs: Stuffs.find({}).fetch(),
+    clubs: Clubs.find({}).fetch(),
     ready: subscription.ready(),
   };
-})(Favorites);
+})(SubmissionsPage);

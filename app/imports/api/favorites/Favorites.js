@@ -3,20 +3,16 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Define a Mongo collection to hold the data. */
-const Clubs = new Mongo.Collection('Clubs');
+const Favorites = new Mongo.Collection('Favorites');
 
 /** Define a schema to specify the structure of each document in the collection. */
-const ClubSchema = new SimpleSchema({
-  clubName: String,
-  interest: String,
-  contact: String,
-  email: String,
-  description: { type: String, defaultValue: 'None Available' },
-  image: { type: String, defaultValue: 'https://manoa.hawaii.edu/admissions/images/stacked.png' },
+const FavoritesSchema = new SimpleSchema({
+  FavoriteId: String,
+  owner: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-Clubs.attachSchema(ClubSchema);
+Favorites.attachSchema(FavoritesSchema);
 
 /** Make the collection and schema available to other code. */
-export { Clubs, ClubSchema };
+export { Favorites, FavoritesSchema };
