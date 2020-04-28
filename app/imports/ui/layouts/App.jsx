@@ -19,6 +19,7 @@ import ListClubsAdmin from '../pages/ListClubsAdmin';
 import MyClub from '../pages/MyClub';
 import Profile from '../pages/Profile';
 import EditProfile from '../pages/EditProfile';
+import SubmissionsPage from '../pages/SubmissionsPage';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
               <ProtectedRoute path="/im-feeling-lucky" component={Lucky}/>
               <ProtectedRoute path="/edit/:_id" component={EditClub}/>
               <AdminProtectedRoute path="/admin" component={ListClubsAdmin}/>
+              <AdminProtectedRoute path="/submissions" component={SubmissionsPage}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/editprofile" component={EditProfile}/>

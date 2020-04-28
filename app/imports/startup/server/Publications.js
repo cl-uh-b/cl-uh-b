@@ -32,3 +32,12 @@ Meteor.publish('Favorites', function publish() {
   }
   return this.ready();
 });
+
+/** This subscription publishes only the clubs that have been submitted to view. */
+Meteor.publish('Submitted', function publish() {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Clubs.find({ email: username });
+  }
+  return this.ready();
+});
