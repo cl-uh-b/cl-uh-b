@@ -9,7 +9,7 @@ import Club from '../components/Club';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Lucky extends React.Component {
 
-    state = { random: Math.floor(Math.random() * 300) };
+    state = { random: -1 };
 
     lucky() {
         const num = Math.floor(Math.random() * this.props.clubs.length);
@@ -24,7 +24,8 @@ class Lucky extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    return (
+      const random = Math.floor(Math.random() * this.props.clubs.length);
+      return (
         <Container>
             <Grid centered>
                 <Grid.Row>
@@ -32,7 +33,8 @@ class Lucky extends React.Component {
                 </Grid.Row>
                 <Grid.Row>
                     <Card.Group>
-                    <Club club={this.props.clubs[this.state.random]}/>
+                        {this.state.random === -1 ?
+                        <Club club={this.props.clubs[random]}/> : <Club club={this.props.clubs[this.state.random]} /> }
                     </Card.Group>
                 </Grid.Row>
                 <Grid.Row>
@@ -50,7 +52,7 @@ Lucky.propTypes = {
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('Clubs');
+  const subscription = Meteor.subscribe('LuckyClubs');
   return {
     clubs: Clubs.find({}).fetch(),
     ready: subscription.ready(),
