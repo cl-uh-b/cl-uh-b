@@ -75,12 +75,9 @@ EditClub.propTypes = {
 };
 
 export default withTracker(({ match }) => {
-
   const documentId = match.params._id;
-
   const subscription1 = Meteor.subscribe('MyClubs');
   const subscription2 = Meteor.subscribe('Interests');
-
   return {
     doc: Clubs.findOne(documentId),
     ready: subscription1.ready() && subscription2.ready(),

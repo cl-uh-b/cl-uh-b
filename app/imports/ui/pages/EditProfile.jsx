@@ -16,8 +16,8 @@ import { Interests } from '../../api/interests/Interests';
 const makeSchema = (clubInterests) => new SimpleSchema({
   firstName: { type: String, label: 'First Name' },
   lastName: { type: String, label: 'Last Name' },
-  interest: { type: Array, label: 'Interests', optional: true },
-  'interest.$': { type: String, allowedValues: clubInterests },
+  interests: { type: Array, label: 'Interests', optional: true },
+  'interests.$': { type: String, allowedValues: clubInterests },
   picture: { type: String, label: 'Profile Picture', optional: true },
 });
 
@@ -37,18 +37,18 @@ class EditProfile extends React.Component {
 
   render() {
     const clubInterests = _.pluck(Interests.find().fetch(), 'interest');
-    const ProfileSchema = makeSchema(clubInterests);
+    const formSchema = makeSchema(clubInterests);
     const user = Meteor.user().profile;
     const model = _.extend({}, user);
     return (
         <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" textAlign="center" inverted>Edit Club</Header>
-            <AutoForm schema={ProfileSchema} onSubmit={data => this.submit(data)} model={model} >
+            <AutoForm schema={formSchema} onSubmit={data => this.submit(data)} model={model} >
               <Segment stacked>
                 <TextField name='firstName' showInlineError={true} />
                 <TextField name='lastName' showInlineError={true} />
-                <MultiSelectField name='interest' showInlineError={true} />
+                <MultiSelectField name='interests' showInlineError={true} />
                 <TextField name='picture' showInLineError={true} />
                 <SubmitField value='Submit'/>
                 <Link to="/profile"><Button>Back</Button></Link>
@@ -61,6 +61,7 @@ class EditProfile extends React.Component {
   }
 }
 EditProfile.propTypes = {
+  model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
