@@ -22,7 +22,7 @@ class FavoriteClubs extends React.Component {
     const totalFavorites = _.size(userFavorites);
     return (
         <Container fluid>
-          <Statistic inverted horizontal label='Favorites' value={totalFavorites} />
+          <Statistic horizontal label='Favorites' value={totalFavorites} />
           <Card.Group>
             {userFavorites.map((club, index) => <Club
                 key={index}

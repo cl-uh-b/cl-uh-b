@@ -16,7 +16,6 @@ class ClubAdmin extends React.Component {
           <Card.Content>
             <Image id="card-image"
                    floated={'right'}
-                // size={'mini'}
                    src={this.props.club.image}
             />
             <Card.Header>{this.props.club.clubName}</Card.Header>

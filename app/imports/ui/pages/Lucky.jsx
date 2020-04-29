@@ -17,7 +17,7 @@ class Lucky extends React.Component {
             this.setState({ roll: false });
             this.interval = setInterval(() => this.setState({
                 random: Math.floor(Math.random() * this.props.clubs.length),
-            }), 100);
+            }), 80);
         } else {
             clearInterval(this.interval);
             this.setState({ roll: true });

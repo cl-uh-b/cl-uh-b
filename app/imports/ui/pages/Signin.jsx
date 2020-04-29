@@ -50,7 +50,7 @@ export default class Signin extends React.Component {
             </Grid.Column>
             <Grid.Column textAlign='center'>
               <div style={{ padding: '15px 0px 50px 0px' }}>
-              <Header inverted as='h1'>Sign in to CL-UH-B</Header>
+              <Header as='h1'>Sign in to CL-UH-B</Header>
               <Form onSubmit={this.submit}>
                   <Form.Input
                     icon="user"
@@ -80,9 +80,9 @@ export default class Signin extends React.Component {
                 />
               )}
               </div>
-              <Divider inverted horizontal>OR</Divider>
+              <Divider horizontal>OR</Divider>
               <div style={{ padding: '50px 0px 15px 0px' }}>
-              <Header inverted textAlign='center' as='h3'>
+              <Header textAlign='center' as='h3'>
                 Create an account now <br/>
                 and look for clubs!
               </Header>
