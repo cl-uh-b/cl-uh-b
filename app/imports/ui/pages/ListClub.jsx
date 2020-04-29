@@ -31,14 +31,10 @@ class ListClubs extends React.Component {
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
           <Dropdown
-              clearable
+              clearable fluid search selection multiple
               placeholder='Select Interest'
-              fluid
               value={value}
               onChange={this.handleChange}
-              search
-              selection
-              multiple
               options={clubInterests}
           />
           <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
