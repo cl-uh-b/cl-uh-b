@@ -52,7 +52,7 @@ class Landing extends React.Component {
                   CL-UH-B
                   <Header.Subheader className='visual-subheader'>There&apos;s a club waiting for you.</Header.Subheader>
                 </Header>
-                <Link to='/signup'>
+                <Link to='/browse'>
                   <Button size='large' inverted content='Get Started' className='visual-button' />
                 </Link>
               </Grid.Column>

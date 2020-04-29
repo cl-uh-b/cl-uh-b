@@ -41,13 +41,12 @@ class ListClubs extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
-          <AutoForm schema={formSchema} onSubmit={data => this.submit(data)} >
-            <Segment>
+          <AutoForm schema={formSchema} onSubmit={data => this.submit(data)}>
+            <Segment style={{ marginBottom: '10px' }}>
               <MultiSelectField name='interest' showInlineError={true} placeholder={'Interests'}/>
               <SubmitField value='Submit'/>
             </Segment>
           </AutoForm>
-          <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
           <Card.Group>
             {this.props.clubs.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
           </Card.Group>
@@ -64,10 +63,11 @@ ListClubs.propTypes = {
 
 export default withTracker(() => {
   const subscription1 = Meteor.subscribe('Clubs');
-  const subscription2 = Meteor.subscribe('Favorites');
+  const subscription2 = Meteor.subscribe('Interests');
+  const subscription3 = Meteor.subscribe('Favorites');
   return {
     clubs: Clubs.find({}).fetch(),
     favorites: Favorites.find({}).fetch(),
-    ready: subscription1.ready() && subscription2.ready(),
+    ready: subscription1.ready() && subscription2.ready() && subscription3.ready(),
   };
 })(ListClubs);
