@@ -1,14 +1,33 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import SimpleSchema from 'simpl-schema';
+import { _ } from 'meteor/underscore';
+import { AutoForm, SubmitField } from 'uniforms-semantic';
 import Club from '../components/Club';
 import { Clubs } from '../../api/club/Clubs';
+import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
+import MultiSelectField from '../forms/controllers/MultiSelectField';
+
+const makeSchema = (clubInterests) => new SimpleSchema({
+  interest: { type: Array, label: 'Interests', optional: true },
+  'interest.$': { type: String, allowedValues: clubInterests },
+});
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubs extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { interests: [] };
+  }
+
+  submit(data) {
+    this.setState({ interests: data.interests || [] });
+  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -17,9 +36,18 @@ class ListClubs extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const clubInterests = _.pluck(Interests.find().fetch(), 'interest');
+    const formSchema = makeSchema(clubInterests);
     return (
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
+          <AutoForm schema={formSchema} onSubmit={data => this.submit(data)} >
+            <Segment>
+              <MultiSelectField name='interest' showInlineError={true} placeholder={'Interests'}/>
+              <SubmitField value='Submit'/>
+            </Segment>
+          </AutoForm>
+          <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
           <Card.Group>
             {this.props.clubs.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
           </Card.Group>
