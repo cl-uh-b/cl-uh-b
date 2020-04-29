@@ -37,3 +37,11 @@ Meteor.publish('Submitted', function publish() {
   }
   return this.ready();
 });
+
+Meteor.publish('LuckyClubs', function publish() {
+  if (this.userId) {
+    const interests = Meteor.users.findOne(this.userId).profile.interests;
+    return Clubs.find({ interest: { $in: interests } });
+  }
+  return this.ready();
+});
