@@ -21,7 +21,6 @@ class Landing extends React.Component {
       position: 'all',
       color: ['random', '#024731'],
       cross: 'dead',
-      // emitter: "follow",
       random: 15,
     };
 
