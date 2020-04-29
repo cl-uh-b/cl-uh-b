@@ -10,7 +10,19 @@ import { Favorites } from '../../api/favorites/Favorites';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Lucky extends React.Component {
 
-    state = { random: -1 };
+    state = { random: -1, roll: true };
+
+    componentDidMount() {
+        if (this.state.roll === true) {
+            this.setState({ roll: false });
+            this.interval = setInterval(() => this.setState({
+                random: Math.floor(Math.random() * this.props.clubs.length),
+            }), 100);
+        } else {
+            clearInterval(this.interval);
+            this.setState({ roll: true });
+        }
+    }
 
     lucky() {
         const num = Math.floor(Math.random() * this.props.clubs.length);
@@ -40,7 +52,7 @@ class Lucky extends React.Component {
                         </Card.Group>
                     </Grid.Row>
                     <Grid.Row>
-                        <Button onClick={this.lucky.bind(this)}>I&apos;m Feeling Lucky!</Button>
+                        <Button onClick={this.componentDidMount.bind(this)}>I&apos;m Feeling Lucky!</Button>
                     </Grid.Row>
                 </Grid>
             </Container>
