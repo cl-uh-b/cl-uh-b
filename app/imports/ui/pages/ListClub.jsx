@@ -38,6 +38,7 @@ class ListClubs extends React.Component {
               onChange={this.handleChange}
               search
               selection
+              multiple
               options={clubInterests}
           />
           <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
