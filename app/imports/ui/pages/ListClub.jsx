@@ -9,6 +9,7 @@ import { AutoForm, SubmitField } from 'uniforms-semantic';
 import Club from '../components/Club';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
+import { Favorites } from '../../api/favorites/Favorites';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
 
 const makeSchema = (clubInterests) => new SimpleSchema({
@@ -47,7 +48,7 @@ class ListClubs extends React.Component {
           </AutoForm>
           <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
           <Card.Group>
-            {this.props.clubs.map((club, index) => <Club key={index} club={club} />)}
+            {this.props.clubs.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
           </Card.Group>
         </Container>
     );
@@ -56,14 +57,16 @@ class ListClubs extends React.Component {
 
 ListClubs.propTypes = {
   clubs: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
   const subscription1 = Meteor.subscribe('Clubs');
-  const subscription2 = Meteor.subscribe('Interests');
+  const subscription2 = Meteor.subscribe('Favorites');
   return {
     clubs: Clubs.find({}).fetch(),
+    favorites: Favorites.find({}).fetch(),
     ready: subscription1.ready() && subscription2.ready(),
   };
 })(ListClubs);
