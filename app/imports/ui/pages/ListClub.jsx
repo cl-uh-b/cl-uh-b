@@ -1,33 +1,20 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Segment } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Dropdown } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import SimpleSchema from 'simpl-schema';
 import { _ } from 'meteor/underscore';
-import { AutoForm, SubmitField } from 'uniforms-semantic';
 import Club from '../components/Club';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
-import MultiSelectField from '../forms/controllers/MultiSelectField';
-
-const makeSchema = (clubInterests) => new SimpleSchema({
-  interest: { type: Array, label: 'Interests', optional: true },
-  'interest.$': { type: String, allowedValues: clubInterests },
-});
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubs extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { interests: [] };
-  }
+  state = {}
 
-  submit(data) {
-    this.setState({ interests: data.interests || [] });
-  }
+  handleChange = (e, { value }) => this.setState({ value })
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -36,17 +23,23 @@ class ListClubs extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const clubInterests = _.pluck(Interests.find().fetch(), 'interest');
-    const formSchema = makeSchema(clubInterests);
+    const clubInterests = this.props.interest.map(data => ({
+      key: data.interest, text: data.interest, value: data.interest,
+    }));
+    const { value } = this.state;
     return (
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
-          <AutoForm schema={formSchema} onSubmit={data => this.submit(data)} >
-            <Segment>
-              <MultiSelectField name='interest' showInlineError={true} placeholder={'Interests'}/>
-              <SubmitField value='Submit'/>
-            </Segment>
-          </AutoForm>
+          <Dropdown
+              clearable
+              placeholder='Select Interest'
+              fluid
+              value={value}
+              onChange={this.handleChange}
+              search
+              selection
+              options={clubInterests}
+          />
           <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
           <Card.Group>
             {this.props.clubs.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
@@ -59,6 +52,7 @@ class ListClubs extends React.Component {
 ListClubs.propTypes = {
   clubs: PropTypes.array.isRequired,
   favorites: PropTypes.array.isRequired,
+  interest: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -68,6 +62,7 @@ export default withTracker(() => {
   return {
     clubs: Clubs.find({}).fetch(),
     favorites: Favorites.find({}).fetch(),
+    interest: Interests.find({}).fetch(),
     ready: subscription1.ready() && subscription2.ready(),
   };
 })(ListClubs);
