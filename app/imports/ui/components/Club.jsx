@@ -52,7 +52,7 @@ class Club extends React.Component {
           <Card.Content extra>
             <Rating
                 icon='heart'
-                defaultRating={defaultRating}
+                rating={defaultRating}
                 schema={ClubSchema}
                 onRate={this.handleRate}
                 maxRating={1}/>
