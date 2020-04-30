@@ -12,7 +12,7 @@ import { Favorites } from '../../api/favorites/Favorites';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubs extends React.Component {
 
-  state = {}
+  state = { value: ''}
 
   handleChange = (e, { value }) => this.setState({ value })
 
@@ -38,6 +38,12 @@ class ListClubs extends React.Component {
     console.log(interest);
     console.log(options);
 
+    let list = this.props.clubs;
+    if (this.state.value !== '') {
+      list = list.filter(a => a.interest.indexOf(this.state.value) > -1);
+    }
+    console.log(list);
+    console.log(this.state.value);
     return (
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
@@ -50,7 +56,9 @@ class ListClubs extends React.Component {
           />
           <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
           <Card.Group>
-            {this.props.clubs.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
+           {/* {this.props.clubs.map((club, index) => <Club key={index} club={club}
+           favorites={this.props.favorites}/>)} */}
+           {list.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
           </Card.Group>
         </Container>
     );
