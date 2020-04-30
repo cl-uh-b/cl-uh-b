@@ -23,10 +23,21 @@ class ListClubs extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const clubInterests = this.props.interest.map(data => ({
-      key: data.interest, text: data.interest, value: data.interest,
-    }));
     const { value } = this.state;
+
+    const interestDupes = _.pluck(this.props.clubs, 'interest');
+    const interestflat = _.flatten(interestDupes);
+    const interest = _.uniq(interestflat);
+    const options = interest.map(int => ({
+      key: int,
+      text: int,
+      value: int,
+    }));
+    console.log(interestDupes);
+    console.log(interestflat);
+    console.log(interest);
+    console.log(options);
+
     return (
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
@@ -35,7 +46,7 @@ class ListClubs extends React.Component {
               placeholder='Select Interest'
               value={value}
               onChange={this.handleChange}
-              options={clubInterests}
+              options={options}
           />
           <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
           <Card.Group>
@@ -48,8 +59,8 @@ class ListClubs extends React.Component {
 
 ListClubs.propTypes = {
   clubs: PropTypes.array.isRequired,
+  interests: PropTypes.array.isRequired,
   favorites: PropTypes.array.isRequired,
-  interest: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -59,7 +70,7 @@ export default withTracker(() => {
   return {
     clubs: Clubs.find({}).fetch(),
     favorites: Favorites.find({}).fetch(),
-    interest: Interests.find({}).fetch(),
+    interests: Interests.find({}).fetch(),
     ready: subscription1.ready() && subscription2.ready(),
   };
 })(ListClubs);
