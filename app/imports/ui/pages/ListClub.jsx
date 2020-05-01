@@ -12,7 +12,7 @@ import { Favorites } from '../../api/favorites/Favorites';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubs extends React.Component {
 
-  state = { value: ''}
+  state = { value: '' }
 
   handleChange = (e, { value }) => this.setState({ value })
 
@@ -33,17 +33,56 @@ class ListClubs extends React.Component {
       text: int,
       value: int,
     }));
-    console.log(interestDupes);
-    console.log(interestflat);
-    console.log(interest);
-    console.log(options);
+    console.log(`plucked: ${interestDupes}`);
+    console.log(`flat: ${interestflat}`);
+    console.log(`unique: ${interest}`);
+    console.log(`mapped interests: ${options}`);
 
-    let list = this.props.clubs;
-    if (this.state.value !== '') {
-      list = list.filter(a => a.interest.indexOf(this.state.value) > -1);
+    const list = this.props.clubs;
+    // console.log(`list: ${list}`);
+    console.log(`list amt before : ${list.length}`);
+    console.log(`state value: ${this.state.value}`);
+
+    console.log(`test club interest: ${this.props.clubs[0].interest[0]}`);
+    console.log(`test club amt: ${this.props.clubs.length}`);
+    console.log(`test state amt: ${this.state.value.length}`);
+
+    // splice works 281 -> 280
+    // list.splice(0, 1);
+    // console.log(`list amt after splice  : ${list.length}`);
+
+    for (let x = 0; x < this.props.clubs.length; x++) { // *go through every club
+       // console.log(x);
+      if (this.state.value.length !== 0) { // *if there are selected interests
+        // console.log('in if 1');
+        if (this.state.value.length <= list[x].interest.length) {
+          // *if there are less interests selected than the club has
+          // console.log('in if 2');
+          for (let y = 0; y < this.state.value.length; y++) { // *go through every selected interest
+            if (this.props.clubs[x].interest.indexOf(this.state.value[y] === -1)) {
+              // *if the club does not have a selected interest
+              list.splice(x, 1); // remove the club at position x (club being checked)
+            }
+          }
+        }
+      }
     }
-    console.log(list);
-    console.log(this.state.value);
+    console.log(`list after filter: ${list.length}`);
+    // ** issues, list doesn't reset after removing interest selections
+    // some clubs are not being properly filtered ie clicking "Academic" still leaves clubs with "Service"
+    // crashes after clicking multiple interests "Cannot read property 'interest' of undefined" line 61.
+    //   ^ clicked "Professonal" then "Religious, likely related to issue 1
+
+    // if (this.state.value !== '') {
+    //   list = list.filter(a => a.interest.indexOf(this.state.value) > -1);
+    // }
+    // if (this.state.value === '') {
+    //   list = this.props.clubs;
+    // }
+    //   else {
+    //   list = _.filter(this.props.clubs, (club) => club.interest.some(r => this.state.value.indexOf(r) >= 0));
+    // }
+
     return (
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
