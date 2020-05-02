@@ -12,7 +12,7 @@ import { Favorites } from '../../api/favorites/Favorites';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubs extends React.Component {
 
-  state = { value: ''}
+  state = { value: '' }
 
   handleChange = (e, { value }) => this.setState({ value })
 
@@ -25,25 +25,21 @@ class ListClubs extends React.Component {
   renderPage() {
     const { value } = this.state;
 
-    const interestDupes = _.pluck(this.props.clubs, 'interest');
-    const interestflat = _.flatten(interestDupes);
-    const interest = _.uniq(interestflat);
-    const options = interest.map(int => ({
-      key: int,
-      text: int,
-      value: int,
+    const options = this.props.interests.map(int => ({
+      key: int.interest,
+      text: int.interest,
+      value: int.interest,
     }));
-    console.log(interestDupes);
-    console.log(interestflat);
-    console.log(interest);
-    console.log(options);
 
-    let list = this.props.clubs;
+    const list = this.props.clubs;
+    let filteredList = [];
     if (this.state.value !== '') {
-      list = list.filter(a => a.interest.indexOf(this.state.value) > -1);
+      for (let i = 0; i < this.state.value.length; i++) {
+        const original = filteredList;
+        const filtered = _.filter(list, (club) => club.interest.includes(this.state.value[i]));
+        filteredList = _.union(original, filtered);
+      }
     }
-    console.log(list);
-    console.log(this.state.value);
     return (
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
@@ -56,9 +52,9 @@ class ListClubs extends React.Component {
           />
           <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
           <Card.Group>
-           {/* {this.props.clubs.map((club, index) => <Club key={index} club={club}
-           favorites={this.props.favorites}/>)} */}
-           {list.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
+           {this.state.value === '' ?
+             list.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)
+             : filteredList.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
           </Card.Group>
         </Container>
     );
@@ -75,10 +71,11 @@ ListClubs.propTypes = {
 export default withTracker(() => {
   const subscription1 = Meteor.subscribe('Clubs');
   const subscription2 = Meteor.subscribe('Favorites');
+  const subscription3 = Meteor.subscribe('Interests');
   return {
     clubs: Clubs.find({}).fetch(),
     favorites: Favorites.find({}).fetch(),
     interests: Interests.find({}).fetch(),
-    ready: subscription1.ready() && subscription2.ready(),
+    ready: subscription1.ready() && subscription2.ready() && subscription3.ready(),
   };
 })(ListClubs);
