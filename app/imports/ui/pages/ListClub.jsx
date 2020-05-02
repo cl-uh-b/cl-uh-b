@@ -25,12 +25,14 @@ class ListClubs extends React.Component {
   renderPage() {
     const { value } = this.state;
 
+    /** Assign key, text, values, semantic UI react dropdown */
     const options = this.props.interests.map(int => ({
       key: int.interest,
       text: int.interest,
       value: int.interest,
     }));
 
+    /** Filter to selected interest */
     const list = this.props.clubs;
     let filteredList = [];
     if (this.state.value !== '') {
@@ -40,6 +42,7 @@ class ListClubs extends React.Component {
         filteredList = _.union(original, filtered);
       }
     }
+
     return (
         <Container>
           <Header as="h2" textAlign="center">Clubs at UHM</Header>
