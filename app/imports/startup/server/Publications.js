@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { _ } from 'underscore';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
@@ -16,7 +17,7 @@ Meteor.publish('MyClubs', function publish() {
 /** This subscription publishes all the clubs for all users to browse. */
 Meteor.publish('Clubs', function publish() {
   if (this.userId) {
-    return Clubs.find();
+    return Clubs.find({ registered: true});
   }
   return this.ready();
 });
@@ -36,8 +37,7 @@ Meteor.publish('Favorites', function publish() {
 /** This subscription publishes only the clubs that have been submitted to view. */
 Meteor.publish('Submitted', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Clubs.find({ email: username });
+    return Clubs.find({ registered: false });
   }
   return this.ready();
 });
