@@ -31,23 +31,51 @@ class ModClub extends React.Component {
         <Card centered>
           <Card.Content>
             <Image id="card-image"
-              floated={'right'}
-              src={this.props.club.image}
+                   floated={'left'}
+                   verticalAlign='middle'
+                   src={this.props.club.image}
             />
-            <Card.Header>{this.props.club.clubName}</Card.Header>
-          </Card.Content>
-          <Card.Content extra>
+            <Card.Header style={ { marginBottom: 5 } }>{this.props.club.clubName}</Card.Header>
             {_.map(this.props.club.interest,
                 (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
           </Card.Content>
           <Card.Content extra>
+            <Modal trigger={<Button size='mini'>Click For More Info</Button>} closeIcon>
+              <Modal.Header>{this.props.club.clubName}</Modal.Header>
+              <Modal.Content image>
+                <Image id="modal-image"
+                       floated={'right'}
+                       src={this.props.club.image}
+                />
+                <Modal.Description>
+                  <p>
+                    Description:
+                    <br />
+                    {this.props.club.description}
+                  </p>
+                  <p>
+                    Interest:
+                    <br />
+                    {_.map(this.props.club.interest,
+                        (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
+                  </p>
+                  <Card>
+                    <Card.Content>
+                      <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
+                      <Card.Meta>Email: {this.props.club.email}</Card.Meta>
+                    </Card.Content>
+                  </Card>
+                </Modal.Description>
+              </Modal.Content>
+            </Modal>
             <Rating
+                id='card-rank'
                 icon='heart'
+                size='huge'
                 rating={defaultRating}
                 schema={ClubSchema}
                 onRate={this.handleRate}
                 maxRating={1}/>
-            <Button>Show Modal</Button>
           </Card.Content>
         </Card>
     );

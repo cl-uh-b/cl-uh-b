@@ -70,7 +70,7 @@ class ListClubs extends React.Component {
             />
         </Form.Group>
         </Form>
-        <Card.Group itemsPerRow={4} style={{ marginTop: '20px' }}>
+        <Card.Group itemsPerRow={3} style={{ marginTop: '20px' }}>
           {clubsOnPage.map((club, index) => <ModClub key={index} club={club} favorites={this.props.favorites}/>)}
         </Card.Group>
       </Container>

@@ -35,7 +35,6 @@ class Club extends React.Component {
               src={this.props.club.image}
             />
             <Card.Header>{this.props.club.clubName}</Card.Header>
-            <Card.Meta>{this.props.club.type}</Card.Meta>
             <Card.Description>{this.props.club.description}</Card.Description>
           </Card.Content>
           <Card.Content extra>
