@@ -13,24 +13,28 @@ class SubmittedClubs extends React.Component {
       title: 'Are you sure?',
       buttons: ['Cancel', 'Deny'],
       dangerMode: true,
+      closeOnClickOutside: false,
     })
         .then((willDelete) => {
           if (willDelete) {
             swal('Reason for denying submission:', {
               content: 'input',
+              closeOnClickOutside: false,
             })
                 .then((value) => {
-                  if (value === '') {
-                     swal({
+                  if (value !== '') {
+                    Clubs.remove(docID);
+                    swal('Club has been denied.', {
+                      icon: 'success',
+                      closeOnClickOutside: false,
+                    });
+                  } else {
+                    swal({
                       text: 'Must provide a reason for denying submission.',
                       icon: 'warning',
                       dangerMode: true,
+                      closeOnClickOutside: false,
                     });
-                  } else {
-                    swal('Club has been denied.', {
-                      icon: 'success',
-                    });
-                    Clubs.remove(docID);
                   }
                 });
           }
@@ -41,11 +45,13 @@ class SubmittedClubs extends React.Component {
     swal({
       title: 'Are you sure?',
       buttons: ['Cancel', 'Accept'],
+      closeOnClickOutside: false,
     })
         .then((willAccept) => {
           if (willAccept) {
             swal('Club has been accepted.', {
               icon: 'success',
+              closeOnClickOutside: false,
             });
             Clubs.update(docID, { $set: { registered: true } });
           }
