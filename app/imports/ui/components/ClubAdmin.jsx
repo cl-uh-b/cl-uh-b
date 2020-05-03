@@ -1,4 +1,5 @@
 import React from 'react';
+import swal from 'sweetalert';
 import { Card, Button, Image, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
@@ -6,8 +7,37 @@ import { _ } from 'meteor/underscore';
 import { Clubs } from '../../api/club/Clubs';
 
 class ClubAdmin extends React.Component {
-  removeItem(docID) {
-    return Clubs.remove(docID);
+  removeClub(docID) {
+    swal({
+      title: 'Are you sure?',
+      buttons: ['Cancel', 'Delete'],
+      dangerMode: true,
+      closeOnClickOutside: false,
+    })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal('Reason for removal:', {
+              content: 'input',
+              closeOnClickOutside: false,
+            })
+                .then((value) => {
+                  if (value !== '') {
+                    Clubs.remove(docID);
+                    swal('Club has been removed.', {
+                      icon: 'success',
+                      closeOnClickOutside: false,
+                    });
+                  } else {
+                    swal({
+                      text: 'Must provide a reason for removal.',
+                      icon: 'warning',
+                      dangerMode: true,
+                      closeOnClickOutside: false,
+                    });
+                  }
+                });
+          }
+        });
   }
 
   render() {
@@ -33,7 +63,7 @@ class ClubAdmin extends React.Component {
             </Card.Content>
           </Card>
           <Card.Content extra>
-            <Button floated='right' onClick={() => { this.removeItem(this.props.club._id); } }>Delete</Button>
+            <Button floated='right' onClick={() => { this.removeClub(this.props.club._id); } }>Delete</Button>
           </Card.Content>
         </Card>
     );
