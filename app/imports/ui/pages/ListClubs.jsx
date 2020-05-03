@@ -7,6 +7,7 @@ import Club from '../components/Club';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
+import ModClub from '../components/ModClub';
 
 class ListClubs extends React.Component {
 
@@ -70,7 +71,7 @@ class ListClubs extends React.Component {
         </Form.Group>
         </Form>
         <Card.Group itemsPerRow={4} style={{ marginTop: '20px' }}>
-          {clubsOnPage.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
+          {clubsOnPage.map((club, index) => <ModClub key={index} club={club} favorites={this.props.favorites}/>)}
         </Card.Group>
       </Container>
     );
