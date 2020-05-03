@@ -41,7 +41,12 @@ Meteor.publish('Submitted', function publish() {
 Meteor.publish('LuckyClubs', function publish() {
   if (this.userId) {
     const interests = Meteor.users.findOne(this.userId).profile.interests;
-    return Clubs.find({ interest: { $in: interests } });
+    if (interests.length !== 0) {
+      return Clubs.find({ interest: { $in: interests } });
+    }
+
+      return Clubs.find({});
+
   }
   return this.ready();
 });
