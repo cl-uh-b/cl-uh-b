@@ -9,7 +9,6 @@ import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubs extends React.Component {
 
   state = { value: '' }
@@ -33,13 +32,12 @@ class ListClubs extends React.Component {
     }));
 
     /** Filter to selected interest */
-    const list = this.props.clubs;
+    const originalList = this.props.clubs;
     let filteredList = [];
-    if (this.state.value !== '') {
+    if (this.state.value !== '' || this.state.value.length === 0) {
       for (let i = 0; i < this.state.value.length; i++) {
-        const original = filteredList;
-        const filtered = _.filter(list, (club) => club.interest.includes(this.state.value[i]));
-        filteredList = _.union(original, filtered);
+        const filtered = _.filter(originalList, (club) => club.interest.includes(this.state.value[i]));
+        filteredList = _.union(filteredList, filtered);
       }
     }
 
@@ -53,10 +51,9 @@ class ListClubs extends React.Component {
               onChange={this.handleChange}
               options={options}
           />
-          <Header as="h2" textAlign="center" inverted>Clubs at UHM</Header>
-          <Card.Group>
-           {this.state.value === '' ?
-             list.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)
+          <Card.Group itemsPerRow={4} style={{ marginTop: '20px' }}>
+           {this.state.value.length === 0 ?
+             originalList.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)
              : filteredList.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
           </Card.Group>
         </Container>
