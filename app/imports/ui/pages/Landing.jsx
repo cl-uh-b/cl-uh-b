@@ -5,6 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
 import { Clubs } from '../../api/club/Clubs';
+import { _ } from 'meteor/underscore';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -40,7 +41,8 @@ class Landing extends React.Component {
         },
       });
     }
-    const clubCount = Clubs.find().fetch().length;
+    const approvedClubs = _.filter(Clubs.find().fetch(), (club) => club.registered !== false);
+    const clubCount = approvedClubs.length;
     const spacing = { paddingTop: '78px' };
     return (
       <div>
