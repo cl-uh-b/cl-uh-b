@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Button, Grid } from 'semantic-ui-react';
+import { Header, Loader, Card, Button, Grid, Transition } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Clubs } from '../../api/club/Clubs';
@@ -10,18 +10,26 @@ import { Favorites } from '../../api/favorites/Favorites';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Lucky extends React.Component {
 
-    state = { random: -1, roll: true };
+    state = { random: -1, roll: true, animation: true };
 
     componentDidMount() {
         if (this.state.roll === true) {
-            this.setState({ roll: false });
+            this.setState({ roll: false, animation: true });
             this.interval = setInterval(() => this.setState({
                 random: Math.floor(Math.random() * this.props.clubs.length),
-            }), 80);
+            }), 60);
         } else {
-            clearInterval(this.interval);
-            this.setState({ roll: true });
+            this.pause();
         }
+    }
+
+    pause() {
+        clearInterval(this.interval);
+        this.setState({ roll: true, animation: false });
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     lucky() {
@@ -38,24 +46,30 @@ class Lucky extends React.Component {
     /** Render the page once subscriptions have been received. */
     renderPage() {
         const random = Math.floor(Math.random() * this.props.clubs.length);
+        let duration = 400;
+        let animation = 'shake';
+        if (this.state.animation === false) {
+            duration = 800;
+            animation = 'jiggle';
+        }
         return (
-            <Container>
-                <Grid centered>
+                <Grid centered container stretched>
                     <Grid.Row>
-                        <Header as="h2" textAlign="center" inverted>I&apos;m Feeling Lucky!</Header>
+                        <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
                     </Grid.Row>
                     <Grid.Row>
-                        <Card.Group>
-                            {this.state.random === -1 ?
-                                <Club club={this.props.clubs[random]} favorites={this.props.favorites}/> :
-                                <Club club={this.props.clubs[this.state.random]} favorites={this.props.favorites}/>}
-                        </Card.Group>
+                        <Transition visible={this.state.animation} animation={animation} duration={duration}>
+                            <Card.Group>
+                                <Club club={this.props.clubs[random]} favorites={this.props.favorites}/>
+                            </Card.Group>
+                        </Transition>
                     </Grid.Row>
                     <Grid.Row>
-                        <Button onClick={this.componentDidMount.bind(this)}>I&apos;m Feeling Lucky!</Button>
+                        {this.state.animation ?
+                            <Button onClick={this.componentDidMount.bind(this)}> Click Me to Stop</Button> :
+                            <Button onClick={this.componentDidMount.bind(this)}> I&apos;m Feeling Lucky!</Button>}
                     </Grid.Row>
                 </Grid>
-            </Container>
         );
     }
 }
