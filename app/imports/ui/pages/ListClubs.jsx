@@ -49,30 +49,30 @@ class ListClubs extends React.Component {
     );
 
     return (
-        <Container>
-          <Header as="h2" textAlign="center">Clubs at UHM</Header>
-          <Form>
-            <Form.Group widths='equal'>
-              <Form.Input
-                  onChange={this.updateSearch.bind(this)}
-                  name='search'
-                  className='icon'
-                  icon='search'
-                  placeholder='Search Clubs'
-              />
-              <Form.Dropdown
-                  clearable search selection multiple
-                  placeholder='Select Interest'
-                  value={value}
-                  onChange={this.handleChange}
-                  options={options}
-              />
-          </Form.Group>
-          </Form>
-          <Card.Group itemsPerRow={4} style={{ marginTop: '20px' }}>
-            {clubsOnPage.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
-          </Card.Group>
-        </Container>
+      <Container>
+        <Header as="h2" textAlign="center">Clubs at UHM</Header>
+        <Form>
+          <Form.Group widths='equal'>
+            <Form.Input
+                onChange={this.updateSearch.bind(this)}
+                name='search'
+                className='icon'
+                icon='search'
+                placeholder='Search Clubs'
+            />
+            <Form.Dropdown
+                clearable search selection multiple
+                placeholder='Select Interest'
+                value={value}
+                onChange={this.handleChange}
+                options={options}
+            />
+        </Form.Group>
+        </Form>
+        <Card.Group itemsPerRow={4} style={{ marginTop: '20px' }}>
+          {clubsOnPage.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
+        </Card.Group>
+      </Container>
     );
   }
 }
