@@ -1,4 +1,5 @@
 import React from 'react';
+import swal from 'sweetalert';
 import { Button, Card, Image, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
@@ -8,11 +9,47 @@ import { Clubs } from '../../api/club/Clubs';
 class SubmittedClubs extends React.Component {
 
   denySubmission(docID) {
-    return Clubs.remove(docID);
+    swal({
+      title: 'Are you sure?',
+      buttons: ['Cancel', 'Deny'],
+      dangerMode: true,
+    })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal('Reason for denying submission:', {
+              content: 'input',
+            })
+                .then((value) => {
+                  if (value === '') {
+                     swal({
+                      text: 'Must provide a reason for denying submission.',
+                      icon: 'warning',
+                      dangerMode: true,
+                    });
+                  } else {
+                    swal('Club has been denied.', {
+                      icon: 'success',
+                    });
+                    Clubs.remove(docID);
+                  }
+                });
+          }
+        });
   }
 
   registeredTrue(docID) {
-    return Clubs.update(docID, { $set: { registered: true } });
+    swal({
+      title: 'Are you sure?',
+      buttons: ['Cancel', 'Accept'],
+    })
+        .then((willAccept) => {
+          if (willAccept) {
+            swal('Club has been accepted.', {
+              icon: 'success',
+            });
+            Clubs.update(docID, { $set: { registered: true } });
+          }
+        });
   }
 
   render() {
