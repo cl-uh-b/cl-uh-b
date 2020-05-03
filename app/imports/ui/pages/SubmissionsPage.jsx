@@ -9,33 +9,6 @@ import SubmittedClubs from '../components/SubmittedClubs';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class SubmissionsPage extends React.Component {
-
-  temp = [{
-    clubName: 'Testing 1',
-    type: 'Academic/Professional',
-    contact: 'Harriet Tubs',
-    email: 'ht@foo.com',
-    description: 'The Grey Hats are a group focused towards cybersecurity at the University of Hawaii at Manoa.',
-    image: 'https://acmanoa.github.io/assets/img/logos/greyhats.png',
-  },
-    {
-      clubName: 'Testing 2',
-      type: 'Ethic/Cultural',
-      contact: 'Johnny Adds',
-      email: 'ja@foo.com',
-      description: 'Lorem ipsum and all that jazz',
-      image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
-    },
-    {
-      clubName: 'Testing 3',
-      type: 'Academic/Professional',
-      contact: 'Winsty Chur',
-      email: 'wc@foo.com',
-      description: 'Lorem ipsum and all that jazz',
-      image: 'https://manoa.hawaii.edu/admissions/images/stacked.png',
-    },
-  ];
-
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -47,7 +20,7 @@ class SubmissionsPage extends React.Component {
         <Container>
           <Header as="h2" textAlign="center">Submissions</Header>
           <Card.Group>
-            {this.temp.map((club, index) => <SubmittedClubs key={index} club={club}/>)}
+            {this.props.clubs.map((club, index) => <SubmittedClubs key={index} club={club}/>)}
           </Card.Group>
         </Container>
     );

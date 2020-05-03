@@ -14,7 +14,10 @@ Meteor.publish('MyClubs', function publish() {
 
 /** This subscription publishes all the clubs for all users to browse. */
 Meteor.publish('Clubs', function publish() {
-    return Clubs.find();
+  if (this.userId) {
+    return Clubs.find({ registered: true });
+  }
+  return this.ready();
 });
 
 Meteor.publish('Interests', function publish() {
@@ -32,8 +35,7 @@ Meteor.publish('Favorites', function publish() {
 /** This subscription publishes only the clubs that have been submitted to view. */
 Meteor.publish('Submitted', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Clubs.find({ email: username });
+    return Clubs.find({ registered: false });
   }
   return this.ready();
 });
