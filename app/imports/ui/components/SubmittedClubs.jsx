@@ -3,8 +3,18 @@ import { Button, Card, Image, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { _ } from 'meteor/underscore';
+import { Clubs } from '../../api/club/Clubs';
 
 class SubmittedClubs extends React.Component {
+
+  denySubmission(docID) {
+    return Clubs.remove(docID);
+  }
+
+  registeredTrue(docID) {
+    return Clubs.update(docID, { $set: { registered: true } });
+  }
+
   render() {
 
     return (
@@ -30,8 +40,13 @@ class SubmittedClubs extends React.Component {
             </Card.Content>
           </Card>
           <Card.Content extra>
-            <Button className="ui button">Accept</Button>
-            <Button className="ui button" floated="right">Deny</Button>
+            <Button className="ui button"
+            onClick={() => { this.registeredTrue(this.props.club._id); } }
+            >
+              Accept</Button>
+            <Button className="ui button" floated="right"
+                    onClick={() => { this.denySubmission(this.props.club._id); } }>
+              Deny</Button>
           </Card.Content>
         </Card>
     );
