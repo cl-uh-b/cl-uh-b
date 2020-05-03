@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
-// import { Meteor } from 'meteor/meteor';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
@@ -11,7 +10,6 @@ import { _ } from 'meteor/underscore';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
-// import { Submissions } from '../../api/submissions/Submissions';
 
 const makeSchema = (clubInterests) => new SimpleSchema({
   clubName: { type: String, label: 'Club Name', optional: true },
