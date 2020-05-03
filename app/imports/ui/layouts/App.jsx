@@ -7,7 +7,7 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
-import ListClub from '../pages/ListClub';
+import ListClub from '../pages/ListClubs';
 import AddClub from '../pages/AddClub';
 import Lucky from '../pages/Lucky';
 import EditClub from '../pages/EditClub';

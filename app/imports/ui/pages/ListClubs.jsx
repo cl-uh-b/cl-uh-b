@@ -3,13 +3,12 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card, Form } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import ClubAdmin from '../components/ClubAdmin';
+import Club from '../components/Club';
 import { Clubs } from '../../api/club/Clubs';
-import { Favorites } from '../../api/favorites/Favorites';
 import { Interests } from '../../api/interests/Interests';
+import { Favorites } from '../../api/favorites/Favorites';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class ListClubsAdmin extends React.Component {
+class ListClubs extends React.Component {
 
   state = { value: '', search: '' }
 
@@ -50,35 +49,35 @@ class ListClubsAdmin extends React.Component {
     );
 
     return (
-        <Container>
-          <Header as="h2" textAlign="center">Clubs at UHM</Header>
-          <Form>
-            <Form.Group widths='equal'>
-              <Form.Input
-                  onChange={this.updateSearch.bind(this)}
-                  name='search'
-                  className='icon'
-                  icon='search'
-                  placeholder='Search Clubs'
-              />
-              <Form.Dropdown
-                  clearable search selection multiple
-                  placeholder='Select Interest'
-                  value={value}
-                  onChange={this.handleChange}
-                  options={options}
-              />
-            </Form.Group>
-          </Form>
-          <Card.Group itemsPerRow={4} style={{ marginTop: '20px' }}>
-            {clubsOnPage.map((club, index) => <ClubAdmin key={index} club={club} favorites={this.props.favorites}/>)}
-          </Card.Group>
-        </Container>
+      <Container>
+        <Header as="h2" textAlign="center">Clubs at UHM</Header>
+        <Form>
+          <Form.Group widths='equal'>
+            <Form.Input
+                onChange={this.updateSearch.bind(this)}
+                name='search'
+                className='icon'
+                icon='search'
+                placeholder='Search Clubs'
+            />
+            <Form.Dropdown
+                clearable search selection multiple
+                placeholder='Select Interest'
+                value={value}
+                onChange={this.handleChange}
+                options={options}
+            />
+        </Form.Group>
+        </Form>
+        <Card.Group itemsPerRow={4} style={{ marginTop: '20px' }}>
+          {clubsOnPage.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
+        </Card.Group>
+      </Container>
     );
   }
 }
 
-ListClubsAdmin.propTypes = {
+ListClubs.propTypes = {
   clubs: PropTypes.array.isRequired,
   interests: PropTypes.array.isRequired,
   favorites: PropTypes.array.isRequired,
@@ -95,4 +94,4 @@ export default withTracker(() => {
     interests: Interests.find({}).fetch(),
     ready: subscription1.ready() && subscription2.ready() && subscription3.ready(),
   };
-})(ListClubsAdmin);
+})(ListClubs);
