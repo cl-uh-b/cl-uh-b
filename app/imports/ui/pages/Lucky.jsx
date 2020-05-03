@@ -53,7 +53,7 @@ class Lucky extends React.Component {
             animation = 'jiggle';
         }
         return (
-                <Grid centered container stretched>
+                <Grid centered container>
                     <Grid.Row>
                         <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
                     </Grid.Row>

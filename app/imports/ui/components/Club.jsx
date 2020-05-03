@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Label, Rating, Modal, Button } from 'semantic-ui-react';
+import { Card, Image, Label, Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
@@ -36,37 +36,18 @@ class Club extends React.Component {
             />
             <Card.Header>{this.props.club.clubName}</Card.Header>
             <Card.Meta>{this.props.club.type}</Card.Meta>
+            <Card.Description>{this.props.club.description}</Card.Description>
           </Card.Content>
           <Card.Content extra>
-              <Modal trigger={<Button>Click For More Info</Button>} closeIcon>
-                  <Modal.Header>{this.props.club.clubName}</Modal.Header>
-                  <Modal.Content image>
-                      <Image id="card-image"
-                             floated={'right'}
-                             src={this.props.club.image}
-                      />
-                      <Modal.Description>
-                          <p>
-                              Description:
-                              <br />
-                              {this.props.club.description}
-                          </p>
-                          <p>
-                              Interest:
-                              <br />
-                              {_.map(this.props.club.interest,
-                              (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
-                          </p>
-                          <Card>
-                              <Card.Content>
-                                  <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
-                                  <Card.Meta>Email: {this.props.club.email}</Card.Meta>
-                              </Card.Content>
-                          </Card>
-                      </Modal.Description>
-                  </Modal.Content>
-              </Modal>
+            {_.map(this.props.club.interest,
+                (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
           </Card.Content>
+          <Card id="contact-card" centered>
+            <Card.Content>
+             <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
+              <Card.Meta>Email: {this.props.club.email}</Card.Meta>
+            </Card.Content>
+          </Card>
           <Card.Content extra>
             <Rating
                 icon='heart'
