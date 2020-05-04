@@ -1,9 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway|Fjalla+One|Noto+Sans|Roboto|Roboto+Condensed|Proza+Libre|Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans|Proza+Libre|Open+Sans);
 
-.landing-header-background {
-  background: url("images/landing-header-background.png") no-repeat center center;
-  background-size: cover;
-}
 /** NavBar */
 .ui.tiny.image {
   width: 60px !important;
@@ -64,10 +60,12 @@
   font-size: 15px !important;
 }
 
+/** Footer */
 #footer {
   margin-top: 15px;
 }
 
+/** Club Card */
 #contact-card {
   max-width: 90%;
 }
