@@ -52,3 +52,7 @@ Meteor.publish('LuckyClubs', function publish() {
   }
   return this.ready();
 });
+
+Meteor.publish('ClubCount', function publish() {
+  return Clubs.find({ registered: true });
+});
