@@ -21,7 +21,7 @@ class NavBar extends React.Component {
                 I&apos;m Feeling Lucky!</Menu.Item>,
             <Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Club</Menu.Item>]
         ) : ''}
-        {Roles.userIsInRole(Meteor.userId(), 'clubOwner') ? (
+        {this.props.currentUser ? (
             <Menu.Item as={NavLink} activeClassName="active" exact to="/my-clubs" key='my-clubs'>My Clubs</Menu.Item>
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
         ) : ''}
         <Menu.Item position="right">
           {this.props.currentUser === '' ? (
-              <Menu.Item as={NavLink} inverted activeClassName="active" exact to="/signin">
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/signin">
                 <Icon name='user'/>&nbsp;Sign In</Menu.Item>
           ) : (
             <Dropdown text={Meteor.user().profile.firstName} pointing="top right" icon='user'>

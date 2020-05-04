@@ -1,4 +1,5 @@
 import React from 'react';
+import swal from 'sweetalert';
 import { Button, Card, Image, Statistic, Container, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
@@ -6,8 +7,37 @@ import { Clubs } from '../../api/club/Clubs';
 
 class ClubOwner extends React.Component {
 
-  removeItem(docID) {
-    return Clubs.remove(docID);
+  removeClub(docID) {
+    swal({
+      title: 'Are you sure?',
+      buttons: ['Cancel', 'Delete'],
+      dangerMode: true,
+      closeOnClickOutside: false,
+    })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal('Reason for removal:', {
+              content: 'input',
+              closeOnClickOutside: false,
+            })
+                .then((value) => {
+                  if (value !== '') {
+                    Clubs.remove(docID);
+                    swal('Club has been removed.', {
+                      icon: 'success',
+                      closeOnClickOutside: false,
+                    });
+                  } else {
+                    swal({
+                      text: 'Must provide a reason for removal.',
+                      icon: 'warning',
+                      dangerMode: true,
+                      closeOnClickOutside: false,
+                    });
+                  }
+                });
+          }
+        });
   }
 
   render() {
@@ -40,7 +70,7 @@ class ClubOwner extends React.Component {
               <Statistic.Label>Favorites</Statistic.Label>
             </Statistic>
             <Button as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
-            <Button floated='right' onClick={() => { this.removeItem(this.props.club._id); } }>Delete</Button>
+            <Button floated='right' onClick={() => { this.removeClub(this.props.club._id); } }>Delete</Button>
           </Card.Content>
         </Card>
     );

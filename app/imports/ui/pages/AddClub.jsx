@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 import { AutoForm, ErrorsField, LongTextField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
-// import { Meteor } from 'meteor/meteor';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
@@ -11,15 +10,14 @@ import { _ } from 'meteor/underscore';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
-// import { Submissions } from '../../api/submissions/Submissions';
 
 const makeSchema = (clubInterests) => new SimpleSchema({
-  clubName: { type: String, label: 'Club Name', optional: true },
+  clubName: { type: String, label: 'Club Name' },
   interest: { type: Array, label: 'Interests', optional: true },
   'interest.$': { type: String, allowedValues: clubInterests },
   description: { type: String, label: 'Description', optional: true },
-  contact: { type: String, label: 'Contact', optional: true },
-  email: { type: String, label: 'Email', optional: true },
+  contact: { type: String, label: 'Contact' },
+  email: { type: String, label: 'Email' },
   image: { type: String, label: 'Image', optional: true },
 });
 
@@ -34,7 +32,7 @@ class AddClub extends React.Component {
         if (error) {
           swal('Error', error.message, 'error');
         } else {
-          swal('Success', 'Item submitted successfully', 'success');
+          swal('Success!', 'Club submitted successfully for admin review.', 'success');
           formRef.reset();
         }
       });

@@ -4,6 +4,8 @@ import { Container, Grid, Header, Statistic, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
+import { _ } from 'meteor/underscore';
+import PropTypes from 'prop-types';
 import { Clubs } from '../../api/club/Clubs';
 
 /** A simple static component to render some text for the landing page. */
@@ -40,7 +42,8 @@ class Landing extends React.Component {
         },
       });
     }
-    const clubCount = Clubs.find().fetch().length;
+    const approvedClubs = _.filter(Clubs.find().fetch(), (club) => club.registered !== false);
+    const clubCount = approvedClubs.length;
     const spacing = { paddingTop: '78px' };
     return (
       <div>
@@ -52,7 +55,7 @@ class Landing extends React.Component {
                   CL-UH-B
                   <Header.Subheader className='visual-subheader'>There&apos;s a club waiting for you.</Header.Subheader>
                 </Header>
-                <Link to='/signup'>
+                <Link to='/browse'>
                   <Button size='large' inverted content='Get Started' className='visual-button' />
                 </Link>
               </Grid.Column>
@@ -107,9 +110,15 @@ class Landing extends React.Component {
   }
 }
 
+Landing.propTypes = {
+  count: PropTypes.number,
+  ready: PropTypes.bool.isRequired,
+};
+
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('Clubs');
+  const subscription = Meteor.subscribe('ClubCount');
   return {
+    count: Clubs.find({}).count(),
     ready: subscription.ready(),
   };
 })(Landing);
