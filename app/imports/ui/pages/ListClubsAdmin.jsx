@@ -8,9 +8,7 @@ import ClubAdmin from '../components/ClubAdmin';
 import { Clubs } from '../../api/club/Clubs';
 import { Favorites } from '../../api/favorites/Favorites';
 import { Interests } from '../../api/interests/Interests';
-import Club from '../components/Club';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListClubsAdmin extends React.Component {
 
   state = { value: '', search: '', activePage: 1, clubsPerPage: 40 }
