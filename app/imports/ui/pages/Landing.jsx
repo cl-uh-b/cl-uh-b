@@ -61,6 +61,7 @@ class Landing extends React.Component {
                   <Statistic.Value className='visual-header'>{clubCount}</Statistic.Value>
                   <Statistic.Label className='visual-subheader'>Clubs at Manoa</Statistic.Label>
                 </Statistic>
+                <Button size='large' style={{ backgroundColor: 'transparent' }} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
