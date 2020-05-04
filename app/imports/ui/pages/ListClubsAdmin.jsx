@@ -91,7 +91,8 @@ class ListClubsAdmin extends React.Component {
             <Grid.Row>
               <Card.Group style={{ marginTop: '20px' }}>
                 {clubsOnPage.map(
-                  (club, index) => <ClubAdmin key={index} club={club} favorites={this.props.favorites}/>)}
+                  (club, index) => <ClubAdmin key={index} club={club} favorites={this.props.favorites}/>,
+                )}
               </Card.Group>
             </Grid.Row>
             <Grid.Row>
