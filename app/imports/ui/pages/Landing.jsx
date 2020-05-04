@@ -45,7 +45,7 @@ class Landing extends React.Component {
     return (
       <div>
         <Container fluid className='landing-visuals'>
-          <Grid container verticalAlign='middle' style={{ height: '750px' }}>
+          <Grid stackable container verticalAlign='middle' style={{ height: '750px' }}>
             <Grid.Row columns={2}>
               <Grid.Column>
                 <Header as='h1' className='visual-header'>
