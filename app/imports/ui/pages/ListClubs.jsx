@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card, Form } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { _ } from 'meteor/underscore';
 import Club from '../components/Club';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
@@ -38,9 +39,12 @@ class ListClubs extends React.Component {
 
     /** Filter to selected interest */
     if (this.state.value !== '' || this.state.value.length === 0) {
+      let filteredResults = [];
       for (let i = 0; i < this.state.value.length; i++) {
-        clubsOnPage = clubsOnPage.filter((club) => club.interest.includes(this.state.value[i]));
+        const temp = this.props.clubs.filter((club) => club.interest.includes(this.state.value[i]));
+        filteredResults = _.union(filteredResults, temp);
       }
+      clubsOnPage = filteredResults;
     }
 
     /** Filter to search results */
