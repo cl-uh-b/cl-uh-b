@@ -25,12 +25,12 @@ const makeSchema = (clubInterests) => new SimpleSchema({
 class EditProfile extends React.Component {
 
   /** On successful submit, insert the data. */
-  submit(data) {
+  submit(data, formRef) {
     Meteor.call(updateProfileMethod, data, (error) => {
       if (error) {
         swal('Error', error.message, 'error');
       } else {
-        swal('Success', 'Profile updated', 'success');
+        swal('Success', 'Profile updated', 'success').then(() => formRef.reset());
       }
     });
   }
@@ -40,16 +40,18 @@ class EditProfile extends React.Component {
     const formSchema = makeSchema(clubInterests);
     const user = Meteor.user().profile;
     const model = _.extend({}, user);
+    let fRef = null;
     return (
         <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" textAlign="center" inverted>Edit Club</Header>
-            <AutoForm schema={formSchema} onSubmit={data => this.submit(data)} model={model} >
+            <AutoForm ref={ref => { fRef = ref; }} schema={formSchema}
+                      onSubmit={data => this.submit(data, fRef)} model={model} >
               <Segment stacked>
-                <TextField name='firstName' showInlineError={true} />
-                <TextField name='lastName' showInlineError={true} />
-                <MultiSelectField name='interests' showInlineError={true} />
-                <TextField name='picture' showInLineError={true} />
+                  <TextField name='firstName' showInlineError={true}/>
+                  <TextField name='lastName' showInlineError={true}/>
+                  <MultiSelectField name='interests' />
+                  <TextField name='picture' showInLineError={true}/>
                 <SubmitField value='Submit'/>
                 <Link to="/profile"><Button>Back</Button></Link>
                 <ErrorsField/>

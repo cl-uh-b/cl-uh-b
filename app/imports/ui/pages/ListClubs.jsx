@@ -10,7 +10,7 @@ import { Favorites } from '../../api/favorites/Favorites';
 
 class ListClubs extends React.Component {
 
-  state = { value: '', search: '' }
+  state = { value: [], search: '' }
 
   handleChange = (e, { value }) => this.setState({ value })
 

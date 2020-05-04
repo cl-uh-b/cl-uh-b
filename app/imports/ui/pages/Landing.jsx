@@ -4,8 +4,8 @@ import { Container, Grid, Header, Statistic, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
-import { Clubs } from '../../api/club/Clubs';
 import { _ } from 'meteor/underscore';
+import { Clubs } from '../../api/club/Clubs';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
