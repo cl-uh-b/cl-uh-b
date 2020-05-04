@@ -48,7 +48,7 @@ class Landing extends React.Component {
     return (
       <div>
         <Container fluid className='landing-visuals'>
-          <Grid container verticalAlign='middle' style={{ height: '750px' }}>
+          <Grid stackable container verticalAlign='middle' style={{ height: '750px' }}>
             <Grid.Row columns={2}>
               <Grid.Column>
                 <Header as='h1' className='visual-header'>
@@ -64,6 +64,7 @@ class Landing extends React.Component {
                   <Statistic.Value className='visual-header'>{clubCount}</Statistic.Value>
                   <Statistic.Label className='visual-subheader'>Clubs at Manoa</Statistic.Label>
                 </Statistic>
+                <Button size='large' style={{ backgroundColor: 'transparent' }} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
