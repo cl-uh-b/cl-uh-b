@@ -13,10 +13,10 @@ class ListClubs extends React.Component {
 
   state = { value: '', search: '', activePage: 1, clubsPerPage: 40 }
 
-  handleChange = (e, { value }) => this.setState({ value })
+  handleChange = (e, { value }) => this.setState({ value, activePage: 1 })
 
   updateSearch(event) {
-    this.setState({ search: event.target.value });
+    this.setState({ search: event.target.value, activePage: 1 });
   }
 
   handlePaginationChange = (e, { activePage }) => this.setState({ activePage: activePage })
