@@ -11,7 +11,7 @@ import { Clubs } from '../../api/club/Clubs';
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
 
-  state = { activeIndex: 0 }
+  state = { activeIndex: null }
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
@@ -119,18 +119,19 @@ class Landing extends React.Component {
           </Grid>
         </Container>
         <div className='accordion-section'>
-          <Container fluid style={{ margin: '0 290px' }}>
+          <Container fluid style={{ padding: '0 400px' }}>
             <Header as='h2'>Students</Header>
             <Accordion fluid styled>
               <Accordion.Title
                   active={activeIndex === 0}
                   index={0}
                   onClick={this.handleClick}
+                  className='accordion-title'
               >
                 <Icon name='dropdown' />
                 Sign in/Sign up
               </Accordion.Title>
-              <Accordion.Content active={activeIndex === 0}>
+              <Accordion.Content active={activeIndex === 0} className='accordion-content'>
                 <p>
                   By signing in/signing up, you get access to the club browser and features such as
                   favorites, recommendations, and &quot;I&apos;m Feeling Lucky!&quot;
@@ -140,18 +141,81 @@ class Landing extends React.Component {
                   active={activeIndex === 1}
                   index={1}
                   onClick={this.handleClick}
+                  className='accordion-title'
               >
                 <Icon name='dropdown' />
                 Browsing
               </Accordion.Title>
-              <Accordion.Content active={activeIndex === 1}>
-                <p>Browsing can never be simpler!</p>
-                <p>Just want to browse? Just click on &quot;Browse Clubs&quot; to search through
+              <Accordion.Content active={activeIndex === 1} className='accordion-content'>
+                <p><strong>Just want to browse?</strong> Just click on &quot;Browse Clubs&quot; to search through
                 the hundreds of clubs at UH Manoa!</p>
-                <p>You have a specific interest? Easily search for clubs that match your interest with
+                <p><strong>You have a specific interest?</strong> Easily search for clubs that match your interest with
                 our &quot;Select Interest&quot; feature!</p>
-                <p>Know the club you&apos;re looking for? Use the search bar it down to keywords
-                so that you can quickly find their information!</p>
+                <p><strong>Know the club you&apos;re looking for?</strong> Use the search bar to
+                filter it down to keywords so that you can quickly find their information!</p>
+                <p><strong>Find a club interesting?</strong> Favorite it by clicking the heart so
+                that you can view it later</p>
+              </Accordion.Content>
+              <Accordion.Title
+                  active={activeIndex === 2}
+                  index={2}
+                  onClick={this.handleClick}
+                  className='accordion-title'
+              >
+                <Icon name='dropdown' />
+                I&apos;m Feeling Lucky!
+              </Accordion.Title>
+              <Accordion.Content active={activeIndex === 2} className='accordion-content'>
+                <p>With this feature, you can get a random club based on your interest!</p>
+              </Accordion.Content>
+              <Accordion.Title
+                  active={activeIndex === 3}
+                  index={3}
+                  onClick={this.handleClick}
+                  className='accordion-title'
+              >
+                <Icon name='dropdown' />
+                Profile
+              </Accordion.Title>
+              <Accordion.Content active={activeIndex === 3} className='accordion-content'>
+                <p>Get to your profile by clicking your name on the top right.</p>
+                <p><strong>Edit Profile:</strong> You can edit your profile picture, name, and interest.</p>
+                <p><strong>View Favorites:</strong> If you favorited a club, you can view it in the
+                &quot;Favorites&quot; tab of your profile.</p>
+                <p><strong>View Recommendations:</strong> By setting interest to your profile, you can view
+                clubs that match it in the &quot;Recommended For You&quot; tab</p>
+              </Accordion.Content>
+            </Accordion>
+            <Header as='h2'>Club Owners</Header>
+            <Accordion fluid styled>
+              <Accordion.Title
+                  active={activeIndex === 4}
+                  index={4}
+                  onClick={this.handleClick}
+                  className='accordion-title'
+              >
+                <Icon name='dropdown' />
+                Own a club that&apos;s not listed?
+              </Accordion.Title>
+              <Accordion.Content active={activeIndex === 4} className='accordion-content'>
+                <p>Click on &quot;Add Club&quot; to fill out a form to add it. Once the form is submitted,
+                  it will be reviewed by one of our admins before being listed for students to see.</p>
+              </Accordion.Content>
+              <Accordion.Title
+                  active={activeIndex === 5}
+                  index={5}
+                  onClick={this.handleClick}
+                  className='accordion-title'
+              >
+                <Icon name='dropdown' />
+                My Clubs
+              </Accordion.Title>
+              <Accordion.Content active={activeIndex === 5} className='accordion-content'>
+                <p><strong>Have a club?</strong> Click on &quot;My Clubs&quot; to view your club information. You can
+                  check to see if it has been approved or still pending approval.
+                  You can also view how many people have favorited your club!</p>
+                <p><strong>Notice a discrepancy?</strong> Click the &quot;Edit&quot; button to fix your club&apos;s
+                information.</p>
               </Accordion.Content>
             </Accordion>
           </Container>
