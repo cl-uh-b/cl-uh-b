@@ -8,7 +8,7 @@ class Footer extends React.Component {
   render() {
     const divStyle = { color: 'white', backgroundColor: '#024731', padding: '15px 0' };
     return (
-          <div style={divStyle} className="ui fluid center aligned container" id='footer'
+          <div style={divStyle} className="ui fluid center aligned container" id='footer'>
             {/* eslint-disable-next-line react/jsx-no-target-blank */}
             <a href='https://www.facebook.com/uhm.studentlife/?ref=ss' target='_blank'><Icon name='facebook'/></a>
             {/* eslint-disable-next-line react/jsx-no-target-blank */}
