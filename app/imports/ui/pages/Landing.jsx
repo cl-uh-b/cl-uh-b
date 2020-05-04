@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Grid, Header, Statistic, Button } from 'semantic-ui-react';
+import { Container, Grid, Header, Statistic, Button, Accordion, Icon } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
@@ -10,7 +10,20 @@ import { Clubs } from '../../api/club/Clubs';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
+
+  state = { activeIndex: 0 }
+
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    const newIndex = activeIndex === index ? -1 : index;
+
+    this.setState({ activeIndex: newIndex });
+  }
+
   render() {
+    const { activeIndex } = this.state;
+
     let config = {
       num: [4, 7],
       rps: 0.1,
@@ -104,6 +117,44 @@ class Landing extends React.Component {
             </Grid.Row>
           </Grid>
         </Container>
+        <div className='accordion-section'>
+          <Container fluid style={{ margin: '0 290px' }}>
+            <Header as='h2'>Students</Header>
+            <Accordion fluid styled>
+              <Accordion.Title
+                  active={activeIndex === 0}
+                  index={0}
+                  onClick={this.handleClick}
+              >
+                <Icon name='dropdown' />
+                Sign in/Sign up
+              </Accordion.Title>
+              <Accordion.Content active={activeIndex === 0}>
+                <p>
+                  By signing in/signing up, you get access to the club browser and features such as
+                  favorites, recommendations, and &quot;I&apos;m Feeling Lucky!&quot;
+                </p>
+              </Accordion.Content>
+              <Accordion.Title
+                  active={activeIndex === 1}
+                  index={1}
+                  onClick={this.handleClick}
+              >
+                <Icon name='dropdown' />
+                Browsing
+              </Accordion.Title>
+              <Accordion.Content active={activeIndex === 1}>
+                <p>Browsing can never be simpler!</p>
+                <p>Just want to browse? Just click on &quot;Browse Clubs&quot; to search through
+                the hundreds of clubs at UH Manoa!</p>
+                <p>You have a specific interest? Easily search for clubs that match your interest with
+                our &quot;Select Interest&quot; feature!</p>
+                <p>Know the club you&apos;re looking for? Use the search bar it down to keywords
+                so that you can quickly find their information!</p>
+              </Accordion.Content>
+            </Accordion>
+          </Container>
+        </div>
       </div>
     );
   }
