@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Label, Rating, Modal, Button, Header } from 'semantic-ui-react';
+import { Card, Image, Label, Rating, Modal, Button, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
@@ -30,34 +30,39 @@ class ModClub extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image id="card-image"
-                   floated={'left'}
-                   verticalAlign='middle'
-                   src={this.props.club.image}
-            />
-            <Card.Header style={ { marginBottom: 5 } }>{this.props.club.clubName}</Card.Header>
-            {_.map(this.props.club.interest,
-                (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
+            <Grid columns={2}>
+              <Grid.Column width={5}>
+                <Image id="card-image"
+                       floated={'left'}
+                       verticalAlign='middle'
+                       src={this.props.club.image}
+                />
+              </Grid.Column>
+              <Grid.Column width={11}>
+                <Card.Header style={ { marginBottom: 5 } }>{this.props.club.clubName}</Card.Header>
+                {_.map(this.props.club.interest,
+                    (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
+              </Grid.Column>
+            </Grid>
           </Card.Content>
           <Card.Content extra>
-            <Modal trigger={<Button size='mini'>Click For More Info</Button>} closeIcon>
+            <Modal dimmer='blurring' trigger={<Button size='mini'>Click For More Info</Button>} closeIcon>
               <Modal.Header>{this.props.club.clubName}</Modal.Header>
               <Modal.Content image>
                 <Image id="modal-image"
-                       floated={'right'}
+                       floated={'left'}
                        src={this.props.club.image}
                 />
                 <Modal.Description>
                   <p>
-                    Description:
-                    <br />
                     {this.props.club.description}
-                  </p>
-                  <p>
-                    Interest:
-                    <br />
+                    <br/>
                     {_.map(this.props.club.interest,
-                        (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
+                        (interest, index) => <Label style={ { marginTop: 10 }}
+                                                    key={index}
+                                                    size='medium'
+                                                    color='teal'>
+                          {interest}</Label>)}
                   </p>
                   <Card>
                     <Card.Content>

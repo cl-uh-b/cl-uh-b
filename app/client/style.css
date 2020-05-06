@@ -55,14 +55,14 @@
 }
 
 #card-image {
-  width: 20%;
+  width: 100%;
   height: auto;
-  margin: 0px 10px 10px 0px;
+  margin: 0px;
 }
 
 #modal-image {
-  height: 40%;
   width: auto;
+  height: 100%;
   margin: 0px;
   max-height: 175px;
   max-width: 400px;
@@ -91,4 +91,8 @@
   background-color: transparent !important;
   border: none !important;
   display: contents !important;
+}
+
+.ui.modal {
+  font-size: 16px !important;
 }
