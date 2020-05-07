@@ -26,7 +26,7 @@ class App extends React.Component {
   render() {
     return (
         <Router>
-          <div>
+          <div id='content-wrap'>
             <NavBar/>
             <Switch>
               <Route exact path="/" component={Landing}/>

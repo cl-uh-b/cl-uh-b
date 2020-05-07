@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import { Header, Divider, Form, Grid, Container, Message, Button, Image } from 'semantic-ui-react';
+import { Header, Divider, Form, Grid, Segment, Message, Button, Image } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import ParticlesBg from 'particles-bg';
 
 /**
  * Signup component is similar to signin component, but we create a new user instead.
@@ -48,70 +49,63 @@ class Signup extends React.Component {
       return <Redirect to={from}/>;
     }
     return (
-        <Container>
-          <Grid verticalAlign="middle">
-            <Grid.Row columns={2}>
-              <Grid.Column textAlign='center'>
-                <div style={{ padding: '15px 0px 50px 0px' }}>
-                <Header as="h1" textAlign="center">Sign up for CL-UH-B</Header>
-                <Form onSubmit={this.submit}>
-                    <Form.Input
-                        icon="user"
-                        iconPosition="left"
-                        name="email"
-                        type="email"
-                        placeholder="E-mail address"
-                        onChange={this.handleChange}
-                    />
-                    <Form.Input
-                        icon="lock"
-                        iconPosition="left"
-                        name="password"
-                        placeholder="Password"
-                        type="password"
-                        onChange={this.handleChange}
-                    />
-                    <Form.Input
-                        name="firstName"
-                        placeholder="First name"
-                        type="firstName"
-                        onChange={this.handleChange}
-                    />
-                    <Form.Input
-                        name="lastName"
-                        placeholder="Last name"
-                        type="lastName"
-                        onChange={this.handleChange}
-                    />
-                    <Form.Button content="Register"/>
-                </Form>
-                {this.state.error === '' ? (
-                    ''
-                ) : (
-                    <Message
-                        error
-                        header="Registration was not successful"
-                        content={this.state.error}
-                    />
-                )}
-                </div>
-                <Divider horizontal>OR</Divider>
-                <div style={{ padding: '50px 0px 15px 0px' }}>
-                  <Header textAlign='center' as='h3'>
-                    Already have an account? <br/>
-                    Sign in now!
-                  </Header>
-                  <Link to="/signin">
-                    <Button content='Sign in' icon='sign in' size='medium' />
-                  </Link>
-                </div>
-              </Grid.Column>
-              <Grid.Column>
-                <Image centered src='../images/signuppic.jpg' size='large'/>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
+      <div>
+        <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Segment className='sign-in-up'>
+            <Header as='h1' textAlign='center' className='sign-in-up-text' >
+              <Image src='../images/cl-uh-b-logo.png'/>Sign up for CL-UH-B</Header>
+            <Form onSubmit={this.submit}>
+              <Form.Input
+                  name="firstName"
+                  placeholder="First name"
+                  type="firstName"
+                  onChange={this.handleChange}
+              />
+              <Form.Input
+                  name="lastName"
+                  placeholder="Last name"
+                  type="lastName"
+                  onChange={this.handleChange}
+              />
+                <Form.Input
+                    icon="user"
+                    iconPosition="left"
+                    name="email"
+                    type="email"
+                    placeholder="E-mail address"
+                    onChange={this.handleChange}
+                />
+                <Form.Input
+                    icon="lock"
+                    iconPosition="left"
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    onChange={this.handleChange}
+                />
+                <Form.Button content="Register"/>
+            </Form>
+            {this.state.error === '' ? (
+                ''
+            ) : (
+                <Message
+                    error
+                    header="Registration was not successful"
+                    content={this.state.error}
+                />
+            )}
+            <Divider horizontal>OR</Divider>
+              <Header textAlign='center' as='h3' className='sign-in-up-subtext'>
+                Already have an account?</Header>
+              <Link to="/signin">
+                <Button content='Sign in' icon='sign in' size='medium' />
+              </Link>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+        <ParticlesBg color='#024731' num={30} type='cobweb' bg={true} />
+      </div>
     );
   }
 }
