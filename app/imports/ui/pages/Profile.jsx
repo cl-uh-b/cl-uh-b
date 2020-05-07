@@ -3,11 +3,23 @@ import { Card, Button, Container, Header, Grid, Image, Tab, Menu, Icon } from 's
 import { Roles } from 'meteor/alanning:roles';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
 import FavoriteClubs from './FavoriteClubs';
 import RecommendedClubs from './RecommendedClubs';
+import Lucky from './Lucky';
 
 class Profile extends React.Component {
+
   render() {
+    if ((this.props.profile) === true) {
+      return this.renderPage();
+    }
+
+    return '';
+  }
+
+  renderPage() {
     let profileInterest = '';
     let profileRole = '';
     let profilePicture = '';
@@ -58,6 +70,14 @@ class Profile extends React.Component {
         ),
         render: () => <Tab.Pane attached={false} className='tab-pane'><RecommendedClubs /></Tab.Pane>,
       },
+      {
+        menuItem: (
+            <Menu.Item key='lucky'>
+              I&apos;m feeling Lucky 🌈
+            </Menu.Item>
+        ),
+        render: () => <Tab.Pane attached={false} className='tab-pane'><Lucky /></Tab.Pane>,
+      },
     ];
 
     return (
@@ -94,4 +114,10 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+Profile.propTypes = {
+  profile: PropTypes.bool.isRequired,
+};
+
+export default withTracker(() => ({
+    profile: Meteor.user() !== undefined,
+  }))(Profile);
