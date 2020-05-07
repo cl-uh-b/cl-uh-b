@@ -20,10 +20,12 @@ Meteor.publish('Clubs', function publish() {
   return this.ready();
 });
 
+/** This subscription publishes all club interest */
 Meteor.publish('Interests', function publish() {
   return Interests.find();
 });
 
+/** This subscription publishes only clubs favorited by user */
 Meteor.publish('Favorites', function publish() {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;

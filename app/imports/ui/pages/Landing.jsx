@@ -55,9 +55,9 @@ class Landing extends React.Component {
         },
       });
     }
-    const approvedClubs = _.filter(Clubs.find().fetch(), (club) => club.registered !== false);
-    const clubCount = approvedClubs.length;
+
     const spacing = { paddingTop: '78px' };
+
     return (
       <div>
         <Container fluid className='landing-visuals'>
@@ -74,7 +74,7 @@ class Landing extends React.Component {
               </Grid.Column>
               <Grid.Column textAlign='center'>
                 <Statistic size='huge'>
-                  <Statistic.Value className='visual-header'>{clubCount}</Statistic.Value>
+                  <Statistic.Value className='visual-header'>{this.props.count}</Statistic.Value>
                   <Statistic.Label className='visual-subheader'>Clubs at Manoa</Statistic.Label>
                 </Statistic>
                 <Button size='large' style={{ backgroundColor: 'transparent' }} />
