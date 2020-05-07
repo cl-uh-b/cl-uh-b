@@ -4,10 +4,10 @@ import { Container, Header, Loader, Card, Form, Grid, Pagination } from 'semanti
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
-import Club from '../components/Club';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
+import ModClub from '../components/ModClub';
 
 class ListClubs extends React.Component {
 
@@ -90,7 +90,7 @@ class ListClubs extends React.Component {
         <Grid centered>
           <Grid.Row>
             <Card.Group style={{ marginTop: '20px' }}>
-              {clubsOnPage.map((club, index) => <Club key={index} club={club} favorites={this.props.favorites}/>)}
+              {clubsOnPage.map((club, index) => <ModClub key={index} club={club} favorites={this.props.favorites}/>)}
             </Card.Group>
           </Grid.Row>
           <Grid.Row>

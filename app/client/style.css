@@ -1,9 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway|Fjalla+One|Noto+Sans|Roboto|Roboto+Condensed|Proza+Libre|Open+Sans);
 
-.landing-header-background {
-  background: url("images/landing-header-background.png") no-repeat center center;
-  background-size: cover;
-}
+/*.landing-header-background {*/
+/*  background: url("images/landing-header-background.png") no-repeat center center;*/
+/*  background-size: cover;*/
+/*}*/
 /** NavBar */
 .ui.tiny.image {
   width: 60px !important;
@@ -55,8 +55,21 @@
 }
 
 #card-image {
-  width: 20%;
-  margin: 0px 10px 10px 0px;
+  width: 100%;
+  height: auto;
+  margin: 0px;
+}
+
+#modal-image {
+  width: auto;
+  height: 100%;
+  margin: 0px;
+  max-height: 175px;
+  max-width: 400px;
+}
+
+#card-rank {
+  float: right;
 }
 
 /** Profile Page */
@@ -82,4 +95,8 @@
 
 #noClubs {
   font-size: 20px;
+}
+
+.ui.modal {
+  font-size: 16px !important;
 }
