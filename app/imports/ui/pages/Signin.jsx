@@ -80,8 +80,8 @@ export default class Signin extends React.Component {
                 <Divider horizontal>OR</Divider>
                 <Header textAlign='center' as='h3' className='sign-in-up-subtext'>
                   Don&apos;t have an account?</Header>
-                <Link to="/signin">
-                  <Button content='Sign in' icon='sign in' size='medium' />
+                <Link to="/signup">
+                  <Button content='Sign up' icon='signup' size='medium' />
                 </Link>
               </Segment>
             </Grid.Column>
