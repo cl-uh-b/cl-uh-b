@@ -74,7 +74,7 @@ class ModClub extends React.Component {
               </Modal.Content>
             </Modal>
             <Button size='mini' disabled={this.props.club.website === ''}>
-              <a href={this.props.club.website}>Website</a></Button>
+              <a rel="noopener noreferrer" target="_blank" href={this.props.club.website}>Website</a></Button>
             <Rating
             id='card-rank'
             icon='heart'
