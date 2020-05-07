@@ -36,6 +36,10 @@ class EditProfile extends React.Component {
   }
 
   render() {
+    return (this.props.ready) ? this.renderPage() : '';
+  }
+
+  renderPage() {
     const clubInterests = _.pluck(Interests.find().fetch(), 'interest');
     const formSchema = makeSchema(clubInterests);
     const user = Meteor.user().profile;
@@ -46,15 +50,14 @@ class EditProfile extends React.Component {
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' textAlign='center'>Edit Profile</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={formSchema}
-                      onSubmit={data => this.submit(data, fRef)} model={model} >
+                      onSubmit={data => this.submit(data, fRef)} model={model} showInlineError >
               <Segment stacked>
-                  <TextField name='firstName' showInlineError={true}/>
-                  <TextField name='lastName' showInlineError={true}/>
+                  <TextField name='firstName' />
+                  <TextField name='lastName' />
                   <MultiSelectField name='interests' />
-                  <TextField name='picture' showInLineError={true}/>
+                  <TextField name='picture' />
                 <SubmitField value='Submit'/>
                 <Link to="/profile"><Button>Back</Button></Link>
-                <ErrorsField/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -69,7 +72,8 @@ EditProfile.propTypes = {
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe('Interests');
+  const profile = Meteor.user() !== undefined;
   return {
-    ready: subscription.ready(),
+    ready: subscription.ready() && profile,
   };
 })(EditProfile);

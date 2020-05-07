@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
 import PropTypes from 'prop-types';
 import { Counts } from 'meteor/tmeasday:publish-counts';
-import TypeWriter from "../components/TyperWriter";
+import TypeWriter from '../components/TyperWriter';
 
 
 /** A simple static component to render some text for the landing page. */
