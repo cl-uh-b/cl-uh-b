@@ -65,7 +65,7 @@ class Profile extends React.Component {
       {
         menuItem: (
             <Menu.Item key='recommended'>
-              Reccomended For You
+              Recommended For You
             </Menu.Item>
         ),
         render: () => <Tab.Pane attached={false} className='tab-pane'><RecommendedClubs /></Tab.Pane>,
