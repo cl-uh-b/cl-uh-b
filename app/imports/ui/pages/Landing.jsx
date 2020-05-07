@@ -157,18 +157,6 @@ class Landing extends React.Component {
                 that you can view it later</p>
               </Accordion.Content>
               <Accordion.Title
-                  active={activeIndex === 2}
-                  index={2}
-                  onClick={this.handleClick}
-                  className='accordion-title'
-              >
-                <Icon name='dropdown' />
-                I&apos;m Feeling Lucky!
-              </Accordion.Title>
-              <Accordion.Content active={activeIndex === 2} className='accordion-content'>
-                <p>With this feature, you can get a random club based on your interest!</p>
-              </Accordion.Content>
-              <Accordion.Title
                   active={activeIndex === 3}
                   index={3}
                   onClick={this.handleClick}
@@ -184,6 +172,9 @@ class Landing extends React.Component {
                 &quot;Favorites&quot; tab of your profile.</p>
                 <p><strong>View Recommendations:</strong> By setting interest to your profile, you can view
                 clubs that match it in the &quot;Recommended For You&quot; tab</p>
+                <p>
+                  <strong>I&apos;m feeling lucky: </strong>
+                  With this feature, you can get a random club based on your interest!</p>
               </Accordion.Content>
             </Accordion>
             <Header as='h2'>Club Owners</Header>

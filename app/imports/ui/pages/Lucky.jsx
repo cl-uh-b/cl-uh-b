@@ -5,19 +5,19 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 import { Clubs } from '../../api/club/Clubs';
-import ModClub from '../components/ModClub';
+import ModClubLucky from '../components/ModClubLucky';
 import { Favorites } from '../../api/favorites/Favorites';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Lucky extends React.Component {
 
-    state = { random: -1, roll: true, animation: true };
+    state = { random: -1, roll: true, animation: true, timeout: 50 };
 
     componentDidMount() {
         if (this.state.roll === true) {
             this.setState({ roll: false, animation: true });
             this.interval = setInterval(this.handleState.bind(this),
-                60);
+                this.state.timeout);
         } else {
             this.pause();
         }
@@ -66,24 +66,26 @@ class Lucky extends React.Component {
             duration = 800;
             animation = 'jiggle';
         }
+
         return (
-                <Grid centered container>
+                <Grid centered padded >
                     <Grid.Row>
                         <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
-                    </Grid.Row>
-                    <Grid.Row>
-                      {this.state.animation ?
-                          <Button onClick={this.scroll.bind(this)}> Click Me to Stop</Button> :
-                          <Button onClick={this.scroll.bind(this)}> I&apos;m Feeling Lucky!</Button>}
                     </Grid.Row>
                     <Grid.Row>
                         <Transition visible={this.state.animation} animation={animation} duration={duration}>
                             <Card.Group>
                                 {this.state.random === -1 ?
-                                    <ModClub club={this.props.clubs[random]} favorites={this.props.favorites}/> :
-                                 <ModClub club={this.props.clubs[this.state.random]} favorites={this.props.favorites}/>}
+                                    <ModClubLucky club={this.props.clubs[random]} favorites={this.props.favorites}/> :
+                                 <ModClubLucky club={this.props.clubs[this.state.random]}
+                                               favorites={this.props.favorites}/>}
                             </Card.Group>
                         </Transition>
+                    </Grid.Row>
+                    <Grid.Row>
+                        {this.state.animation ?
+                            <Button onClick={this.scroll.bind(this)}> Click Me to Stop</Button> :
+                            <Button onClick={this.scroll.bind(this)}> I&apos;m Feeling Lucky!</Button>}
                     </Grid.Row>
                 </Grid>
         );
