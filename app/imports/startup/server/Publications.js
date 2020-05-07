@@ -14,7 +14,7 @@ Meteor.publish('MyClubs', function publish() {
 
 /** This subscription publishes all the clubs for all users to browse. */
 Meteor.publish('Clubs', function publish() {
-    return Clubs.find();
+    return Clubs.find({ registered: true });
 });
 
 Meteor.publish('Interests', function publish() {

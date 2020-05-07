@@ -58,16 +58,19 @@ class Lucky extends React.Component {
                         <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
                     </Grid.Row>
                     <Grid.Row>
-                        <Transition visible={this.state.animation} animation={animation} duration={duration}>
-                            <Card.Group>
-                                <Club club={this.props.clubs[random]} favorites={this.props.favorites}/>
-                            </Card.Group>
-                        </Transition>
-                    </Grid.Row>
-                    <Grid.Row>
                         {this.state.animation ?
                             <Button onClick={this.componentDidMount.bind(this)}> Click Me to Stop</Button> :
                             <Button onClick={this.componentDidMount.bind(this)}> I&apos;m Feeling Lucky!</Button>}
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Transition visible={this.state.animation} animation={animation} duration={duration}>
+                            <Card.Group>
+                                {this.state.random === -1 ?
+                                    <Club club={this.props.clubs[random]} favorites={this.props.favorites}/> :
+                                    <Club club={this.props.clubs[this.state.random]} favorites={this.props.favorites}/>
+                                }
+                            </Card.Group>
+                        </Transition>
                     </Grid.Row>
                 </Grid>
         );
@@ -81,10 +84,14 @@ Lucky.propTypes = {
 };
 
 export default withTracker(() => {
-    const subscription = Meteor.subscribe('LuckyClubs');
+    const subscription = Meteor.subscribe('Clubs');
     const subscription2 = Meteor.subscribe('Favorites');
+    let interests = [];
+    if (Meteor.user() !== undefined) {
+        interests = Meteor.user().profile.interests;
+    }
     return {
-        clubs: Clubs.find({}).fetch(),
+        clubs: Clubs.find({ interest: { $in: interests } }).fetch(),
         favorites: Favorites.find({}).fetch(),
         ready: subscription.ready() && subscription2.ready(),
     };
