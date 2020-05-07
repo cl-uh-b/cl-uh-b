@@ -1,9 +1,14 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway|Fjalla+One|Noto+Sans|Roboto|Roboto+Condensed|Proza+Libre|Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans|Proza+Libre|Open+Sans);
 
 /*.landing-header-background {*/
 /*  background: url("images/landing-header-background.png") no-repeat center center;*/
 /*  background-size: cover;*/
 /*}*/
+
+div, h1, h2, h3, h4 {
+  font-family: "Noto Sans", sans-serif !important;
+}
+
 /** NavBar */
 .ui.tiny.image {
   width: 60px !important;
@@ -39,17 +44,63 @@
 
 .info-header {
   font-family: "Proza Libre", sans-serif !important;
+  font-size: 35px !important;
 }
 
 .info-desc {
   font-family: "Open Sans", sans-serif !important;
+  font-size: 16px !important;
   text-align: justify;
 }
 
-#footer {
-  margin-top: 15px;
+.accordion-section {
+  background-color: rgba(14,29,42,0.05);
+  margin-bottom: -30px;
+  padding: 30px 0;
 }
 
+.accordion-title {
+  font-family: "Proza Libre", sans-serif !important;
+  font-size: 20px !important;
+}
+
+.accordion-content {
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 15px !important;
+}
+
+/** Footer */
+#footer {
+  margin-top: 15px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 125px;
+}
+
+#content-wrap {
+  padding-bottom: 150px;
+}
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/** Sign in and up */
+.sign-in-up {
+  background-color: rgba(2, 71, 49, 0.25) !important;
+}
+
+.sign-in-up-text {
+  font-family: "Proza Libre", sans-serif !important;
+}
+
+.sign-in-up-subtext {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+/** Club Card */
 #contact-card {
   max-width: 90%;
 }

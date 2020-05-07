@@ -68,7 +68,7 @@ class ListClubs extends React.Component {
 
     return (
       <Container fluid style={{ padding: '0 290px' }}>
-        <Header as="h2" textAlign="center">Clusbs at UHM</Header>
+        <Header as="h2" textAlign="center">Clubs at UHM</Header>
         <Form size='large'>
           <Form.Group widths='equal'>
             <Form.Input

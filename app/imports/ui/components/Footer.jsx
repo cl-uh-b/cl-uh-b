@@ -1,7 +1,5 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
