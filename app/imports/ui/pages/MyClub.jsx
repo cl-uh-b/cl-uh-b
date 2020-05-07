@@ -35,8 +35,12 @@ MyClub.propTypes = {
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe('MyClubs');
+  let username = '';
+    if (Meteor.user() !== undefined) {
+        username = Meteor.user().username;
+    }
   return {
-    clubs: Clubs.find({}).fetch(),
+    clubs: Clubs.find({ email: username }).fetch(),
     ready: subscription.ready(),
   };
 })(MyClub);

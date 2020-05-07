@@ -6,8 +6,7 @@ import { Favorites } from '../../api/favorites/Favorites';
 /** This subscription publishes only the clubs owned by the logged in user */
 Meteor.publish('MyClubs', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Clubs.find({ email: username });
+    return Clubs.find();
   }
   return this.ready();
 });
