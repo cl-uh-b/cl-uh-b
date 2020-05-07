@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
 import PropTypes from 'prop-types';
 import { Counts } from 'meteor/tmeasday:publish-counts';
+import TypeWriter from "../components/TyperWriter";
 
 
 /** A simple static component to render some text for the landing page. */
@@ -66,7 +67,7 @@ class Landing extends React.Component {
               <Grid.Column>
                 <Header as='h1' className='visual-header'>
                   CL-UH-B
-                  <Header.Subheader className='visual-subheader'>There&apos;s a club waiting for you.</Header.Subheader>
+                  <TypeWriter dataText='There&apos;s a club waiting for you.' />
                 </Header>
                 <Link to='/browse'>
                   <Button size='large' inverted content='Get Started' className='visual-button' />

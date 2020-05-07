@@ -73,7 +73,7 @@ class Profile extends React.Component {
       {
         menuItem: (
             <Menu.Item key='lucky'>
-              I&apos;m feeling Lucky
+              I&apos;m feeling Lucky 🌈
             </Menu.Item>
         ),
         render: () => <Tab.Pane attached={false} className='tab-pane'><Lucky /></Tab.Pane>,

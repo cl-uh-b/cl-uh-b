@@ -70,7 +70,7 @@ class Lucky extends React.Component {
         return (
                 <Grid centered padded >
                     <Grid.Row>
-                        <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
+                        <Header as="h2" textAlign="center">🍀 I&apos;m Feeling Lucky! 🍀️</Header>
                     </Grid.Row>
                     <Grid.Row>
                         <Transition visible={this.state.animation} animation={animation} duration={duration}>
