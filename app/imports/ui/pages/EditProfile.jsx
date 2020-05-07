@@ -44,7 +44,7 @@ class EditProfile extends React.Component {
     return (
         <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" textAlign="center" inverted>Edit Club</Header>
+            <Header as='h2' textAlign='center'>Edit Profile</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={formSchema}
                       onSubmit={data => this.submit(data, fRef)} model={model} >
               <Segment stacked>

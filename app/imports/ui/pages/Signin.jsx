@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Header, Divider, Form, Grid, Container, Message, Button, Image } from 'semantic-ui-react';
+import { Header, Divider, Form, Grid, Message, Button, Image, Segment } from 'semantic-ui-react';
+import ParticlesBg from 'particles-bg';
 
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -42,58 +43,51 @@ export default class Signin extends React.Component {
     }
     // Otherwise return the Login form.
     return (
-        <Container>
-        <Grid verticalAlign='middle'>
-          <Grid.Row columns={2}>
-            <Grid.Column>
-            <Image centered src='../images/signinpic.jpg' size='large'/>
-            </Grid.Column>
-            <Grid.Column textAlign='center'>
-              <div style={{ padding: '15px 0px 50px 0px' }}>
-              <Header as='h1'>Sign in to CL-UH-B</Header>
-              <Form onSubmit={this.submit}>
+        <div>
+          <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
+            <Grid.Column style={{ maxWidth: 450 }}>
+              <Segment className='sign-in-up'>
+                <Header as='h1' textAlign='center' className='sign-in-up-text' >
+                  <Image src='../images/cl-uh-b-logo.png'/>Sign in to CL-UH-B</Header>
+                <Form onSubmit={this.submit}>
                   <Form.Input
-                    icon="user"
-                    iconPosition="left"
-                    name="email"
-                    type="email"
-                    placeholder="E-mail address"
-                    onChange={this.handleChange}
+                      icon="user"
+                      iconPosition="left"
+                      name="email"
+                      type="email"
+                      placeholder="E-mail address"
+                      onChange={this.handleChange}
                   />
                   <Form.Input
-                    icon="lock"
-                    iconPosition="left"
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    onChange={this.handleChange}
+                      icon="lock"
+                      iconPosition="left"
+                      name="password"
+                      placeholder="Password"
+                      type="password"
+                      onChange={this.handleChange}
                   />
-                  <Form.Button content="Sign in"/>
-              </Form>
-              {this.state.error === '' ? (
-                ''
-              ) : (
-                <Message
-                  error
-                  header="Login was not successful"
-                  content={this.state.error}
-                />
-              )}
-              </div>
-              <Divider horizontal>OR</Divider>
-              <div style={{ padding: '50px 0px 15px 0px' }}>
-              <Header textAlign='center' as='h3'>
-                Create an account now <br/>
-                and look for clubs!
-              </Header>
-              <Link to="/signup">
-                <Button content='Sign up' icon='signup' size='medium' />
-              </Link>
-              </div>
+                  <Form.Button content="Register"/>
+                </Form>
+                {this.state.error === '' ? (
+                    ''
+                ) : (
+                    <Message
+                        error
+                        header="Registration was not successful"
+                        content={this.state.error}
+                    />
+                )}
+                <Divider horizontal>OR</Divider>
+                <Header textAlign='center' as='h3' className='sign-in-up-subtext'>
+                  Don&apos;t have an account?</Header>
+                <Link to="/signup">
+                  <Button content='Sign up' icon='signup' size='medium' />
+                </Link>
+              </Segment>
             </Grid.Column>
-          </Grid.Row>
-        </Grid>
-        </Container>
+          </Grid>
+          <ParticlesBg color='#024731' num={30} type='cobweb' bg={true} />
+        </div>
     );
   }
 }
