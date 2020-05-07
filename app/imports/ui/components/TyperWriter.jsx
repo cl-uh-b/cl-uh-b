@@ -25,7 +25,7 @@ class TypeWriter extends React.Component {
 
     handleType = () => {
         const dataText = this.props.dataText;
-        const { isDeleting, text, typingSpeed } = this.state;
+        const { isDeleting, text } = this.state;
         const fullText = dataText;
         const timeout = 3000;
 
@@ -40,21 +40,21 @@ class TypeWriter extends React.Component {
                 typingSpeed: 100,
             });
 
-            setTimeout(this.handleType, typingSpeed);
+            setTimeout(this.handleType, this.state.typingSpeed);
         } else {
             this.setState({
                 text: isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1),
                 typingSpeed: isDeleting ? 40 : this.state.typingSpeed,
             });
 
-            setTimeout(this.handleType, typingSpeed);
+            setTimeout(this.handleType, this.state.typingSpeed);
         }
     };
 
     handleDelete() {
         this.setState({ isDeleting: true,
             typingSpeed: 40 });
-        setTimeout(this.handleType, this.typingSpeed);
+        setTimeout(this.handleType, this.state.typingSpeed);
     }
 
     render() {
