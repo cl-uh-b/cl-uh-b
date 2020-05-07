@@ -5,7 +5,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
 import PropTypes from 'prop-types';
-import { Clubs } from '../../api/club/Clubs';
+import { Counts } from 'meteor/tmeasday:publish-counts';
+
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -232,7 +233,7 @@ Landing.propTypes = {
 export default withTracker(() => {
   const subscription = Meteor.subscribe('ClubCount');
   return {
-    count: Clubs.find({}).count(),
+    count: Counts.get('ClubCount'),
     ready: subscription.ready(),
   };
 })(Landing);

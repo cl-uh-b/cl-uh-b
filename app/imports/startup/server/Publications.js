@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Counts } from 'meteor/tmeasday:publish-counts';
 import { Clubs } from '../../api/club/Clubs';
 import { Interests } from '../../api/interests/Interests';
 import { Favorites } from '../../api/favorites/Favorites';
@@ -46,9 +47,10 @@ Meteor.publish('LuckyClubs', function publish() {
   if (this.userId) {
     const interests = Meteor.users.findOne(this.userId).profile.interests;
     if (interests.length !== 0) {
+      Counts.publish(this, 'LuckyCount', Clubs.find({ interest: { $in: interests } }));
       return Clubs.find({ interest: { $in: interests } });
     }
-
+      Counts.publish(this, 'LuckyCount', Clubs.find({}));
       return Clubs.find({});
 
   }
@@ -56,5 +58,5 @@ Meteor.publish('LuckyClubs', function publish() {
 });
 
 Meteor.publish('ClubCount', function publish() {
-  return Clubs.find({ registered: true });
+  Counts.publish(this, 'ClubCount', Clubs.find({ registered: true }));
 });
