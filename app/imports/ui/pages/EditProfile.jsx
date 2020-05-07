@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 import { Grid, Header, Segment, Button } from 'semantic-ui-react';
 import swal from 'sweetalert';
-import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm, SubmitField, TextField } from 'uniforms-semantic';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
 import { _ } from 'meteor/underscore';
