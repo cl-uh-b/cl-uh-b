@@ -66,14 +66,14 @@ export default class Signin extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
-                  <Form.Button content="Register"/>
+                  <Form.Button content="Sign in"/>
                 </Form>
                 {this.state.error === '' ? (
                     ''
                 ) : (
                     <Message
                         error
-                        header="Registration was not successful"
+                        header="Log in was not successful."
                         content={this.state.error}
                     />
                 )}

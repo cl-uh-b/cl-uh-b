@@ -4,7 +4,7 @@ import { Header, Loader, Card, Button, Grid, Transition } from 'semantic-ui-reac
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Clubs } from '../../api/club/Clubs';
-import Club from '../components/Club';
+import ModClub from '../components/ModClub';
 import { Favorites } from '../../api/favorites/Favorites';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -58,16 +58,16 @@ class Lucky extends React.Component {
                         <Header as="h2" textAlign="center">I&apos;m Feeling Lucky!</Header>
                     </Grid.Row>
                     <Grid.Row>
-                        <Transition visible={this.state.animation} animation={animation} duration={duration}>
-                            <Card.Group>
-                                <Club club={this.props.clubs[random]} favorites={this.props.favorites}/>
-                            </Card.Group>
-                        </Transition>
+                      {this.state.animation ?
+                          <Button onClick={this.componentDidMount.bind(this)}> Click Me to Stop</Button> :
+                          <Button onClick={this.componentDidMount.bind(this)}> I&apos;m Feeling Lucky!</Button>}
                     </Grid.Row>
                     <Grid.Row>
-                        {this.state.animation ?
-                            <Button onClick={this.componentDidMount.bind(this)}> Click Me to Stop</Button> :
-                            <Button onClick={this.componentDidMount.bind(this)}> I&apos;m Feeling Lucky!</Button>}
+                        <Transition visible={this.state.animation} animation={animation} duration={duration}>
+                            <Card.Group>
+                                <ModClub club={this.props.clubs[random]} favorites={this.props.favorites}/>
+                            </Card.Group>
+                        </Transition>
                     </Grid.Row>
                 </Grid>
         );
