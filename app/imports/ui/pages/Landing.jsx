@@ -4,7 +4,6 @@ import { Container, Grid, Header, Statistic, Button, Accordion, Icon } from 'sem
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
-import { _ } from 'meteor/underscore';
 import PropTypes from 'prop-types';
 import { Clubs } from '../../api/club/Clubs';
 
