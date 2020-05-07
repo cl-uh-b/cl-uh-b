@@ -4,7 +4,7 @@ import { Container, Loader, Card, Statistic, Pagination, Grid } from 'semantic-u
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
-import Club from '../components/Club';
+import ModClub from '../components/ModClub';
 import { Clubs } from '../../api/club/Clubs';
 import { Favorites } from '../../api/favorites/Favorites';
 
@@ -41,9 +41,9 @@ class FavoriteClubs extends React.Component {
             <Grid.Row>
               <Statistic horizontal label='Favorites' value={totalFavorites} />
             </Grid.Row>
-            <Grid.Row>
+            <Grid.Row className='fav-rec'>
               <Card.Group>
-                {userFavorites.map((club, index) => <Club
+                {userFavorites.map((club, index) => <ModClub
                     key={index}
                     club={club}
                     favorites={this.props.favorites}

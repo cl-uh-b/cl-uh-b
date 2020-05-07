@@ -18,7 +18,7 @@ const ClubSchema = new SimpleSchema({
   registered: { type: Boolean, defaultValue: false },
   contact: String,
   email: String,
-  website: { type: String, optional: true, defaultValue: 'No Website' },
+  website: { type: String, optional: true, defaultValue: '' },
   image: { type: String,
     optional: true,
     defaultValue: 'https://manoa.hawaii.edu/admissions/images/stacked.png' },

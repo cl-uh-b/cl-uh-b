@@ -73,14 +73,16 @@ class ModClub extends React.Component {
                 </Modal.Description>
               </Modal.Content>
             </Modal>
+            <Button size='mini' disabled={this.props.club.website === ''}>
+              <a href={this.props.club.website}>Website</a></Button>
             <Rating
-                id='card-rank'
-                icon='heart'
-                size='huge'
-                rating={defaultRating}
-                schema={ClubSchema}
-                onRate={this.handleRate}
-                maxRating={1}/>
+            id='card-rank'
+            icon='heart'
+            size='huge'
+            rating={defaultRating}
+            schema={ClubSchema}
+            onRate={this.handleRate}
+            maxRating={1}/>
           </Card.Content>
         </Card>
     );

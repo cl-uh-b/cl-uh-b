@@ -4,7 +4,7 @@ import { Container, Loader, Card, Statistic, Grid, Pagination } from 'semantic-u
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { _ } from 'meteor/underscore';
-import Club from '../components/Club';
+import ModClub from '../components/ModClub';
 import { Clubs } from '../../api/club/Clubs';
 import { Favorites } from '../../api/favorites/Favorites';
 
@@ -45,13 +45,12 @@ class RecommendedClubs extends React.Component {
             <Grid.Row>
               <Statistic horizontal label='Clubs Recommended For You' value={recommendations.length} />
             </Grid.Row>
-            <Grid.Row>
+            <Grid.Row className='fav-rec'>
               <Card.Group>
-                {recommendations.map((club, index) => <Club
+                {recommendations.map((club, index) => <ModClub
                     key={index}
                     club={club}
                     favorites={this.props.favorites}
-                    style={{ margin: '0 5px' }}
                 />)}
               </Card.Group>
             </Grid.Row>

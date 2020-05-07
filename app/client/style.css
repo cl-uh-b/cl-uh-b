@@ -144,6 +144,10 @@ div, h1, h2, h3, h4 {
   display: contents !important;
 }
 
+.fav-rec {
+  display: block !important;
+}
+
 #noClubs {
   font-size: 20px;
 }
