@@ -1,11 +1,11 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Button, Card, Image, Statistic, Container, Icon } from 'semantic-ui-react';
+import { Button, Card, Image, Statistic, Container, Icon, Dimmer, Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { Clubs } from '../../api/club/Clubs';
 
-class ClubOwner extends React.Component {
+class ClubPending extends React.Component {
 
   removeClub(docID) {
     swal({
@@ -53,14 +53,21 @@ class ClubOwner extends React.Component {
 
     return (
         <Card centered fluid>
-          <Card.Content>
-            <Image floated='left' src={this.props.club.image} />
-            <Card.Header>{this.props.club.clubName}</Card.Header>
-            <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
-            <Card.Meta>Email: {this.props.club.email}</Card.Meta>
-            <Card.Meta>Interests: {clubInterest}</Card.Meta>
-            <Container fluid>{this.props.club.description}</Container>
-          </Card.Content>
+          <Dimmer.Dimmable blurring dimmed={true}>
+            <Card.Content>
+              <Image floated='left' src={this.props.club.image} />
+              <Card.Header>{this.props.club.clubName}</Card.Header>
+              <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
+              <Card.Meta>Email: {this.props.club.email}</Card.Meta>
+              <Card.Meta>Interests: {clubInterest}</Card.Meta>
+              <Container fluid>{this.props.club.description}</Container>
+            </Card.Content>
+            <Dimmer active={true}>
+              <Header inverted>
+                Submission for &quot;{this.props.club.clubName}&quot; is pending...
+              </Header>
+            </Dimmer>
+          </Dimmer.Dimmable>
           <Card.Content extra>
             <Statistic size='tiny'>
               <Statistic.Value>
@@ -77,9 +84,10 @@ class ClubOwner extends React.Component {
   }
 }
 
-ClubOwner.propTypes = {
+
+ClubPending.propTypes = {
   club: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(ClubOwner);
+export default withRouter(ClubPending);

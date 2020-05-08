@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Clubs } from '../../api/club/Clubs';
@@ -19,9 +19,18 @@ class SubmissionsPage extends React.Component {
     return (
         <Container>
           <Header as="h2" textAlign="center">Submissions</Header>
-          <Card.Group>
-            {this.props.clubs.map((club, index) => <SubmittedClubs key={index} club={club}/>)}
-          </Card.Group>
+          {this.props.clubs.length !== 0 ?
+              <Card.Group>
+                {this.props.clubs.map((club, index) => <SubmittedClubs key={index} club={club}/>)}
+              </Card.Group> :
+              <Grid centered verticalAlign='middle'>
+                <Grid.Row>
+                  <p id='noClubs'>
+                    There are no new submissions.
+                  </p>
+                </Grid.Row>
+              </Grid>
+          }
         </Container>
     );
   }
