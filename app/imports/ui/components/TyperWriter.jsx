@@ -2,10 +2,6 @@ import React from 'react';
 import { Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { Meteor } from 'meteor/meteor';
-import { _ } from 'meteor/underscore';
-import { Favorites } from '../../api/favorites/Favorites';
-import { Clubs, ClubSchema } from '../../api/club/Clubs';
 
 class TypeWriter extends React.Component {
 
