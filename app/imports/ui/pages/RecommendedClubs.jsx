@@ -23,7 +23,14 @@ class RecommendedClubs extends React.Component {
   renderPage() {
     const { activePage, clubsPerPage } = this.state;
 
-    let recommendations = this.props.clubs;
+    let recommendations;
+    const interests = Meteor.user().profile.interests;
+    if (interests.length !== 0) {
+      recommendations = Clubs.find({ interest: { $in: interests } }).fetch();
+    } else {
+      const random = Math.floor(Math.random() * this.props.interests.length);
+      recommendations = Clubs.find({ interest: this.props.interests[random].interest }).fetch();
+    }
 
     const totalRec = recommendations.length;
 
@@ -78,18 +85,9 @@ export default withTracker(() => {
   const subscription2 = Meteor.subscribe('Favorites');
   const subscription3 = Meteor.subscribe('Interests');
   const profile = Meteor.user() !== undefined;
-  let interests;
-  let clubs;
-  if (profile) {
-    interests = Meteor.user().profile.interests;
-    if (interests.length !== 0) {
-      clubs = Clubs.find({ interest: { $in: interests } }).fetch();
-    } else {
-      clubs = Clubs.find({}).fetch();
-    }
-  }
+
   return {
-    clubs: clubs,
+    clubs: Clubs.find({}).fetch(),
     favorites: Favorites.find({}).fetch(),
     interests: Interests.find({}).fetch(),
     ready: subscription1.ready() && subscription2.ready() && subscription3.ready() && profile,
