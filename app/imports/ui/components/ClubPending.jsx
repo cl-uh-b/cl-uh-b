@@ -76,8 +76,8 @@ class ClubPending extends React.Component {
               </Statistic.Value>
               <Statistic.Label>Favorites</Statistic.Label>
             </Statistic>
-            <Button as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
             <Button floated='right' onClick={() => { this.removeClub(this.props.club._id); } }>Delete</Button>
+            <Button floated='right' as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
           </Card.Content>
         </Card>
     );
