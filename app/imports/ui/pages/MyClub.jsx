@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 import ClubOwner from '../components/ClubOwner';
 import { Clubs } from '../../api/club/Clubs';
 import ClubPending from '../components/ClubPending';
+import ClubDenied from '../components/ClubDenied';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyClub extends React.Component {
@@ -29,10 +30,10 @@ class MyClub extends React.Component {
                 <Container>
                     <Header as="h2" textAlign="center">My Clubs</Header>
                     {this.props.clubs.length !== 0 ?
-                        // this.props.clubs.map((club) => console.log(club.clubName)) :
                         <Card.Group>
-                            {this.props.clubs.map((club, index) => (club.registered === true ?
-                                <ClubOwner key={index} club={club}/> : <ClubPending key={index} club={club}/>))}
+                            {this.props.clubs.map((club, index) => (club.status === 'active' ?
+                                <ClubOwner key={index} club={club}/> : club.status === 'denied' ?
+                                <ClubDenied key={index} club={club}/> : <ClubPending key={index} club={club}/>))}
                         </Card.Group> :
                         <Grid centered>
                             <Grid.Row>

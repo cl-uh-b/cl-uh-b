@@ -5,39 +5,14 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { Clubs } from '../../api/club/Clubs';
 
-class ClubPending extends React.Component {
+class ClubDenied extends React.Component {
 
   removeClub(docID) {
-    swal({
-      title: 'Are you sure?',
-      buttons: ['Cancel', 'Delete'],
-      dangerMode: true,
+    Clubs.remove(docID);
+    swal('Club has been removed.', {
+      icon: 'success',
       closeOnClickOutside: false,
-    })
-        .then((willDelete) => {
-          if (willDelete) {
-            swal('Reason for removal:', {
-              content: 'input',
-              closeOnClickOutside: false,
-            })
-                .then((value) => {
-                  if (value !== '') {
-                    Clubs.remove(docID);
-                    swal('Club has been removed.', {
-                      icon: 'success',
-                      closeOnClickOutside: false,
-                    });
-                  } else {
-                    swal({
-                      text: 'Must provide a reason for removal.',
-                      icon: 'warning',
-                      dangerMode: true,
-                      closeOnClickOutside: false,
-                    });
-                  }
-                });
-          }
-        });
+    });
   }
 
   render() {
@@ -64,7 +39,7 @@ class ClubPending extends React.Component {
             </Card.Content>
             <Dimmer active={true}>
               <Header inverted>
-                Submission for &quot;{this.props.club.clubName}&quot; is pending...
+                &quot;{this.props.club.clubName}&quot; was denied by admin.
               </Header>
             </Dimmer>
           </Dimmer.Dimmable>
@@ -85,9 +60,9 @@ class ClubPending extends React.Component {
 }
 
 
-ClubPending.propTypes = {
+ClubDenied.propTypes = {
   club: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(ClubPending);
+export default withRouter(ClubDenied);
