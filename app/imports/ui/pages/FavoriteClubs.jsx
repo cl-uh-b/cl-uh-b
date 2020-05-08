@@ -34,7 +34,8 @@ class FavoriteClubs extends React.Component {
     );
 
     /** Sort by letter */
-    userFavorites = userFavorites.sort((a, b) => (a.clubName > b.clubName ? 1 : -1));
+    userFavorites = userFavorites.sort((a, b) => (a.clubName.toLowerCase() > b.clubName.toLowerCase() ? 1 : -1));
+
     return (
         <Container fluid>
           <Grid centered>

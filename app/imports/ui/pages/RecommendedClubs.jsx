@@ -46,7 +46,7 @@ class RecommendedClubs extends React.Component {
     );
 
     /** Sort by letter */
-    recommendations = recommendations.sort((a, b) => (a.clubName > b.clubName ? 1 : -1));
+    recommendations = recommendations.sort((a, b) => (a.clubName.toLowerCase() > b.clubName.toLowerCase() ? 1 : -1));
 
     return (
         <Container fluid>
