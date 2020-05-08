@@ -3,7 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Loader, Card, Statistic, Grid, Pagination } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { _ } from 'meteor/underscore';
 import ModClub from '../components/ModClub';
 import { Clubs } from '../../api/club/Clubs';
 import { Favorites } from '../../api/favorites/Favorites';
@@ -23,18 +22,8 @@ class RecommendedClubs extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     const { activePage, clubsPerPage } = this.state;
-    /** Find clubs based on user's interest */
-    const userInterest = Meteor.user().profile.interests;
-    let recommendations;
-    if (userInterest.length !== 0) {
-      for (let i = 0; i < userInterest.length; i++) {
-        recommendations = _.filter(this.props.clubs, (club) => club.interest.includes(userInterest[i]));
-      }
-    } else {
-      const random = Math.floor(Math.random() * this.props.interests.length);
-      const interest = this.props.interests[random].interest;
-      recommendations = _.filter(this.props.clubs, (club) => club.interest.includes(interest));
-    }
+
+    let recommendations = this.props.clubs;
 
     const totalRec = recommendations.length;
 
@@ -88,10 +77,21 @@ export default withTracker(() => {
   const subscription1 = Meteor.subscribe('Clubs');
   const subscription2 = Meteor.subscribe('Favorites');
   const subscription3 = Meteor.subscribe('Interests');
+  const profile = Meteor.user() !== undefined;
+  let interests;
+  let clubs;
+  if (profile) {
+    interests = Meteor.user().profile.interests;
+    if (interests.length !== 0) {
+      clubs = Clubs.find({ interest: { $in: interests } }).fetch();
+    } else {
+      clubs = Clubs.find({}).fetch();
+    }
+  }
   return {
-    clubs: Clubs.find({}).fetch(),
+    clubs: clubs,
     favorites: Favorites.find({}).fetch(),
     interests: Interests.find({}).fetch(),
-    ready: subscription1.ready() && subscription2.ready() && subscription3.ready(),
+    ready: subscription1.ready() && subscription2.ready() && subscription3.ready() && profile,
   };
 })(RecommendedClubs);
