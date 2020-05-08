@@ -1,8 +1,8 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Button, Card, Image, Statistic, Container, Icon, Dimmer, Header } from 'semantic-ui-react';
+import { Button, Card, Image, Container, Dimmer, Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Clubs } from '../../api/club/Clubs';
 
 class ClubDenied extends React.Component {
@@ -44,14 +44,6 @@ class ClubDenied extends React.Component {
             </Dimmer>
           </Dimmer.Dimmable>
           <Card.Content extra>
-            <Statistic size='tiny'>
-              <Statistic.Value>
-                <Icon name='heart' color='red' />
-                {this.props.club.favoritesCount}
-              </Statistic.Value>
-              <Statistic.Label>Favorites</Statistic.Label>
-            </Statistic>
-            <Button as={Link} to={`/edit/${this.props.club._id}`}>Edit</Button>
             <Button floated='right' onClick={() => { this.removeClub(this.props.club._id); } }>Delete</Button>
           </Card.Content>
         </Card>

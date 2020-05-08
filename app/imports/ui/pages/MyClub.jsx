@@ -31,9 +31,15 @@ class MyClub extends React.Component {
                     <Header as="h2" textAlign="center">My Clubs</Header>
                     {this.props.clubs.length !== 0 ?
                         <Card.Group>
-                            {this.props.clubs.map((club, index) => (club.status === 'active' ?
-                                <ClubOwner key={index} club={club}/> : club.status === 'denied' ?
-                                <ClubDenied key={index} club={club}/> : <ClubPending key={index} club={club}/>))}
+                            {this.props.clubs.map((club, index) => {
+                              switch (club.status) {
+                                case 'active': return <ClubOwner key={index} club={club}/>;
+                                case 'pending': return <ClubPending key={index} club={club}/>;
+                                case 'denied': return <ClubDenied key={index} club={club}/>;
+                                default:
+                                  return console.log('Status error');
+                              }
+                                })}
                         </Card.Group> :
                         <Grid centered>
                             <Grid.Row>
