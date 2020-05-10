@@ -23,7 +23,7 @@ class SubmittedClubs extends React.Component {
             })
                 .then((value) => {
                   if (value !== '') {
-                    Clubs.remove(docID);
+                    Clubs.update(docID, { $set: { status: 'denied' } });
                     swal('Club has been denied.', {
                       icon: 'success',
                       closeOnClickOutside: false,
@@ -41,7 +41,7 @@ class SubmittedClubs extends React.Component {
         });
   }
 
-  registeredTrue(docID) {
+  acceptSubmission(docID) {
     swal({
       title: 'Are you sure?',
       buttons: ['Cancel', 'Accept'],
@@ -53,7 +53,7 @@ class SubmittedClubs extends React.Component {
               icon: 'success',
               closeOnClickOutside: false,
             });
-            Clubs.update(docID, { $set: { registered: true } });
+            Clubs.update(docID, { $set: { status: 'active' } });
           }
         });
   }
@@ -83,7 +83,7 @@ class SubmittedClubs extends React.Component {
           </Card>
           <Card.Content extra>
             <Button className="ui button"
-            onClick={() => { this.registeredTrue(this.props.club._id); } }
+            onClick={() => { this.acceptSubmission(this.props.club._id); } }
             >
               Accept</Button>
             <Button className="ui button" floated="right"

@@ -47,7 +47,7 @@ class Profile extends React.Component {
       {
         menuItem: (
             <Menu.Item key='favorites'>
-              Favorites&nbsp;&nbsp;<Icon name='heart'/>
+              Favorites&nbsp;&nbsp; 💖
             </Menu.Item>
         ),
         render: () => <Tab.Pane attached={false} className='tab-pane'><FavoriteClubs /></Tab.Pane>,
@@ -55,7 +55,7 @@ class Profile extends React.Component {
       {
         menuItem: (
             <Menu.Item key='recommended'>
-              Recommended For You
+              Recommended For You ✔️
             </Menu.Item>
         ),
         render: () => <Tab.Pane attached={false} className='tab-pane'><RecommendedClubs /></Tab.Pane>,

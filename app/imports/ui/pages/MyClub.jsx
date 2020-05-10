@@ -1,10 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Grid, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import ClubOwner from '../components/ClubOwner';
 import { Clubs } from '../../api/club/Clubs';
+import ClubPending from '../components/ClubPending';
+import ClubDenied from '../components/ClubDenied';
 
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -17,14 +19,34 @@ class MyClub extends React.Component {
 
     /** Render the page once subscriptions have been received. */
     renderPage() {
-        return (
-            <Container>
-                <Header as="h2" textAlign="center">My Clubs</Header>
-                <Card.Group>
-                    {this.props.clubs.map((club, index) => <ClubOwner key={index} club={club}/>)}
-                </Card.Group>
-            </Container>
-        );
+            return (
+                <Container>
+                    <Header as="h2" textAlign="center">My Clubs</Header>
+                    {this.props.clubs.length !== 0 ?
+                        <Card.Group>
+                            {this.props.clubs.map((club, index) => {
+                              switch (club.status) {
+                                case 'active': return <ClubOwner key={index} club={club}/>;
+                                case 'pending': return <ClubPending key={index} club={club}/>;
+                                case 'denied': return <ClubDenied key={index} club={club}/>;
+                                default:
+                                  return console.log('Status error');
+                              }
+                                })}
+                        </Card.Group> :
+                        <Grid centered>
+                            <Grid.Row>
+                                <p id='noClubs'>
+                                Sorry, It seems like you don&apos;t have any clubs yet.
+                                </p>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Button onClick={this.add.bind(this)}>Click here to create a new club!</Button>
+                            </Grid.Row>
+                        </Grid>
+                    }
+                </Container>
+            );
     }
 }
 

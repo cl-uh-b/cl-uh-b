@@ -64,7 +64,7 @@ class ListClubsAdmin extends React.Component {
     );
 
     /** Sort by letter */
-    clubsOnPage = clubsOnPage.sort((a, b) => (a.clubName > b.clubName ? 1 : -1));
+    clubsOnPage = clubsOnPage.sort((a, b) => (a.clubName.toLowerCase() > b.clubName.toLowerCase() ? 1 : -1));
 
     return (
         <Container fluid style={{ padding: '0 290px' }}>

@@ -3,10 +3,10 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Loader, Card, Statistic, Grid, Pagination } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import { _ } from 'meteor/underscore';
 import ModClub from '../components/ModClub';
 import { Clubs } from '../../api/club/Clubs';
 import { Favorites } from '../../api/favorites/Favorites';
+import { Interests } from '../../api/interests/Interests';
 
 class RecommendedClubs extends React.Component {
 
@@ -22,12 +22,17 @@ class RecommendedClubs extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     const { activePage, clubsPerPage } = this.state;
-    /** Find clubs based on user's interest */
-    const userInterest = Meteor.user().profile.interests;
+
     let recommendations;
-    for (let i = 0; i < userInterest.length; i++) {
-        recommendations = _.filter(this.props.clubs, (club) => club.interest.includes(userInterest[i]));
+    const interests = Meteor.user().profile.interests;
+    if (interests.length !== 0) {
+      recommendations = Clubs.find({ interest: { $in: interests } }).fetch();
+    } else {
+      const random = Math.floor(Math.random() * this.props.interests.length);
+      recommendations = Clubs.find({ interest: this.props.interests[random].interest }).fetch();
     }
+
+    const totalRec = recommendations.length;
 
     /** Pagination */
     const totalPages = Math.ceil(recommendations.length / clubsPerPage);
@@ -37,13 +42,13 @@ class RecommendedClubs extends React.Component {
     );
 
     /** Sort by letter */
-    recommendations = recommendations.sort((a, b) => (a.clubName > b.clubName ? 1 : -1));
+    recommendations = recommendations.sort((a, b) => (a.clubName.toLowerCase() > b.clubName.toLowerCase() ? 1 : -1));
 
     return (
         <Container fluid>
           <Grid centered>
             <Grid.Row>
-              <Statistic horizontal label='Clubs Recommended For You' value={recommendations.length} />
+              <Statistic horizontal label='Clubs Recommended For You' value={totalRec} />
             </Grid.Row>
             <Grid.Row className='fav-rec'>
               <Card.Group>
@@ -71,15 +76,20 @@ class RecommendedClubs extends React.Component {
 RecommendedClubs.propTypes = {
   clubs: PropTypes.array.isRequired,
   favorites: PropTypes.array.isRequired,
+  interests: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
   const subscription1 = Meteor.subscribe('Clubs');
   const subscription2 = Meteor.subscribe('Favorites');
+  const subscription3 = Meteor.subscribe('Interests');
+  const profile = Meteor.user() !== undefined;
+
   return {
     clubs: Clubs.find({}).fetch(),
     favorites: Favorites.find({}).fetch(),
-    ready: subscription1.ready() && subscription2.ready(),
+    interests: Interests.find({}).fetch(),
+    ready: subscription1.ready() && subscription2.ready() && subscription3.ready() && profile,
   };
 })(RecommendedClubs);

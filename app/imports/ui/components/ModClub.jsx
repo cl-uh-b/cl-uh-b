@@ -57,13 +57,13 @@ class ModClub extends React.Component {
                   <p>
                     {this.props.club.description}
                     <br/>
-                    {_.map(this.props.club.interest,
-                        (interest, index) => <Label style={ { marginTop: 10 }}
-                                                    key={index}
-                                                    size='medium'
-                                                    color='teal'>
-                          {interest}</Label>)}
                   </p>
+                  {_.map(this.props.club.interest,
+                      (interest, index) => <Label style={{ marginTop: 10 }}
+                                                  key={index}
+                                                  size='medium'
+                                                  color='teal'>
+                        {interest}</Label>)}
                   <Card>
                     <Card.Content>
                       <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>

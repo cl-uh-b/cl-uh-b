@@ -1,7 +1,6 @@
 import React from 'react';
 import { Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 class TypeWriter extends React.Component {
 
@@ -12,11 +11,16 @@ class TypeWriter extends React.Component {
             text: '',
             isDeleting: false,
             typingSpeed: 100,
+            timer: {},
         };
-    }
+}
 
     componentDidMount() {
         this.handleType();
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.state.timer);
     }
 
     handleType = () => {
@@ -27,7 +31,7 @@ class TypeWriter extends React.Component {
 
         if (!isDeleting && text === fullText) {
 
-            setTimeout(this.handleDelete.bind(this), timeout);
+            this.setState({ timer: setTimeout(this.handleDelete.bind(this), timeout) });
 
         } else if (isDeleting && text === '') {
 
@@ -42,7 +46,7 @@ class TypeWriter extends React.Component {
                 text: isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1),
                 typingSpeed: isDeleting ? 40 : this.state.typingSpeed,
             });
-
+          
             setTimeout(this.handleType, this.state.typingSpeed);
         }
     };
@@ -69,4 +73,4 @@ TypeWriter.propTypes = {
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(TypeWriter);
+export default TypeWriter;
