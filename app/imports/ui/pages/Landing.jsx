@@ -68,7 +68,7 @@ class Landing extends React.Component {
         render: () => <Tab.Pane attached={false} className='tab-pane'>
           <Grid columns={2} verticalAlign='middle'>
             <Grid.Column width={2}>
-             <Image src='../images/cl-uh-b-logo.png' size='small'/>
+             <Image src='../images/black-cl-uh-b.png' size='small'/>
             </Grid.Column>
             <Grid.Column width={14}>
               <Header as='h4' className='info-desc'>
