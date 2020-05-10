@@ -12,6 +12,12 @@ import ClubDenied from '../components/ClubDenied';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyClub extends React.Component {
 
+  state = { redirect: false };
+
+  add() {
+    this.setState({ redirect: true });
+  }
+
     /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
     render() {
         return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
