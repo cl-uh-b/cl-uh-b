@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, Button, Container, Header, Grid, Image, Tab, Menu } from 'semantic-ui-react';
-import { Roles } from 'meteor/alanning:roles';
+import { Card, Button, Container, Header, Grid, Image, Tab, Menu, Icon } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -21,7 +20,6 @@ class Profile extends React.Component {
 
   renderPage() {
     let profileInterest = '';
-    let profileRole = '';
     let profilePicture = '';
 
     /** Get user profile interest */
@@ -35,14 +33,6 @@ class Profile extends React.Component {
     /** Display no interest */
     if (profileInterest === '') {
       profileInterest += 'No interests.';
-    }
-    /** Display user's role */
-    if (Roles.userIsInRole(Meteor.userId(), 'admin')) {
-      profileRole = 'Admin';
-    } else if (Roles.userIsInRole(Meteor.userId(), 'clubOwner')) {
-      profileRole = 'Club Owner';
-    } else {
-      profileRole = 'Student';
     }
 
     /** Default profile picture */
@@ -95,7 +85,6 @@ class Profile extends React.Component {
                     </Card.Header>
                     <Card.Meta>{Meteor.user().username}</Card.Meta>
                     <Card.Description>Interest: {profileInterest}</Card.Description>
-                    <Card.Description>Role: {profileRole}</Card.Description>
                   </Card.Content>
                   <Card.Content extra>
                     <Link to='/editprofile'>
@@ -120,4 +109,4 @@ Profile.propTypes = {
 
 export default withTracker(() => ({
     profile: Meteor.user() !== undefined,
-  }))(Profile);
+}))(Profile);

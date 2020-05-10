@@ -1,10 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans|Proza+Libre|Open+Sans);
 
-/*.landing-header-background {*/
-/*  background: url("images/landing-header-background.png") no-repeat center center;*/
-/*  background-size: cover;*/
-/*}*/
-
 div, h1, h2, h3, h4 {
   font-family: "Noto Sans", sans-serif !important;
 }
@@ -39,18 +34,21 @@ div, h1, h2, h3, h4 {
 }
 
 .landing-information {
-  padding: 0 25px 78px 25px !important;
+  height: 250px !important;
+  margin-top: 78px !important;
+  margin-bottom: 90px !important;
 }
 
 .info-header {
   font-family: "Proza Libre", sans-serif !important;
-  font-size: 35px !important;
+  font-size: 20px !important;
 }
 
 .info-desc {
   font-family: "Open Sans", sans-serif !important;
-  font-size: 16px !important;
-  text-align: justify;
+  font-size: 25px !important;
+  font-weight: normal !important;
+  color: black !important;
 }
 
 .accordion-section {
@@ -67,6 +65,17 @@ div, h1, h2, h3, h4 {
 .accordion-content {
   font-family: "Open Sans", sans-serif !important;
   font-size: 15px !important;
+}
+
+#cursor {
+  border-left: .1em solid rgba(0,0,0,0.6);
+  animation: blink .7s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
 
 /** Footer */
@@ -154,15 +163,4 @@ div, h1, h2, h3, h4 {
 
 .ui.modal {
   font-size: 16px !important;
-}
-
-#cursor {
-  border-left: .1em solid rgba(0,0,0,0.6);
-  animation: blink .7s steps(1) infinite;
-}
-
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
 }

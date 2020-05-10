@@ -1,13 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Grid, Header, Statistic, Button, Accordion, Icon } from 'semantic-ui-react';
+import { Container, Grid, Header, Statistic, Button, Accordion, Icon, Menu, Tab, Image } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import ParticlesBg from 'particles-bg';
 import PropTypes from 'prop-types';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 import TypeWriter from '../components/TyperWriter';
-
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -25,6 +24,7 @@ class Landing extends React.Component {
   render() {
     const { activeIndex } = this.state;
 
+    /** Background Visuals */
     let config = {
       num: [4, 7],
       rps: 0.1,
@@ -57,7 +57,76 @@ class Landing extends React.Component {
       });
     }
 
-    const spacing = { paddingTop: '78px' };
+    /** Tab panes for information */
+    const panes = [
+      {
+        menuItem: (
+            <Menu.Item key='CL-UH-B' className='info-header'>
+              CL-UH-B
+            </Menu.Item>
+        ),
+        render: () => <Tab.Pane attached={false} className='tab-pane'>
+          <Grid columns={2} verticalAlign='middle'>
+            <Grid.Column width={2}>
+             <Image src='../images/black-cl-uh-b.png' size='small'/>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <Header as='h4' className='info-desc'>
+                Our goal is to help promote clubs at the University of Hawai&apos;i at Manoa.
+                To do this, we have created a simple website for students to browse through the hundreds of clubs
+                that our school offers.
+              </Header>
+            </Grid.Column>
+          </Grid>
+        </Tab.Pane>,
+      },
+      {
+        menuItem: (
+            <Menu.Item key='SLD Values' className='info-header'>
+              Student Life & Development Values
+            </Menu.Item>
+        ),
+        render: () => <Tab.Pane attached={false} className='tab-pane'>
+          <Header as='h4' className='info-desc'>
+            Student Life & Development values programs and services that complement all students&apos; educational
+            development and support the development and growth of Registered Independent Organizations. RIOs
+            provide a laboratory of citizenship for training students in leadership and social responsibility.
+            RIOs afford students the opportunity to practice decision-making skills, develop interpersonal
+            communication skills, learn to reduce conflict and solve problems, develop group management skills,
+            and express opinions and thoughts clearly.
+          </Header>
+        </Tab.Pane>,
+      },
+      {
+        menuItem: (
+            <Menu.Item key='RIOsClubs' className='info-header'>
+              What are RIOs/Clubs?
+            </Menu.Item>
+        ),
+        render: () => <Tab.Pane attached={false} className='tab-pane'>
+          <Header as='h4' className='info-desc'>
+            More than 200 current Registered Independent Organizations (RIOs) at the University of Hawaiʻi
+            at Mānoa serve the campus and greater community by providing leadership development for students
+            and by promoting community spirit, activism, public service, and social, recreational, and cultural
+            interaction among UHM students, faculty, and staff.
+          </Header>
+        </Tab.Pane>,
+      },
+      {
+        menuItem: (
+            <Menu.Item key='Mission Statement' className='info-header'>
+              SLD Mission Statement
+            </Menu.Item>
+        ),
+        render: () => <Tab.Pane attached={false} className='tab-pane'>
+          <Header as='h4' className='info-desc'>
+            The Office of Student Life and Development (SLD) is committed to providing a spectrum of involvement
+            and learning opportunities for students through innovative programs and quality services which promote
+            leadership, life skills, and personal development while enhancing campus life.
+          </Header>
+        </Tab.Pane>,
+      },
+    ];
 
     return (
       <div>
@@ -84,38 +153,10 @@ class Landing extends React.Component {
           </Grid>
           <ParticlesBg type="custom" config={config} bg={true} />
         </Container>
-        <div style={spacing}/>
-        <Container fluid className='landing-information'>
-          <Grid textAlign='center' columns='equal' divided>
+        <Container className='landing-information'>
+          <Grid verticalAlign='middle'>
             <Grid.Row>
-              <Grid.Column>
-                <Header as='h1' className='info-header'>What are RIOs/Clubs?</Header>
-                <Header as='h4' className='info-desc'>
-                  More than 200 current Registered Independent Organizations (RIOs) at the University of Hawaiʻi
-                  at Mānoa serve the campus and greater community by providing leadership development for students
-                  and by promoting community spirit, activism, public service, and social, recreational, and cultural
-                  interaction among UHM students, faculty, and staff.
-                </Header>
-              </Grid.Column>
-              <Grid.Column>
-                <Header as='h1' className='info-header'>Student Life & Development Values</Header>
-                <Header as='h4' className='info-desc'>
-                  Student Life & Development values programs and services that complement all students&apos; educational
-                  development and support the development and growth of Registered Independent Organizations. RIOs
-                  provide a laboratory of citizenship for training students in leadership and social responsibility.
-                  RIOs afford students the opportunity to practice decision-making skills, develop interpersonal
-                  communication skills, learn to reduce conflict and solve problems, develop group management skills,
-                  and express opinions and thoughts clearly.
-                </Header>
-              </Grid.Column>
-              <Grid.Column>
-                <Header as='h1' className='info-header'>Mission Statement</Header>
-                <Header as='h4' className='info-desc'>
-                  The Office of Student Life and Development (SLD) is committed to providing a spectrum of involvement
-                  and learning opportunities for students through innovative programs and quality services which promote
-                  leadership, life skills, and personal development while enhancing campus life.
-                </Header>
-              </Grid.Column>
+             <Tab menu={{ secondary: true, pointing: true }} panes={panes}/>
             </Grid.Row>
           </Grid>
         </Container>
