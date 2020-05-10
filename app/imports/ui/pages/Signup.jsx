@@ -53,7 +53,7 @@ class Signup extends React.Component {
         <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Segment className='sign-in-up'>
-            <Header as='h1' textAlign='center' className='sign-in-up-text' >
+            <Header as='h1' textAlign='center' className='transparent-green-box' >
               <Image src='../images/cl-uh-b-logo.png'/>Sign up for CL-UH-B</Header>
             <Form onSubmit={this.submit}>
               <Form.Input
