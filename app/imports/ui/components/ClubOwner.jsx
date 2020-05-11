@@ -55,11 +55,15 @@ class ClubOwner extends React.Component {
         <Card centered fluid>
           <Card.Content>
             <Image floated='left' src={this.props.club.image} />
-            <Card.Header>{this.props.club.clubName}</Card.Header>
+            <Card.Header style={ { fontSize: 25, marginBottom: 5 } }>{this.props.club.clubName}</Card.Header>
             <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
             <Card.Meta>Email: {this.props.club.email}</Card.Meta>
+            <Card.Meta rel="noopener noreferrer" target="_blank" href={this.props.club.website}>
+              Website: {this.props.club.website}</Card.Meta>
+            <p/>
             <Card.Meta>Interests: {clubInterest}</Card.Meta>
-            <Container fluid>{this.props.club.description}</Container>
+            <br/>
+            <Container>{this.props.club.description}</Container>
           </Card.Content>
           <Card.Content extra>
             <Statistic size='tiny'>

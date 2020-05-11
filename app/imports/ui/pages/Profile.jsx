@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Container, Header, Grid, Image, Tab, Menu, Icon } from 'semantic-ui-react';
+import { Card, Button, Container, Header, Grid, Image, Tab, Menu } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';

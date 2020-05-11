@@ -45,6 +45,8 @@ class Club extends React.Component {
             <Card.Content>
              <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
               <Card.Meta>Email: {this.props.club.email}</Card.Meta>
+              <Card.Meta rel="noopener noreferrer" target="_blank" href={this.props.club.website}>
+                Website: {this.props.club.website}</Card.Meta>
             </Card.Content>
           </Card>
           <Card.Content extra>

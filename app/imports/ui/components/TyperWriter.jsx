@@ -46,7 +46,7 @@ class TypeWriter extends React.Component {
                 text: isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1),
                 typingSpeed: isDeleting ? 40 : this.state.typingSpeed,
             });
-          
+
             setTimeout(this.handleType, this.state.typingSpeed);
         }
     };

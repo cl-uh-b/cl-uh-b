@@ -20,6 +20,7 @@ const makeSchema = (clubInterests) => new SimpleSchema({
   description: { type: String, label: 'Description', optional: true },
   contact: { type: String, label: 'Contact' },
   email: { type: String, label: 'Email' },
+  website: { type: String, optional: true, defaultValue: '' },
   image: { type: String, label: 'Image', optional: true },
 });
 
@@ -28,8 +29,8 @@ class EditClub extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { clubName, interest, description, contact, email, image, _id } = data;
-    Clubs.update(_id, { $set: { clubName, interest, description, contact, email, image } }, (error) => (error ?
+    const { clubName, interest, description, contact, email, website, image, _id } = data;
+    Clubs.update(_id, { $set: { clubName, interest, description, contact, email, website, image } }, (error) => (error ?
         swal('Error', error.message, 'error') :
         swal('Success', 'Club updated successfully', 'success')));
   }
@@ -55,6 +56,9 @@ class EditClub extends React.Component {
                 <Segment.Group horizontal>
                   <Segment><TextField name='contact'/></Segment>
                   <Segment><TextField name='email'/></Segment>
+                </Segment.Group>
+                <Segment.Group horizontal>
+                  <Segment><TextField name='website'/></Segment>
                   <Segment><TextField name='image'/></Segment>
                 </Segment.Group>
                 <SubmitField value='Submit'/>

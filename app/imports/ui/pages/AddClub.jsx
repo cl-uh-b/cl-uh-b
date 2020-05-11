@@ -18,6 +18,7 @@ const makeSchema = (clubInterests) => new SimpleSchema({
   description: { type: String, label: 'Description', optional: true },
   contact: { type: String, label: 'Contact' },
   email: { type: String, label: 'Email' },
+  website: { type: String, optional: true, defaultValue: '' },
   image: { type: String, label: 'Image', optional: true },
 });
 
@@ -26,8 +27,8 @@ class AddClub extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { clubName, interest, description, contact, email, image } = data;
-    Clubs.insert({ clubName, interest, description, contact, email, image },
+    const { clubName, interest, description, contact, email, website, image } = data;
+    Clubs.insert({ clubName, interest, description, contact, email, website, image },
         (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -55,8 +56,12 @@ class AddClub extends React.Component {
                   <Segment.Group horizontal>
                     <Segment><TextField name='contact'/></Segment>
                     <Segment><TextField name='email'/></Segment>
+                  </Segment.Group>
+                  <Segment.Group horizontal>
+                    <Segment><TextField name='website'/></Segment>
                     <Segment><TextField name='image'/></Segment>
                   </Segment.Group>
+                  <SubmitField value='Submit'/>
                   <SubmitField value='Submit'/>
                   <ErrorsField/>
                 </Segment>

@@ -1,9 +1,8 @@
 import React from 'react';
 import swal from 'sweetalert';
-import { Button, Card, Image, Label } from 'semantic-ui-react';
+import { Button, Card, Container, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { _ } from 'meteor/underscore';
 import { Clubs } from '../../api/club/Clubs';
 
 class SubmittedClubs extends React.Component {
@@ -59,36 +58,38 @@ class SubmittedClubs extends React.Component {
   }
 
   render() {
+    let clubInterest = '';
+    // Just in case the club has multiple interests.
+    for (let i = 0; i < this.props.club.interest.length; i++) {
+      if (i === this.props.club.interest.length - 1) {
+        clubInterest += this.props.club.interest[i];
+      } else {
+        clubInterest += `${this.props.club.interest[i]}, `;
+      }
+    }
 
     return (
-        <Card centered>
+        <Card centered fluid>
           <Card.Content>
-            <Image id="card-image"
-                   floated={'right'}
-                   src={this.props.club.image}
-            />
-            <Card.Header>{this.props.club.clubName}</Card.Header>
-            <Card.Meta>{this.props.club.type}</Card.Meta>
-            <Card.Description>{this.props.club.description}</Card.Description>
+            <Image floated='left' src={this.props.club.image} />
+            <Card.Header style={ { fontSize: 25, marginBottom: 5 } }>{this.props.club.clubName}</Card.Header>
+            <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
+            <Card.Meta>Email: {this.props.club.email}</Card.Meta>
+            <Card.Meta rel="noopener noreferrer" target="_blank" href={this.props.club.website}>
+              Website: {this.props.club.website}</Card.Meta>
+            <p/>
+            <Card.Meta>Interests: {clubInterest} </Card.Meta>
+            <br/>
+            <Container>{this.props.club.description}</Container>
           </Card.Content>
           <Card.Content extra>
-            {_.map(this.props.club.interest,
-                (interest, index) => <Label key={index} size='tiny' color='teal'>{interest}</Label>)}
-          </Card.Content>
-          <Card id="contact-card" centered>
-            <Card.Content>
-              <Card.Meta>Contact: {this.props.club.contact}</Card.Meta>
-              <Card.Meta>Email: {this.props.club.email}</Card.Meta>
-            </Card.Content>
-          </Card>
-          <Card.Content extra>
-            <Button className="ui button"
-            onClick={() => { this.acceptSubmission(this.props.club._id); } }
-            >
-              Accept</Button>
             <Button className="ui button" floated="right"
                     onClick={() => { this.denySubmission(this.props.club._id); } }>
               Deny</Button>
+            <Button className="ui button" floated="right"
+            onClick={() => { this.acceptSubmission(this.props.club._id); } }
+            >
+              Accept</Button>
           </Card.Content>
         </Card>
     );
