@@ -23,7 +23,7 @@ class ClubAdmin extends React.Component {
             })
                 .then((value) => {
                   if (value !== '') {
-                    Clubs.remove(docID);
+                    Clubs.update(docID, { $set: { status: 'deleted' } });
                     swal('Club has been removed.', {
                       icon: 'success',
                       closeOnClickOutside: false,

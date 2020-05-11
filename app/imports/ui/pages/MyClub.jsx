@@ -7,6 +7,7 @@ import ClubOwner from '../components/ClubOwner';
 import { Clubs } from '../../api/club/Clubs';
 import ClubPending from '../components/ClubPending';
 import ClubDenied from '../components/ClubDenied';
+import ClubDeleted from '../components/ClubDeleted';
 
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -35,6 +36,7 @@ class MyClub extends React.Component {
                                 case 'active': return <ClubOwner key={index} club={club}/>;
                                 case 'pending': return <ClubPending key={index} club={club}/>;
                                 case 'denied': return <ClubDenied key={index} club={club}/>;
+                                case 'deleted': return <ClubDeleted key={index} club={club}/>;
                                 default:
                                   return console.log('Status error');
                               }
