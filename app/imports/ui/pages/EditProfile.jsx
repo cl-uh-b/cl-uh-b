@@ -9,6 +9,7 @@ import SimpleSchema from 'simpl-schema';
 import { _ } from 'meteor/underscore';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import ParticlesBg from 'particles-bg';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
 import { updateProfileMethod } from '../../startup/both/Methods';
 import { Interests } from '../../api/interests/Interests';
@@ -46,22 +47,25 @@ class EditProfile extends React.Component {
     const model = _.extend({}, user);
     let fRef = null;
     return (
+      <div>
         <Grid textAlign='center' style={{ height: '75vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as='h2' textAlign='center'>Edit Profile</Header>
-            <AutoForm ref={ref => { fRef = ref; }} schema={formSchema}
-                      onSubmit={data => this.submit(data, fRef)} model={model} showInlineError >
-              <Segment stacked>
-                  <TextField name='firstName' />
-                  <TextField name='lastName' />
-                  <MultiSelectField name='interests' />
-                  <TextField name='picture' />
-                <SubmitField value='Submit'/>
+            <Segment className='sign-in-up'>
+              <Header as='h2' textAlign='center' className='transparent-green-box'>Edit Profile</Header>
+              <AutoForm ref={ref => { fRef = ref; }} schema={formSchema}
+                        onSubmit={data => this.submit(data, fRef)} model={model} showInlineError >
+                <TextField name='firstName' />
+                <TextField name='lastName' />
+                <MultiSelectField name='interests' />
+                <TextField name='picture' />
+                <SubmitField value='Submit' />
                 <Link to="/profile"><Button>Back</Button></Link>
-              </Segment>
-            </AutoForm>
+              </AutoForm>
+            </Segment>
           </Grid.Column>
         </Grid>
+        <ParticlesBg color='#024731' num={30} type='cobweb' bg={true} />
+      </div>
     );
   }
 }
