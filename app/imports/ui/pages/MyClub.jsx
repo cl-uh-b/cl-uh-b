@@ -9,8 +9,6 @@ import ClubPending from '../components/ClubPending';
 import ClubDenied from '../components/ClubDenied';
 import ClubDeleted from '../components/ClubDeleted';
 
-
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyClub extends React.Component {
 
   state = { redirect: false };

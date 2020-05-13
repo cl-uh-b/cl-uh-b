@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 import { Clubs } from '../../api/club/Clubs';
 import SubmittedClubs from '../components/SubmittedClubs';
 
-
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class SubmissionsPage extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {

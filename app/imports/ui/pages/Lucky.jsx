@@ -8,7 +8,6 @@ import { Clubs } from '../../api/club/Clubs';
 import ModClubLucky from '../components/ModClubLucky';
 import { Favorites } from '../../api/favorites/Favorites';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Lucky extends React.Component {
 
     state = { random: -1, roll: true, animation: true, timeout: 50 };
