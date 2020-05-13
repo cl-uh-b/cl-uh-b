@@ -13,7 +13,7 @@ import MultiSelectField from '../forms/controllers/MultiSelectField';
 
 const makeSchema = (clubInterests) => new SimpleSchema({
   clubName: { type: String, label: 'Club Name' },
-  interest: { type: Array, label: 'Interests', optional: true },
+  interest: { type: Array, label: 'Interests' },
   'interest.$': { type: String, allowedValues: clubInterests },
   description: { type: String, label: 'Description', optional: true },
   contact: { type: String, label: 'Contact' },
