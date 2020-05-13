@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Button, Grid, Menu } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button, Grid } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -10,14 +10,12 @@ import ClubPending from '../components/ClubPending';
 import ClubDenied from '../components/ClubDenied';
 import ClubDeleted from '../components/ClubDeleted';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyClub extends React.Component {
 
     state = { redirect: false };
 
     add() {
         this.setState({ redirect: true });
-
     }
 
     /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */

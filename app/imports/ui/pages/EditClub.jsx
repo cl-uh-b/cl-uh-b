@@ -14,14 +14,14 @@ import { Interests } from '../../api/interests/Interests';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
 
 const makeSchema = (clubInterests) => new SimpleSchema({
-  clubName: { type: String, label: 'Club Name' },
-  interest: { type: Array, label: 'Interests', optional: true },
+  clubName: String,
+  interest: Array,
   'interest.$': { type: String, allowedValues: clubInterests },
-  description: { type: String, label: 'Description', optional: true },
-  contact: { type: String, label: 'Contact' },
-  email: { type: String, label: 'Email' },
+  description: { type: String, optional: true },
+  contact: String,
+  email: String,
   website: { type: String, optional: true, defaultValue: '' },
-  image: { type: String, label: 'Image', optional: true },
+  image: { type: String, optional: true },
 });
 
 /** Renders the Page for editing a single document. */

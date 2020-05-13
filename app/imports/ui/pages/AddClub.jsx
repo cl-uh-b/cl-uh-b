@@ -12,14 +12,14 @@ import { Interests } from '../../api/interests/Interests';
 import MultiSelectField from '../forms/controllers/MultiSelectField';
 
 const makeSchema = (clubInterests) => new SimpleSchema({
-  clubName: { type: String, label: 'Club Name' },
-  interest: { type: Array, label: 'Interests' },
+  clubName: String,
+  interest: Array,
   'interest.$': { type: String, allowedValues: clubInterests },
-  description: { type: String, label: 'Description', optional: true },
-  contact: { type: String, label: 'Contact' },
-  email: { type: String, label: 'Email' },
+  description: { type: String, optional: true },
+  contact: { type: String, defaultValue: `${Meteor.user().profile.firstName} ${Meteor.user().profile.lastName}` },
+  email: { type: String, defaultValue: Meteor.user().username },
   website: { type: String, optional: true, defaultValue: '' },
-  image: { type: String, label: 'Image', optional: true },
+  image: { type: String, optional: true },
 });
 
 /** Renders the Page for adding a document. */
@@ -55,7 +55,7 @@ class AddClub extends React.Component {
                   <LongTextField name='description'/>
                   <Segment.Group horizontal>
                     <Segment><TextField name='contact'/></Segment>
-                    <Segment><TextField name='email'/></Segment>
+                    <Segment><TextField name='email' disabled/></Segment>
                   </Segment.Group>
                   <Segment.Group horizontal>
                     <Segment><TextField name='website'/></Segment>
