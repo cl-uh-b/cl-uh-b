@@ -1,21 +1,24 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Grid, Button } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button, Grid, Menu } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import ClubOwner from '../components/ClubOwner';
 import { Clubs } from '../../api/club/Clubs';
 import ClubPending from '../components/ClubPending';
 import ClubDenied from '../components/ClubDenied';
 import ClubDeleted from '../components/ClubDeleted';
 
+/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class MyClub extends React.Component {
 
-  state = { redirect: false };
+    state = { redirect: false };
 
-  add() {
-    this.setState({ redirect: true });
-  }
+    add() {
+        this.setState({ redirect: true });
+
+    }
 
     /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
     render() {
@@ -47,7 +50,8 @@ class MyClub extends React.Component {
                                 </p>
                             </Grid.Row>
                             <Grid.Row>
-                                <Button onClick={this.add.bind(this)}>Click here to create a new club!</Button>
+                                <Button as={NavLink} activeClassName="active" exact to="/add" key='add'>
+                                  Click here to create a new club!</Button>
                             </Grid.Row>
                         </Grid>
                     }
@@ -55,6 +59,7 @@ class MyClub extends React.Component {
             );
     }
 }
+
 
 MyClub.propTypes = {
     clubs: PropTypes.array.isRequired,
