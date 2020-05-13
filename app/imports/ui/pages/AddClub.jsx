@@ -62,7 +62,6 @@ class AddClub extends React.Component {
                     <Segment><TextField name='image'/></Segment>
                   </Segment.Group>
                   <SubmitField value='Submit'/>
-                  <SubmitField value='Submit'/>
                   <ErrorsField/>
                 </Segment>
             </AutoForm>
